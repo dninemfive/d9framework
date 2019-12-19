@@ -8,7 +8,7 @@ namespace D9Framework
 {
     class ULog
     {
-        public static bool DEBUG = true;
+        public static bool DEBUG => D9FModSettings.DEBUG;
         public static string modid = "D9 Framework";
         public static string prefix => "[" + modid + "] ";
 
