@@ -14,7 +14,7 @@ namespace D9Framework
         {
             base.CompTick();
             int hp = base.parent.HitPoints;
-            if (parent.def.useHitPoints && hp < parent.MaxHitPoints && IsCheapIntervalTick(Props.TicksPerRepair)) hp++;
+            if (IsCheapIntervalTick(Props.TicksPerRepair) && parent.def.useHitPoints && hp < parent.MaxHitPoints) hp++;
         }
     }
 }
