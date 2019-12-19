@@ -26,7 +26,7 @@ namespace D9Framework
             prefix = typeof(GenericFix).GetMethod("GenericPrefix");
             harmony.Patch(original, new HarmonyMethod(prefix), null);
             */
-            ULog.Message("Deconstruct Return Fix loaded.");
+            ULog.DebugMessage("Deconstruct Return Fix loaded.");
         }
 
         [HarmonyPatch(typeof(GenLeaving), "DoLeavingsFor", new Type[] { typeof(Thing), typeof(Map), typeof(DestroyMode), typeof(CellRect), typeof(Predicate<IntVec3>)})]

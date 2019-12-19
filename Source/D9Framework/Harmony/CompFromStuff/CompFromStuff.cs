@@ -17,7 +17,7 @@ namespace D9Framework
         {
             var harmony = HarmonyInstance.Create("com.dninemfive.d9Framework");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
-            ULog.Message("harmony patches loaded");
+            ULog.DebugMessage("CompFromStuff loaded.");
         }
 
         [HarmonyPatch(typeof(ThingMaker), "MakeThing", new Type[] { typeof(ThingDef), typeof(ThingDef) })]

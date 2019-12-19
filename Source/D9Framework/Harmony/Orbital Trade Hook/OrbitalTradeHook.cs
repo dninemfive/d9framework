@@ -16,7 +16,7 @@ namespace D9Framework.OTH
         {
             var harmony = HarmonyInstance.Create("com.dninemfive.d9framework.oth");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
-            ULog.Message("Orbital Trade Hook loaded.");
+            ULog.DebugMessage("Orbital Trade Hook loaded.");
         }
 
         public static IEnumerable<Building> AllPowered(Map map)
