@@ -30,6 +30,8 @@ namespace D9Framework
             Listing_Standard listing = new Listing_Standard();
             listing.Begin(inRect);
             listing.CheckboxLabeled("D9FSettingsDebug".Translate(), ref D9FModSettings.DEBUG, "D9FSettingsDebugTooltip".Translate());
+            listing.End();
+            base.DoSettingsWindowContents(inRect);
         }
 
         public override string SettingsCategory()

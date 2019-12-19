@@ -15,7 +15,7 @@ namespace D9Framework
     {
         static CompFromStuff()
         {
-            var harmony = HarmonyInstance.Create("com.dninemfive.d9Framework");
+            var harmony = HarmonyInstance.Create("com.dninemfive.D9Framework");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
             ULog.DebugMessage("CompFromStuff loaded.");
         }
