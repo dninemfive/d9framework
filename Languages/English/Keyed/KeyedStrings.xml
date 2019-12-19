@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+	<!-- Mod Settings -->
+	<D9FSettingsCategory>D9 Framework</D9FSettingsCategory>
+	<D9FSettingsDebug>Debug</D9FSettingsDebug>
+	<D9FSettingsDebugTooltip>Enable debug logging, especially on load. You generally don't need to enable this unless asked to.</D9FSettingsDebugTooltip>
+</LanguageData>
