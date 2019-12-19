@@ -7,22 +7,22 @@ using RimWorld;
 using Verse;
 using Harmony;
 
-namespace D9OTH
+namespace D9Framework.OTH
 {
     [StaticConstructorOnStartup]
     public class OrbitalTradeHook
     {
         static OrbitalTradeHook()
         {
-            var harmony = HarmonyInstance.Create("com.dninemfive.orbitaltradehook");
+            var harmony = HarmonyInstance.Create("com.dninemfive.d9framework.oth");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
-            Log.Message("Orbital Trade Hook loaded.");
+            ULog.Message("Orbital Trade Hook loaded.");
         }
 
         public static IEnumerable<Building> AllPowered(Map map)
         {
             foreach (RimWorld.Building_OrbitalTradeBeacon b in RimWorld.Building_OrbitalTradeBeacon.AllPowered(map)) yield return b; 
-            foreach(Building_OrbitalTradeBeacon b in map.listerBuildings.AllBuildingsColonistOfClass<D9OTH.Building_OrbitalTradeBeacon>())
+            foreach(Building_OrbitalTradeBeacon b in map.listerBuildings.AllBuildingsColonistOfClass<D9Framework.OTH.Building_OrbitalTradeBeacon>())
             {                
                 CompPowerTrader power = b.GetComp<CompPowerTrader>();
                 CompRefuelable fuel = b.GetComp<CompRefuelable>();
@@ -36,17 +36,10 @@ namespace D9OTH
             {
                 RimWorld.Building_OrbitalTradeBeacon rb = (RimWorld.Building_OrbitalTradeBeacon)b;
                 if (rb != null) foreach (IntVec3 cell in rb.TradeableCells) yield return cell;
-                D9OTH.Building_OrbitalTradeBeacon ob = b as D9OTH.Building_OrbitalTradeBeacon;
+                D9Framework.OTH.Building_OrbitalTradeBeacon ob = b as D9Framework.OTH.Building_OrbitalTradeBeacon;
                 if (ob != null) foreach (IntVec3 cell in ob.TradeableCells()) yield return cell;
             }
         }
-
-        //stolen from https://stackoverflow.com/questions/5114469/how-to-check-whether-an-object-has-certain-method-property
-        /*private static bool hasField(this object t, string name)
-        {
-            return t.GetType().GetField(name) != null;
-        }*/
-
         [HarmonyPatch(typeof(PassingShip))]
         [HarmonyPatch("CommFloatMenuOption")]
         [HarmonyPatch(new Type[] { typeof(Building_CommsConsole), typeof(Pawn) })]
@@ -64,20 +57,12 @@ namespace D9OTH
                     }
                     else
                     {
-                        //Log.Message("Trying to use console with PassingShip " + __instance);
                         console.GiveUseCommsJob(negotiator, __instance);
                     }
                 };
                 __result = FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(label, action, MenuOptionPriority.InitiateSocial, null, null, 0f, null, null), negotiator, console, "ReservedBy");
                 return false;
             }
-
-            /*[HarmonyPostfix]
-            public static void CommFloatMenuOptionPostfix(Building_CommsConsole console, Pawn negotiator, PassingShip __instance, FloatMenuOption __result)
-            {
-                
-            }*/
-
         }
         [HarmonyPatch(typeof(TradeUtility))]
         [HarmonyPatch("AllLaunchableThingsForTrade")]
@@ -90,12 +75,6 @@ namespace D9OTH
                 __result = AllLaunchableThingsForTrade(map);
                 return false;
             }
-
-            /*[HarmonyPostfix]
-            public static void AllLaunchableThingsForTradePostfix(Map map, IEnumerable<Thing> __result)
-            {
-                                
-            }*/
             private static IEnumerable<Thing> AllLaunchableThingsForTrade(Map map)
             {
                 HashSet<Thing> yielded = new HashSet<Thing>();

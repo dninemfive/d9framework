@@ -8,14 +8,14 @@ using Harmony;
 using System.Reflection;
 using UnityEngine;
 
-namespace Deconstruct_Return_Fix
+namespace D9Framework
 {
     [StaticConstructorOnStartup]
     static class DeconstructReturnFix
     {
         static DeconstructReturnFix()
         {
-            var harmony = HarmonyInstance.Create("com.dninemfive.deconstructreturnfix");
+            var harmony = HarmonyInstance.Create("com.dninemfive.d9framework.drf");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
             /*
             var harmony = HarmonyInstance.Create("com.dninemfive.advancedshields");
@@ -26,7 +26,7 @@ namespace Deconstruct_Return_Fix
             prefix = typeof(GenericFix).GetMethod("GenericPrefix");
             harmony.Patch(original, new HarmonyMethod(prefix), null);
             */
-            Log.Message("Deconstruct Return Fix harmony patch successfully loaded");
+            ULog.Message("Deconstruct Return Fix loaded.");
         }
 
         [HarmonyPatch(typeof(GenLeaving), "DoLeavingsFor", new Type[] { typeof(Thing), typeof(Map), typeof(DestroyMode), typeof(CellRect), typeof(Predicate<IntVec3>)})]
@@ -99,7 +99,7 @@ namespace Deconstruct_Return_Fix
                 }//end if
                 return true;
             }//end DoLeavingsForPrefix
-            public static Func<int, int> GBRLC(Thing t, DestroyMode d) //GetBuildingResourcesLeaveCalculator very slightly modified.
+            public static Func<int, int> GBRLC(Thing t, DestroyMode d) //GetBuildingResourcesLeaveCalculator, very slightly modified.
             {
                 if (!GenLeaving.CanBuildingLeaveResources(t, d))
                 {
