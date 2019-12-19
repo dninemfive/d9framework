@@ -7,7 +7,7 @@ using RimWorld;
 using Verse;
 using Harmony;
 
-namespace D9Framework.OTH
+namespace D9Framework
 {
     [StaticConstructorOnStartup]
     public class OrbitalTradeHook
@@ -22,7 +22,7 @@ namespace D9Framework.OTH
         public static IEnumerable<Building> AllPowered(Map map)
         {
             foreach (RimWorld.Building_OrbitalTradeBeacon b in RimWorld.Building_OrbitalTradeBeacon.AllPowered(map)) yield return b; 
-            foreach(Building_OrbitalTradeBeacon b in map.listerBuildings.AllBuildingsColonistOfClass<D9Framework.OTH.Building_OrbitalTradeBeacon>())
+            foreach(Building_OrbitalTradeBeacon b in map.listerBuildings.AllBuildingsColonistOfClass<D9Framework.Building_OrbitalTradeBeacon>())
             {                
                 CompPowerTrader power = b.GetComp<CompPowerTrader>();
                 CompRefuelable fuel = b.GetComp<CompRefuelable>();
@@ -36,7 +36,7 @@ namespace D9Framework.OTH
             {
                 RimWorld.Building_OrbitalTradeBeacon rb = (RimWorld.Building_OrbitalTradeBeacon)b;
                 if (rb != null) foreach (IntVec3 cell in rb.TradeableCells) yield return cell;
-                D9Framework.OTH.Building_OrbitalTradeBeacon ob = b as D9Framework.OTH.Building_OrbitalTradeBeacon;
+                D9Framework.Building_OrbitalTradeBeacon ob = b as D9Framework.Building_OrbitalTradeBeacon;
                 if (ob != null) foreach (IntVec3 cell in ob.TradeableCells()) yield return cell;
             }
         }

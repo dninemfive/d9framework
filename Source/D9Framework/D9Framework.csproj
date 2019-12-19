@@ -49,11 +49,13 @@
   <ItemGroup>
     <Compile Include="CompProperties_SelfRepair.cs" />
     <Compile Include="CompSelfRepair.cs" />
-    <Compile Include="CompsToAddWhenStuff.cs" />
-    <Compile Include="Deconstruct Return Fix\harpat.cs" />
-    <Compile Include="Harmony\CompFromStuff.cs" />
-    <Compile Include="Orbital Trade Hook\Building_OrbitalTradeBeacon.cs" />
-    <Compile Include="Orbital Trade Hook\OrbitalTradeHook.cs" />
+    <Compile Include="CompWithCheapHashInterval.cs" />
+    <Compile Include="Harmony\CompFromStuff\CompsToAddWhenStuff.cs" />
+    <Compile Include="Harmony\DeconstructReturnFix.cs" />
+    <Compile Include="Harmony\CompFromStuff\CompFromStuff.cs" />
+    <Compile Include="Harmony\Orbital Trade Hook\Building_OrbitalTradeBeacon.cs" />
+    <Compile Include="Harmony\Orbital Trade Hook\OrbitalTradeHook.cs" />
+    <Compile Include="ModSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ulog.cs" />
   </ItemGroup>

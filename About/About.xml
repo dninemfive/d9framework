@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+	<name>Deconstruct Return Fix</name>
+	<author>dninemfive</author>
+	<supportedVersions><li>1.0</li></supportedVersions>
+	<description>Fixes a bug in the base game making it impossible for buildings to drop 1-cost items when deconstructed.</description>
+</ModMetaData>

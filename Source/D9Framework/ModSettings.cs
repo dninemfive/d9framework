@@ -17,10 +17,10 @@ namespace D9Framework
             Scribe_Values.Look(ref DEBUG, "debug", false);
         }
     }
-    public class D9Framework : Mod
+    public class D9FrameworkMod : Mod
     {
         D9FModSettings settings;
-        public D9Framework(ModContentPack con) : base(con)
+        public D9FrameworkMod(ModContentPack con) : base(con)
         {
             this.settings = GetSettings<D9FModSettings>();
         }

@@ -5,7 +5,7 @@ using System.Text;
 using Verse;
 using UnityEngine;
 
-namespace D9Framework.OTH
+namespace D9Framework
 {
     public abstract class Building_OrbitalTradeBeacon : Building
     {
