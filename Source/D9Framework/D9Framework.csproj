@@ -47,9 +47,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CompProperties_SelfRepair.cs" />
-    <Compile Include="CompSelfRepair.cs" />
-    <Compile Include="CompWithCheapHashInterval.cs" />
+    <Compile Include="Comps\CompSelfRepair\CompProperties_SelfRepair.cs" />
+    <Compile Include="Comps\CompSelfRepair\CompSelfRepair.cs" />
+    <Compile Include="Comps\CompWithCheapHashInterval.cs" />
     <Compile Include="Harmony\CompFromStuff\CompsToAddWhenStuff.cs" />
     <Compile Include="Harmony\DeconstructReturnFix.cs" />
     <Compile Include="Harmony\CompFromStuff\CompFromStuff.cs" />

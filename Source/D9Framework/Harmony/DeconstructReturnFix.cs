@@ -97,7 +97,7 @@ namespace D9Framework
                         }
                         return false;
                     }
-                    Log.Warning("Deconstruct Return Fix: Failed to place all leavings for destroyed thing " + diedThing + " at " + leavingsRect.CenterCell, false);
+                    ULog.Warning("Deconstruct Return Fix: Failed to place all leavings for destroyed thing " + diedThing + " at " + leavingsRect.CenterCell, false);
                     return false;
                 }//end if
                 return true;
@@ -123,7 +123,7 @@ namespace D9Framework
                     case DestroyMode.Refund:
                         return (int count) => count;
                     default:
-                        throw new ArgumentException("Unknown destroy mode " + d + " (Deconstruct Return Fix error)");
+                        throw new ArgumentException("Unknown destroy mode " + d);
                 }
             }
         }//end CalcFix

@@ -6,12 +6,14 @@ using System.Text;
 using RimWorld;
 using Verse;
 using Harmony;
+using OpCodes = System.Reflection.Emit.OpCodes;
 
 namespace D9Framework
 {
     /// <summary>
-    /// Hook allowing modders to easily create custom trade beacons.
+    /// Hook allowing modders to easily create custom trade beacons by extending <c>D9Framework.Building_OrbitalTradeBeacon</c>
     /// </summary>
+    // TODO: convert to transpilers smh
     [StaticConstructorOnStartup]
     public class OrbitalTradeHook
     {
@@ -25,7 +27,7 @@ namespace D9Framework
         public static IEnumerable<Building> AllPowered(Map map)
         {
             foreach (RimWorld.Building_OrbitalTradeBeacon b in RimWorld.Building_OrbitalTradeBeacon.AllPowered(map)) yield return b; 
-            foreach(Building_OrbitalTradeBeacon b in map.listerBuildings.AllBuildingsColonistOfClass<D9Framework.Building_OrbitalTradeBeacon>())
+            foreach(D9Framework.Building_OrbitalTradeBeacon b in map.listerBuildings.AllBuildingsColonistOfClass<D9Framework.Building_OrbitalTradeBeacon>())
             {                
                 CompPowerTrader power = b.GetComp<CompPowerTrader>();
                 CompRefuelable fuel = b.GetComp<CompRefuelable>();
@@ -66,6 +68,19 @@ namespace D9Framework
                 __result = FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(label, action, MenuOptionPriority.InitiateSocial, null, null, 0f, null, null), negotiator, console, "ReservedBy");
                 return false;
             }
+
+            // instead of a destructive prefix, just replace two IL calls
+            // thanks to Smash Phil bc I used a Boats transpiler as an example
+            /*[HarmonyTranspiler]
+            public static IEnumerable<CodeInstruction> CommFloatMenuOptionTranspiler(IEnumerable<CodeInstruction> instr)
+            {
+                for(int i = 0; i < instr.Count(); i++)
+                {
+                    CodeInstruction ci = instr.ElementAt(i);
+                    if(ci.opcode == OpCodes.Call && ci.operand == 
+                }
+            }*///end
+            
         }
         [HarmonyPatch(typeof(TradeUtility))]
         [HarmonyPatch("AllLaunchableThingsForTrade")]
@@ -126,7 +141,7 @@ namespace D9Framework
                     IL_CC:
                     if (thing == null)
                     {
-                        Log.Error("[OrbitalTradeHook] Could not find any " + resDef + " to transfer to trader.", false);
+                        ULog.Error("Orbital Trade Hook: Could not find any " + resDef + " to transfer to trader.", false);
                         break;
                     }
                     int num = Math.Min(debt, thing.stackCount);
