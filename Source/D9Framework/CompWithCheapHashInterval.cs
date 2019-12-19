@@ -6,11 +6,10 @@ using Verse;
 
 namespace D9Framework
 {
-    abstract class CompWithCheapHashInterval : ThingComp
+    public abstract class CompWithCheapHashInterval : ThingComp
     {
-        private int? hashOffset = null;
-        public int TickInterval;
-        public bool IsCheapIntervalTick => (int)(Find.TickManager.TicksGame + hashOffset) % TickInterval == 0;
+        private int hashOffset = 0;
+        public bool IsCheapIntervalTick(int interval) => (int)(Find.TickManager.TicksGame + hashOffset) % interval == 0;
 
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
