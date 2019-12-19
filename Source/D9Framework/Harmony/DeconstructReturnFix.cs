@@ -10,6 +10,9 @@ using UnityEngine;
 
 namespace D9Framework
 {
+    /// <summary>
+    /// Fixes the bug where the game will never drop a single item set to drop 100% of the time. 
+    /// </summary>
     [StaticConstructorOnStartup]
     static class DeconstructReturnFix
     {

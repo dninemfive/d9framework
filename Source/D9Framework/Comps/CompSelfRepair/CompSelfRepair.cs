@@ -7,8 +7,11 @@ using RimWorld;
 
 namespace D9Framework
 {
+    /// <summary>
+    /// Automatically repairs a specified (non-pawn) item. Example implementation of CompWithCheapHashInterval and designed for use with CompFromStuff.
+    /// </summary>
     public class CompSelfRepair : CompWithCheapHashInterval
-    {
+    {        
         CompProperties_SelfRepair Props => (CompProperties_SelfRepair)props;
         public override void CompTick()
         {

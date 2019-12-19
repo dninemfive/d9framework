@@ -10,6 +10,8 @@ namespace D9Framework
     public class D9FModSettings : ModSettings
     {
         public static bool DEBUG = true; //for release set false by default
+        //TODO: add options to disable each individual Harmony patch iff DEBUG is true
+        //make it so the patch isn't even added to the game, game must be reloaded to take effect
 
         public override void ExposeData()
         {

@@ -9,6 +9,9 @@ using Harmony;
 
 namespace D9Framework
 {
+    /// <summary>
+    /// Hook allowing modders to easily create custom trade beacons.
+    /// </summary>
     [StaticConstructorOnStartup]
     public class OrbitalTradeHook
     {
