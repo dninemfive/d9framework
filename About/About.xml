@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-	<name>Deconstruct Return Fix</name>
+	<name>D9 Framework</name>
 	<author>dninemfive</author>
 	<supportedVersions><li>1.0</li></supportedVersions>
-	<description>Fixes a bug in the base game making it impossible for buildings to drop 1-cost items when deconstructed.</description>
+	<description>Open-source framework mod allowing mod authors to do various things more easily and reliably.</description>
 </ModMetaData>
