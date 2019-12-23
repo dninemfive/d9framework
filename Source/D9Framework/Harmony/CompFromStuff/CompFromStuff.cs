@@ -29,9 +29,9 @@ namespace D9Framework
             [HarmonyPrefix]
             public static void MakeThingPostfix(ref Thing __result)
             {
-                if(__result is ThingWithComps)
-                {
-                    ThingWithComps twc = __result as ThingWithComps;
+                ThingWithComps twc = __result as ThingWithComps;
+                if (twc != null)
+                {                    
                     CompsToAddWhenStuff ext = twc.def.GetModExtension<CompsToAddWhenStuff>();
                     if(ext != null && ext.comps != null && ext.comps.Count > 0)
                     {
