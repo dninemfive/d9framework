@@ -17,11 +17,14 @@ namespace D9Framework
     [StaticConstructorOnStartup]
     public class OrbitalTradeHook
     {
+        static MethodInfo RWTradeBeaconAllPowered, PatchAllPowered;
         static OrbitalTradeHook()
         {
             var harmony = HarmonyInstance.Create("com.dninemfive.d9framework.oth");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
             ULog.DebugMessage("Orbital Trade Hook loaded.");
+            RWTradeBeaconAllPowered = AccessTools.Method(type: typeof(RimWorld.Building_OrbitalTradeBeacon), parameters: new Type[] { typeof(Map) }, name: nameof(RimWorld.Building_OrbitalTradeBeacon.AllPowered));
+            PatchAllPowered = AccessTools.Method(type: typeof(OrbitalTradeHook), parameters: new Type[] { typeof(Map) }, name: nameof(OrbitalTradeHook.AllPowered));
         }
 
         public static IEnumerable<Building> AllPowered(Map map)
@@ -50,7 +53,7 @@ namespace D9Framework
         [HarmonyPatch(new Type[] { typeof(Building_CommsConsole), typeof(Pawn) })]
         class CommFloatMenuOptionHook
         {
-            [HarmonyPrefix]
+            /*[HarmonyPrefix]
             public static bool CommFloatMenuOptionPrefix(Building_CommsConsole console, Pawn negotiator, PassingShip __instance, ref FloatMenuOption __result)
             {
                 string label = "CallOnRadio".Translate(__instance.GetCallLabel());
@@ -67,19 +70,23 @@ namespace D9Framework
                 };
                 __result = FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(label, action, MenuOptionPriority.InitiateSocial, null, null, 0f, null, null), negotiator, console, "ReservedBy");
                 return false;
-            }
+            }*/
 
             // instead of a destructive prefix, just replace two IL calls
             // thanks to Smash Phil bc I used a Boats transpiler as an example
-            /*[HarmonyTranspiler]
+            [HarmonyTranspiler]
             public static IEnumerable<CodeInstruction> CommFloatMenuOptionTranspiler(IEnumerable<CodeInstruction> instr)
             {
                 for(int i = 0; i < instr.Count(); i++)
                 {
                     CodeInstruction ci = instr.ElementAt(i);
-                    if(ci.opcode == OpCodes.Call && ci.operand == 
+                    if (ci.opcode == OpCodes.Call && ci.operand == RWTradeBeaconAllPowered)
+                    {
+                        yield return new CodeInstruction(opcode: OpCodes.Call, operand: PatchAllPowered);
+                    }
+                    else yield return ci;
                 }
-            }*///end
+            }//end
             
         }
         [HarmonyPatch(typeof(TradeUtility))]
