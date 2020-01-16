@@ -20,9 +20,14 @@ namespace D9Framework
         static MethodInfo RWTradeBeaconAllPowered, PatchAllPowered;
         static OrbitalTradeHook()
         {
+            CacheMethods();
             var harmony = HarmonyInstance.Create("com.dninemfive.d9framework.oth");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
-            ULog.DebugMessage("Orbital Trade Hook loaded.");
+            ULog.DebugMessage("Orbital Trade Hook loaded.");            
+        }
+
+        static void CacheMethods()
+        {
             RWTradeBeaconAllPowered = AccessTools.Method(type: typeof(RimWorld.Building_OrbitalTradeBeacon), parameters: new Type[] { typeof(Map) }, name: nameof(RimWorld.Building_OrbitalTradeBeacon.AllPowered));
             PatchAllPowered = AccessTools.Method(type: typeof(OrbitalTradeHook), parameters: new Type[] { typeof(Map) }, name: nameof(OrbitalTradeHook.AllPowered));
         }
