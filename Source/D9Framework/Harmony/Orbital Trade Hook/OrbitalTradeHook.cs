@@ -29,9 +29,12 @@ namespace D9Framework
         static void CacheMethods()
         {
             RWTradeBeaconAllPowered =     AccessTools.Method(type: typeof(RimWorld.Building_OrbitalTradeBeacon), parameters: new Type[] { typeof(Map) }, name: nameof(RimWorld.Building_OrbitalTradeBeacon.AllPowered));
-            PatchAllPowered = AccessTools.Method(type: typeof(OrbitalTradeHook), parameters: new Type[] { typeof(Map) }, name: nameof(OrbitalTradeHook.AllPowered));
             RWTradeUtilityAllLaunchable = AccessTools.Method(type: typeof(TradeUtility),                         parameters: new Type[] { typeof(Map) }, name: nameof(TradeUtility.AllLaunchableThingsForTrade));
+            WTradeUtilityAllTradeable =   AccessTools.Method(type: typeof(TradeUtility),                         parameters: new Type[] { typeof(Map) }, name: nameof(TradeUtility.AllTrade)
+            PatchAllPowered = AccessTools.Method(type: typeof(OrbitalTradeHook), parameters: new Type[] { typeof(Map) }, name: nameof(OrbitalTradeHook.AllPowered));
+            
             PatchAllLaunchable = AccessTools.Method(type: typeof(OrbitalTradeHook), parameters: new Type[] { typeof(Map) }, name: nameof(OrbitalTradeHook.AllLaunchableThingsForTrade));
+            R
         }
 
         public static IEnumerable<Building> AllPowered(Map map)
