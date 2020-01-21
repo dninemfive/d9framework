@@ -42,12 +42,23 @@ namespace D9Framework
         [HarmonyPatch(typeof(Building_OrbitalTradeBeacon), nameof(Building_OrbitalTradeBeacon.TradeableCells))]
         static class TradeableCellsPatch
         {
+            [ThreadStatic]
+            static bool withinOverrideCall = false;
+
             [HarmonyPrefix]
             static bool Prefix(Building_OrbitalTradeBeacon __instance, ref IEnumerable<IntVec3> __result)
             {
-                if (__instance is Building_CustomOrbitalTradeBeacon inst)
+                if (!withinOverrideCall && __instance is Building_CustomOrbitalTradeBeacon inst)
                 {
-                    __result = inst.TradeableCells();
+                    try
+                    {
+                        withinOverrideCall = true;
+                        __result = inst.TradeableCells();
+                    }
+                    finally
+                    {
+                        withinOverrideCall = false;
+                    }
                     return false;
                 }
                 return true;

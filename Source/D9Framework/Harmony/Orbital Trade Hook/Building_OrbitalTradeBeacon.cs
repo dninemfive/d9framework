@@ -13,7 +13,6 @@ namespace D9Framework
     /// </summary>
     public abstract class Building_CustomOrbitalTradeBeacon : Building_OrbitalTradeBeacon
     {
-        // DO NOT call base.TradeableCells() in an override here! Because of how the patch works, an infinite loop would result. This is bad, and you shouldn't do it.
         public new abstract IEnumerable<IntVec3> TradeableCells();
     }
 }
