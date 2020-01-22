@@ -16,7 +16,7 @@ namespace D9Framework
     [StaticConstructorOnStartup]
     public class OrbitalTradeHook
     {
-        static MethodInfo RWTradeBeaconAllPowered, PatchAllPowered, RWTradeUtilityAllLaunchable, PatchAllLaunchable;
+        //static MethodInfo RWTradeBeaconAllPowered, PatchAllPowered, RWTradeUtilityAllLaunchable, PatchAllLaunchable;
         static OrbitalTradeHook()
         {
             //CacheMethods();
@@ -35,7 +35,7 @@ namespace D9Framework
                 if ((power == null || (power != null && power.PowerOn)) && (fuel == null || (fuel != null && fuel.HasFuel))) yield return b;                
             }
         }*/
-        // transpile Building_OrbitalTradeBeacon.AllPowered to do the standard (fuel?.HasFuel || power?.Powered) check
+        // TODO: transpile Building_OrbitalTradeBeacon.AllPowered to do the standard (fuel?.HasFuel || power?.Powered) check
 
         // thanks, lbmaian!
         // from https://discordapp.com/channels/214523379766525963/215496692047413249/669060018645237800
@@ -43,12 +43,12 @@ namespace D9Framework
         static class TradeableCellsPatch
         {
             [ThreadStatic]
-            static bool withinOverrideCall = false;
+            static bool withinOverrideCall = false; //will hopefully prevent infinite loops if a CustomTradeBeacon calls base.TradeableCells
 
             [HarmonyPrefix]
             static bool Prefix(Building_OrbitalTradeBeacon __instance, ref IEnumerable<IntVec3> __result)
             {
-                if (!withinOverrideCall && __instance is Building_CustomOrbitalTradeBeacon inst)
+                if (!withinOverrideCall && __instance is Building_CustomTradeBeacon inst)
                 {
                     try
                     {
