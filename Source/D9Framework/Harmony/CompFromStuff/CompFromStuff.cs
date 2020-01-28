@@ -22,12 +22,15 @@ namespace D9Framework
             public static void MakeThingPostfix(ref Thing __result)
             {
                 if (__result is ThingWithComps twc)
-                {                    
+                {
+                    ULog.Message("twc: " + twc.ToString());
                     CompsToAddWhenStuff ext = twc.def.GetModExtension<CompsToAddWhenStuff>();
                     if(ext != null && ext.comps != null && ext.comps.Count > 0)
                     {
+                        ULog.Message("ext: " + ext.ToString());
                         for(int i = 0; i < ext.comps.Count; i++)
                         {
+                            ULog.Message("" + i);
                             ThingComp comp = (ThingComp)Activator.CreateInstance(ext.comps[i].compClass);
                             comp.parent = twc;
                             twc.AllComps.Add(comp);

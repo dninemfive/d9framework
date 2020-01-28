@@ -15,9 +15,9 @@ namespace D9Framework
         public static string modid = "D9 Framework";
         public static string prefix => "[" + modid + "] ";
 
-        public static void Message(String s)
+        public static void Message(String s, bool ignoreCap = false)
         {
-            Log.Message(prefix + s);
+            Log.Message(prefix + s, ignoreCap);
         }
 
         public static void Warning(String s)
@@ -42,7 +42,7 @@ namespace D9Framework
 
         public static void DebugMessage(String s, bool addPrefix = true)
         {
-            if (DEBUG) Log.Message((addPrefix ? prefix : "") + s);
+            if (DEBUG) Log.Message((addPrefix ? prefix : "") + s, true);
         }
     }
 }
