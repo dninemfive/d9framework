@@ -16,22 +16,6 @@ namespace D9Framework
     [StaticConstructorOnStartup]
     static class DeconstructReturnFix
     {
-        static DeconstructReturnFix()
-        {
-            var harmony = HarmonyInstance.Create("com.dninemfive.d9framework.drf");
-            harmony.PatchAll(Assembly.GetExecutingAssembly());
-            /*
-            var harmony = HarmonyInstance.Create("com.dninemfive.advancedshields");
-            var original = typeof(WorkGiver_HunterHunt).GetMethod("HasShieldAndRangedWeapon");
-            var prefix = typeof(Hunterfix).GetMethod("HunterPrefix");
-            harmony.Patch(original, new HarmonyMethod(prefix), null);
-            original = typeof(Alert_ShieldUserHasRangedWeapon).GetMethod("GetReport");
-            prefix = typeof(GenericFix).GetMethod("GenericPrefix");
-            harmony.Patch(original, new HarmonyMethod(prefix), null);
-            */
-            ULog.DebugMessage("Deconstruct Return Fix loaded.");
-        }
-
         [HarmonyPatch(typeof(GenLeaving), "DoLeavingsFor", new Type[] { typeof(Thing), typeof(Map), typeof(DestroyMode), typeof(CellRect), typeof(Predicate<IntVec3>)})]
         class CalcFix
         {

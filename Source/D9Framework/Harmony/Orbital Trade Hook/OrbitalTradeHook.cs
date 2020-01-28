@@ -13,16 +13,10 @@ namespace D9Framework
     /// <summary>
     /// Hook allowing modders to easily create custom trade beacons by extending <c>D9Framework.Building_OrbitalTradeBeacon</c>
     /// </summary>
-    [StaticConstructorOnStartup]
     public class OrbitalTradeHook
     {
-        //static MethodInfo RWTradeBeaconAllPowered, PatchAllPowered, RWTradeUtilityAllLaunchable, PatchAllLaunchable;
         static OrbitalTradeHook()
-        {
-            //CacheMethods();
-            var harmony = HarmonyInstance.Create("com.dninemfive.d9framework.oth");
-            harmony.PatchAll(Assembly.GetExecutingAssembly());
-            ULog.DebugMessage("Orbital Trade Hook loaded.");
+        {            
         }
         // TODO: transpile Building_OrbitalTradeBeacon.AllPowered to do the standard (fuel?.HasFuel || power?.Powered) check
 
@@ -53,7 +47,5 @@ namespace D9Framework
                 return true;
             }
         }
-
-        //TODO: patch DropCellFinder.TradeDropSpot() to find any cell near either base or this OrbitalTradeBeacon. Not super high priority since it always returns something, but would be nice
     }
 }

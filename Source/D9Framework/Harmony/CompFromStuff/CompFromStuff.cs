@@ -13,16 +13,8 @@ namespace D9Framework
     /// <summary>
     /// Allows modder to add comps to any items created with a certain Stuff using the <c>CompsToAddWhenStuff</c> <c>ModExtension</c>.
     /// </summary>
-    [StaticConstructorOnStartup]
     static class CompFromStuff
     {
-        static CompFromStuff()
-        {
-            var harmony = HarmonyInstance.Create("com.dninemfive.D9Framework.cfs");
-            harmony.PatchAll(Assembly.GetExecutingAssembly());
-            ULog.DebugMessage("CompFromStuff loaded.");
-        }
-
         [HarmonyPatch(typeof(ThingMaker), "MakeThing", new Type[] { typeof(ThingDef), typeof(ThingDef) })]
         class AddCompPrefix
         {
