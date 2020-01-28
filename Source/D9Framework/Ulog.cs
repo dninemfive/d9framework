@@ -37,9 +37,9 @@ namespace D9Framework
             Log.Error(prefix + s, over);
         }
 
-        public static void DebugMessage(String s)
+        public static void DebugMessage(String s, bool addPrefix = true)
         {
-            if (DEBUG) Log.Message(prefix + s);
+            if (DEBUG) Log.Message((addPrefix ? prefix : "") + s);
         }
     }
 }
