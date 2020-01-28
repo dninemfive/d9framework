@@ -6,6 +6,9 @@ using Verse;
 
 namespace D9Framework
 {
+    /// <summary>
+    /// Utility Log. Convenient logging methods which automatically prefix themselves for identifiability, plus debug-only messages.
+    /// </summary>
     class ULog
     {
         public static bool DEBUG => D9FModSettings.DEBUG;
