@@ -24,17 +24,6 @@ namespace D9Framework
             harmony.PatchAll(Assembly.GetExecutingAssembly());
             ULog.DebugMessage("Orbital Trade Hook loaded.");
         }
-
-        /*public static IEnumerable<Building> AllPowered(Map map)
-        {
-            foreach (RimWorld.Building_OrbitalTradeBeacon b in RimWorld.Building_OrbitalTradeBeacon.AllPowered(map)) yield return b; 
-            foreach(D9Framework.Building_OrbitalTradeBeacon b in map.listerBuildings.AllBuildingsColonistOfClass<D9Framework.Building_OrbitalTradeBeacon>())
-            {                
-                CompPowerTrader power = b.GetComp<CompPowerTrader>();
-                CompRefuelable fuel = b.GetComp<CompRefuelable>();
-                if ((power == null || (power != null && power.PowerOn)) && (fuel == null || (fuel != null && fuel.HasFuel))) yield return b;                
-            }
-        }*/
         // TODO: transpile Building_OrbitalTradeBeacon.AllPowered to do the standard (fuel?.HasFuel || power?.Powered) check
 
         // thanks, lbmaian!
@@ -66,6 +55,5 @@ namespace D9Framework
         }
 
         //TODO: patch DropCellFinder.TradeDropSpot() to find any cell near either base or this OrbitalTradeBeacon. Not super high priority since it always returns something, but would be nice
-    }
     }
 }

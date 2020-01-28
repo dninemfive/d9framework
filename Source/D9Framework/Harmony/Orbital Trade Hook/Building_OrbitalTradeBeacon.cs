@@ -11,7 +11,7 @@ namespace D9Framework
     /// <summary>
     /// Abstract class you can extend to make Orbital Trade Beacons using the orbital trade hook.
     /// </summary>
-    public abstract class Building_CustomOrbitalTradeBeacon : Building_OrbitalTradeBeacon
+    public abstract class Building_CustomTradeBeacon : Building_OrbitalTradeBeacon
     {
         public new abstract IEnumerable<IntVec3> TradeableCells();
     }
