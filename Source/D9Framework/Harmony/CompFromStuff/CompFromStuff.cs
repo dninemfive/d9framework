@@ -23,14 +23,11 @@ namespace D9Framework
             {
                 if (stuff != null && __result is ThingWithComps twc)
                 {
-                    ULog.Message("twc: " + twc.ToString(), true);
                     CompsToAddWhenStuff ext = stuff.GetModExtension<CompsToAddWhenStuff>();
                     if(ext != null && ext.comps != null && ext.comps.Count > 0)
                     {
-                        ULog.Message("ext: " + ext.ToString(), true);
                         for(int i = 0; i < ext.comps.Count; i++)
                         {
-                            ULog.Message("" + i, true);
                             ThingComp comp = (ThingComp)Activator.CreateInstance(ext.comps[i].compClass);
                             comp.parent = twc;
                             twc.AllComps.Add(comp);
