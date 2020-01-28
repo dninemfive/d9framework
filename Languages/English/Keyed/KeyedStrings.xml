@@ -4,4 +4,10 @@
 	<D9FSettingsCategory>D9 Framework</D9FSettingsCategory>
 	<D9FSettingsDebug>Debug</D9FSettingsDebug>
 	<D9FSettingsDebugTooltip>Enable debug logging, especially on load. You generally don't need to enable this unless asked to.</D9FSettingsDebugTooltip>
+	<D9FSettingsApplyCFS>Apply CompFromStuff patch</D9FSettingsApplyCFS>
+	<D9FSettingsApplyCFSTooltip>Whether to apply the CompFromStuff patch, which allows materials to add additional properties to things made therefrom. If debug mode is disabled, the patch will always be applied.</D9FSettingsApplyCFSTooltip>
+	<D9FSettingsApplyOTH>Apply Orbital Trade Hook patch</D9FSettingsApplyOTH>
+	<D9FSettingsApplyOTHTooltip>Whether to apply the Orbital Trade Hook patch, which allows modders to create custom trade beacons. If debug mode is disabled, the patch will always be applied.</D9FSettingsApplyOTHTooltip>
+	<D9FSettingsApplyDRF>Apply Deconstruct Return Fix patch</D9FSettingsApplyDRF>
+	<D9FSettingsApplyDRFTooltip>Whether to apply the Deconstruct Return Fix patch, which fixes a vanilla bug which prevents buildings from returning all their items when deconstructed. If debug mode is disabled, the patch will always be applied.</D9FSettingsApplyDRFTooltip>
 </LanguageData>
