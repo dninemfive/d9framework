@@ -13,7 +13,7 @@ namespace D9Framework
 
         public static bool ApplyCompFromStuff => !DEBUG || applyCFS;
         public static bool ApplyOrbitalTradeHook => !DEBUG || applyOTH;
-        public static bool ApplyDeconstructReturnFix = !DEBUG || applyDRF;
+        public static bool ApplyDeconstructReturnFix => !DEBUG || applyDRF;
         public static bool applyCFS = true, applyOTH = true, applyDRF = true; // despite the public flag, don't reference these; they're only public for the purposes of the mod settings screen below. Reference the above variables instead.
 
         public override void ExposeData()

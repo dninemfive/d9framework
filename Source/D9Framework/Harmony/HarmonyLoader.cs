@@ -11,7 +11,7 @@ namespace D9Framework.Harmony
     class HarmonyLoader
     {
         static HarmonyLoader()
-        {//
+        {
             ULog.Message("Applying Harmony patches...");
             var harmony = HarmonyInstance.Create("com.dninemfive.D9Framework");
             if (D9FModSettings.ApplyCompFromStuff)
