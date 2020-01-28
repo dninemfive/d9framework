@@ -10,4 +10,7 @@
 	<D9FSettingsApplyOTHTooltip>Whether to apply the Orbital Trade Hook patch, which allows modders to create custom trade beacons. If debug mode is disabled, the patch will always be applied.</D9FSettingsApplyOTHTooltip>
 	<D9FSettingsApplyDRF>Apply Deconstruct Return Fix patch</D9FSettingsApplyDRF>
 	<D9FSettingsApplyDRFTooltip>Whether to apply the Deconstruct Return Fix patch, which fixes a vanilla bug which prevents buildings from returning all their items when deconstructed. If debug mode is disabled, the patch will always be applied.</D9FSettingsApplyDRFTooltip>
+	<!-- AJO PlaceWorkers -->
+	<D9F_Roofed_NeedsRoof>{0} needs to be placed under a roof</D9F_Roofed_NeedsRoof>
+	<D9F_Chandelier_TooTall>{0} is too tall to place a {1} here</D9F_Chandelier_TooTall>
 </LanguageData>
