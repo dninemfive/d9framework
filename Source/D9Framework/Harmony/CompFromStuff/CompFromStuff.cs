@@ -15,22 +15,22 @@ namespace D9Framework
     /// </summary>
     static class CompFromStuff
     {
-        [HarmonyPatch(typeof(ThingMaker), "MakeThing", new Type[] { typeof(ThingDef), typeof(ThingDef) })]
-        class AddCompPrefix
+        [HarmonyPatch(typeof(ThingMaker), nameof(ThingMaker.MakeThing), new Type[] { typeof(ThingDef), typeof(ThingDef) })]
+        class AddCompPostfix
         {
-            [HarmonyPrefix]
-            public static void MakeThingPostfix(ref Thing __result)
+            [HarmonyPostfix]
+            public static void MakeThingPostfix(ref Thing __result, ref ThingDef stuff)
             {
-                if (__result is ThingWithComps twc)
+                if (stuff != null && __result is ThingWithComps twc)
                 {
-                    ULog.Message("twc: " + twc.ToString());
-                    CompsToAddWhenStuff ext = twc.def.GetModExtension<CompsToAddWhenStuff>();
+                    ULog.Message("twc: " + twc.ToString(), true);
+                    CompsToAddWhenStuff ext = stuff.GetModExtension<CompsToAddWhenStuff>();
                     if(ext != null && ext.comps != null && ext.comps.Count > 0)
                     {
-                        ULog.Message("ext: " + ext.ToString());
+                        ULog.Message("ext: " + ext.ToString(), true);
                         for(int i = 0; i < ext.comps.Count; i++)
                         {
-                            ULog.Message("" + i);
+                            ULog.Message("" + i, true);
                             ThingComp comp = (ThingComp)Activator.CreateInstance(ext.comps[i].compClass);
                             comp.parent = twc;
                             twc.AllComps.Add(comp);
