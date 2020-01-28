@@ -28,7 +28,7 @@ namespace D9Framework
 
         // thanks, lbmaian!
         // from https://discordapp.com/channels/214523379766525963/215496692047413249/669060018645237800
-        [HarmonyPatch(typeof(Building_OrbitalTradeBeacon), nameof(Building_OrbitalTradeBeacon.TradeableCells))]
+        [HarmonyPatch(typeof(Building_OrbitalTradeBeacon), nameof(Building_OrbitalTradeBeacon.TradeableCellsAround), new Type[] { typeof(IntVec3), typeof(Map) })]
         static class TradeableCellsPatch
         {
             [ThreadStatic]

@@ -13,6 +13,6 @@ namespace D9Framework
     /// </summary>
     public abstract class Building_CustomTradeBeacon : Building_OrbitalTradeBeacon
     {
-        public new abstract IEnumerable<IntVec3> TradeableCells();
+        public new abstract List<IntVec3> TradeableCells();
     }
 }
