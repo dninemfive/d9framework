@@ -19,5 +19,10 @@ namespace D9Framework
             int hp = base.parent.HitPoints;
             if (IsCheapIntervalTick(Props.TicksPerRepair) && parent.def.useHitPoints && hp < parent.MaxHitPoints) hp++;
         }
+
+        public override string CompInspectStringExtra()
+        {
+            return "CompSelfRepair";
+        }
     }
 }
