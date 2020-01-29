@@ -13,5 +13,5 @@
 	<!-- AJO PlaceWorkers -->
 	<D9F_Roofed_NeedsRoof>{0} needs to be placed under a roof</D9F_Roofed_NeedsRoof>
 	<D9F_Chandelier_TooTall>{0} is too tall to place a {1} here</D9F_Chandelier_TooTall>
-	<D9F_MustBePlacedOnWall>{0} must be placed on a wall.</D9F_MustBePlacedOnWall>	
+	<D9F_MustBePlacedOnWall>{0} must be placed on a wall</D9F_MustBePlacedOnWall>	
 </LanguageData>

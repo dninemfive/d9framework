@@ -28,6 +28,7 @@ namespace D9Framework
     /// <summary>
     /// Only allows an object to be placed on a wall, as long as there isn't the same def facing the same way.
     /// </summary>
+    /// 
     public class PlaceWorker_OnWall : PlaceWorker
     {
         public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null)
