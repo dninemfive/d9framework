@@ -11,23 +11,17 @@ namespace D9Framework
     {
         public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null)
         {
-            IntVec3 c = loc - rot.FacingCell;                         // Get the tile behind this object
-            Building edifice = c.GetEdifice(map);                     // Determine if the tile is an edifice            
-            if (!c.InBounds(map) || !loc.InBounds(map)) return false; // Don't place outside of the map
-            /*  // Only allow placing on a natural or constructed wall
-            if (edifice == null || edifice.def == null || (edifice.def != ThingDefOf.Wall && !edifice.def.building.isNaturalRock &&
-                ((edifice.Faction == null || edifice.Faction != Faction.OfPlayer) ||
-                edifice.def.graphicData == null || edifice.def.graphicData.linkFlags == 0 || (LinkFlags.Wall & edifice.def.graphicData.linkFlags) == LinkFlags.None))) {
-                return new AcceptanceReport("AJO_MustBePlacedOnWall".Translate(new object[] { checkingDef.LabelCap }));
-            }
-            */
-            if (edifice == null ||
-                edifice.def == null ||
-                ((edifice.def != ThingDefOf.Wall && !edifice.def.IsSmoothed) &&
-                ((edifice.Faction == null || edifice.Faction != Faction.OfPlayer) ||
-                edifice.def.graphicData == null || edifice.def.graphicData.linkFlags == 0 || (LinkFlags.Wall & edifice.def.graphicData.linkFlags) == LinkFlags.None)))
-                return new AcceptanceReport("AJO_MustBePlacedOnWall".Translate(checkingDef.LabelCap));
-            return true; // Otherwise, accept placing
+            IntVec3 c = loc - rot.FacingCell;                               // Get the tile behind this object
+            Building edifice = c.GetEdifice(map);                           // Determine if the tile is an edifice            
+            if (!c.InBounds(map) || !loc.InBounds(map)) return false;       // Don't place outside of the map
+            if (!IsWall(edifice) || edifice.Faction != Faction.OfPlayer)    // Only allow placing on walls, and not if another faction owns the wall
+                return new AcceptanceReport("D9F_MustBePlacedOnWall".Translate(checkingDef.LabelCap));
+            return true;                                                    // Otherwise, accept placing
+        }
+        public bool IsWall(Building b)
+        {
+            ThingDef def = b?.def;
+            return def != null && (def.holdsRoof && def.blockLight && def.coversFloor);
         }
     }
     public class PlaceWorker_OnWall : PlaceWorker
