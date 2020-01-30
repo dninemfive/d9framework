@@ -47,6 +47,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Comps\CompHanger\CompHanger.cs" />
+    <Compile Include="Comps\CompHanger\CompProperties_Hanger.cs" />
     <Compile Include="Comps\CompSelfRepair\CompProperties_SelfRepair.cs" />
     <Compile Include="Comps\CompSelfRepair\CompSelfRepair.cs" />
     <Compile Include="Comps\CompWithCheapHashInterval.cs" />
@@ -57,6 +59,7 @@
     <Compile Include="Harmony\Orbital Trade Hook\Building_OrbitalTradeBeacon.cs" />
     <Compile Include="Harmony\Orbital Trade Hook\OrbitalTradeHook.cs" />
     <Compile Include="ModSettings.cs" />
+    <Compile Include="PlaceWorkers\PlaceworkerUtility.cs" />
     <Compile Include="PlaceWorkers\PlaceWorker_AgainstWall.cs" />
     <Compile Include="PlaceWorkers\PlaceWorker_Roofed.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

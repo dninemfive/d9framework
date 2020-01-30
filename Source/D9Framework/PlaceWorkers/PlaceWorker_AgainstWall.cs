@@ -15,14 +15,9 @@ namespace D9Framework
             IntVec3 c = loc - rot.FacingCell;                               // Get the tile behind this object
             Building edifice = c.GetEdifice(map);                           // Determine if the tile is an edifice            
             if (!c.InBounds(map) || !loc.InBounds(map)) return false;       // Don't place outside of the map
-            if (!IsWall(edifice) || edifice.Faction != Faction.OfPlayer)    // Only allow placing on walls, and not if another faction owns the wall
+            if (!PlaceWorkerUtility.IsWall(edifice) || edifice.Faction != Faction.OfPlayer)    // Only allow placing on walls, and not if another faction owns the wall
                 return new AcceptanceReport("D9F_MustBePlacedOnWall".Translate(checkingDef.LabelCap));
             return true;                                                    // Otherwise, accept placing
-        }
-        public bool IsWall(Building b)
-        {
-            ThingDef def = b?.def;
-            return def != null && (def.holdsRoof && def.blockLight && def.coversFloor);
         }
     }
     /// <summary>
@@ -35,19 +30,8 @@ namespace D9Framework
         {
             Building buil = loc.GetEdifice(map);
             if (!loc.InBounds(map)) return false;
-            if (!IsWall(buil) || buil.Faction != Faction.OfPlayer) return new AcceptanceReport("D9F_MustBePlacedOnWall".Translate(checkingDef.LabelCap));
-            if (ConflictingThing(checkingDef, loc, rot, map)) return new AcceptanceReport("IdenticalThingExists".Translate());
-            return true;
-        }
-        public bool IsWall(Building b)
-        {
-            ThingDef def = b?.def;
-            return def != null && (def.holdsRoof && def.blockLight && def.coversFloor);
-        }
-        public bool ConflictingThing(BuildableDef bd, IntVec3 c, Rot4 r, Map map)
-        {
-            List<Thing> things = map.thingGrid.ThingsListAtFast(c);
-            foreach (Thing t in things) if (t.def as BuildableDef == bd && t.Rotation == r) return false;
+            if (!PlaceWorkerUtility.IsWall(buil) || buil.Faction != Faction.OfPlayer) return new AcceptanceReport("D9F_MustBePlacedOnWall".Translate(checkingDef.LabelCap));
+            if (PlaceWorkerUtility.ConflictingThing(checkingDef, loc, rot, map)) return new AcceptanceReport("IdenticalThingExists".Translate());
             return true;
         }
     }
