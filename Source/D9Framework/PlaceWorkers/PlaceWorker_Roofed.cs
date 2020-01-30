@@ -28,7 +28,7 @@ namespace D9Framework
     /// Require that the building be placed "hanging" from a roof, i.e. that the tile is roofed, it's not above anything which touches the roof, and it's not on the same tile as another RoofHanger
     /// </summary>
     /// <para>Originally by CuproPanda, for Additional Joy Objects.</para>
-    public class PlaceWorker_RoofHanger : PlaceWorker_Roofed
+    public class PlaceWorker_RoofHanger : PlaceWorker
     {
 		public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null) {
             AcceptanceReport roofedReport = base.AllowsPlacing(checkingDef, loc, rot, map, thingToIgnore); //check if tile is roofed
