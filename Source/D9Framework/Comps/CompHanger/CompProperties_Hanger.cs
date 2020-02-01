@@ -7,7 +7,7 @@ using Verse;
 namespace D9Framework {
     public class CompProperties_Validator : CompProperties
     {
-        public int tickInterval;
+        public int tickInterval = 250;
 
         private bool shouldUse = true;
         public bool ShouldUse => shouldUse;
@@ -22,11 +22,11 @@ namespace D9Framework {
                 shouldUse = false;
                 yield return "CompValidator used but no PlaceWorkers set";
             }
-            if (!parentDef.Minifiable)
+            /*if (!parentDef.Minifiable)
             {
                 shouldUse = false;
                 yield return "CompValidator used but parent def not minifiable";
-            }
+            }*/
         }
     }
 }

@@ -15,7 +15,7 @@ namespace D9Framework
             IntVec3 c = loc - rot.FacingCell;                               // Get the tile behind this object
             Building edifice = c.GetEdifice(map);                           // Determine if the tile is an edifice            
             if (!c.InBounds(map) || !loc.InBounds(map)) return false;       // Don't place outside of the map
-            if (!PlaceWorkerUtility.IsWall(edifice) || edifice.Faction != Faction.OfPlayer)    // Only allow placing on walls, and not if another faction owns the wall
+            if (!PlaceWorkerUtility.IsWall(edifice))// || (edifice.Faction != null || edifice.Faction != Faction.OfPlayer))    // Only allow placing on walls, and not if another faction owns the wall
                 return new AcceptanceReport("D9F_MustBePlacedOnWall".Translate(checkingDef.LabelCap));
             return true;                                                    // Otherwise, accept placing
         }
