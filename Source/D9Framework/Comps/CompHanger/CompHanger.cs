@@ -16,10 +16,13 @@ namespace D9Framework {
 
         public override void CompTick()
         {
+            base.CompTick();   
             if (Props.ShouldUse && IsCheapIntervalTick(Props.tickInterval))
             {
+                Log.Message("pws:");
                 foreach(PlaceWorker pw in base.parent.def.PlaceWorkers)
                 {
+                    Log.Message("\t" + pw);
                     if (!pw.AllowsPlacing(base.parent.def, base.parent.Position, base.parent.Rotation, base.parent.Map).Accepted)
                     {
                         MinifyOrDestroy();
@@ -28,7 +31,15 @@ namespace D9Framework {
                 }
             }
         }
-        
+
+        public override string CompInspectStringExtra()
+        {
+            string ret = base.CompInspectStringExtra();
+            ret += "PlaceWorkers: (count = " + base.parent.def.PlaceWorkers.Count + "):";
+            for (int i = 0; i < Math.Min(3, base.parent.def.PlaceWorkers.Count); i++) ret += "\n\t" + base.parent.def.PlaceWorkers.ElementAt(i).ToString();
+            return ret;
+        }
+
         public virtual void MinifyOrDestroy()
         {
             if (base.parent.def.Minifiable)
