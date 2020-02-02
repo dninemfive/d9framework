@@ -23,11 +23,6 @@ namespace D9Framework {
                 yield return "CompValidator used but no PlaceWorkers set";
             }
             Log.Message("ShouldUse: " + shouldUse);
-            /*if (!parentDef.Minifiable)
-            {
-                shouldUse = false;
-                yield return "CompValidator used but parent def not minifiable";
-            }*/
         }
     }
 }

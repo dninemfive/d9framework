@@ -8,7 +8,7 @@ using RimWorld;
 
 namespace D9Framework {
     /// <summary>
-    /// Minifies a minifiable object if the thing it's hanging on is missing
+    /// Minifies or destroys the parent Thing if it wouldn't be allowed to be placed at its current location.
     /// </summary>
     public class CompValidator : CompWithCheapHashInterval
     {
@@ -19,10 +19,8 @@ namespace D9Framework {
             base.CompTick();   
             if (Props.ShouldUse && IsCheapIntervalTick(Props.tickInterval))
             {
-                Log.Message("pws:");
                 foreach(PlaceWorker pw in base.parent.def.PlaceWorkers)
                 {
-                    Log.Message("\t" + pw);
                     if (!pw.AllowsPlacing(base.parent.def, base.parent.Position, base.parent.Rotation, base.parent.Map).Accepted)
                     {
                         MinifyOrDestroy();
@@ -35,8 +33,11 @@ namespace D9Framework {
         public override string CompInspectStringExtra()
         {
             string ret = base.CompInspectStringExtra();
-            ret += "PlaceWorkers: (count = " + base.parent.def.PlaceWorkers.Count + "):";
-            for (int i = 0; i < Math.Min(3, base.parent.def.PlaceWorkers.Count); i++) ret += "\n\t" + base.parent.def.PlaceWorkers.ElementAt(i).ToString();
+            if (D9FModSettings.DEBUG)
+            {
+                ret += "PlaceWorkers: (count = " + base.parent.def.PlaceWorkers.Count + "):";
+                for (int i = 0; i < Math.Min(3, base.parent.def.PlaceWorkers.Count); i++) ret += "\n\t" + base.parent.def.PlaceWorkers.ElementAt(i).ToString();
+            }
             return ret;
         }
 

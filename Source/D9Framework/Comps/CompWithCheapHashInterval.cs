@@ -18,20 +18,10 @@ namespace D9Framework
         private int hashOffset = 0;
         public bool IsCheapIntervalTick(int interval) => (int)(Find.TickManager.TicksGame + hashOffset) % interval == 0;
 
-        public override void CompTick() //Debug-only
-        {
-            Log.Message("" + (Find.TickManager.TicksGame + hashOffset) % 250); 
-        }
-
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
             hashOffset = parent.thingIDNumber.HashOffset();
-        }
-
-        public override string CompInspectStringExtra()
-        {
-            return "hashOffset: " + hashOffset; //Debug-only
         }
     }
 }
