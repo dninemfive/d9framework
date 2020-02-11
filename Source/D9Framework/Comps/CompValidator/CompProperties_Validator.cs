@@ -22,7 +22,6 @@ namespace D9Framework {
                 shouldUse = false;
                 yield return "CompValidator used but no PlaceWorkers set";
             }
-            Log.Message("ShouldUse: " + shouldUse);
         }
     }
 }

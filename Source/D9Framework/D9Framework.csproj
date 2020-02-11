@@ -47,8 +47,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Comps\CompHanger\CompValidator.cs" />
-    <Compile Include="Comps\CompHanger\CompProperties_Validator.cs" />
+    <Compile Include="Comps\CompValidator\CompValidator.cs" />
+    <Compile Include="Comps\CompValidator\CompProperties_Validator.cs" />
     <Compile Include="Comps\CompSelfRepair\CompProperties_SelfRepair.cs" />
     <Compile Include="Comps\CompSelfRepair\CompSelfRepair.cs" />
     <Compile Include="Comps\CompWithCheapHashInterval.cs" />
