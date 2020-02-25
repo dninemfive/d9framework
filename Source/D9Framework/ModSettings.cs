@@ -9,7 +9,7 @@ namespace D9Framework
 {
     public class D9FModSettings : ModSettings
     {
-        public static bool DEBUG = true; //for release set false by default
+        public static bool DEBUG = false; //for release set false by default
 
         public static bool ApplyCompFromStuff => !DEBUG || applyCFS;
         public static bool ApplyOrbitalTradeHook => !DEBUG || applyOTH;
