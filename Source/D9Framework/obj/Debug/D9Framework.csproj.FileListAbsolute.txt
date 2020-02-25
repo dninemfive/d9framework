@@ -65,3 +65,4 @@ C:\Users\dninemfive\Documents\mods\Rimworld\F1.0\D9 Framework\Source\D9Framework
 C:\Users\dninemfive\Documents\mods\Rimworld\F1.0\D9 Framework\Source\D9Framework\bin\Debug\UnityEngine.ClusterRendererModule.dll
 C:\Users\dninemfive\Documents\mods\Rimworld\F1.0\D9 Framework\Source\D9Framework\bin\Debug\UnityEngine.CrashReportingModule.dll
 C:\Users\dninemfive\Documents\mods\Rimworld\F1.0\D9 Framework\Source\D9Framework\bin\Debug\UnityEngine.VRModule.dll
+C:\Users\dninemfive\Documents\mods\Rimworld\F1.0\D9 Framework\Source\D9Framework\bin\Debug\0Harmony.xml

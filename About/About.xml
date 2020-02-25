@@ -2,6 +2,10 @@
 <ModMetaData>
 	<name>D9 Framework</name>
 	<author>dninemfive</author>
-	<supportedVersions><li>1.0</li></supportedVersions>
+	<packageId>dninemfive.d9framework</packageid>
+	<supportedVersions>
+		<li>1.0</li>
+		<li>1.1</li>
+	</supportedVersions>
 	<description>Open-source framework mod allowing mod authors to do various things more easily and reliably.</description>
 </ModMetaData>
