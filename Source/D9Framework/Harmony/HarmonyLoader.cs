@@ -35,6 +35,10 @@ namespace D9Framework
         static void PatchAll(Harmony harmony, Type parentType)
         {
             new PatchClassProcessor(harmony, parentType).Patch();
+            /*foreach (var type in parentType.GetNestedTypes(AccessTools.all))
+            {
+                new PatchClassProcessor(harmony, type).Patch();
+            }*/
         }
 
         /*

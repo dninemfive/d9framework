@@ -77,6 +77,7 @@
     <Compile Include="Harmony\Orbital Trade Hook\Building_OrbitalTradeBeacon.cs" />
     <Compile Include="Harmony\Orbital Trade Hook\OrbitalTradeHook.cs" />
     <Compile Include="ModSettings.cs" />
+    <Compile Include="PatchOperations\PatchOperationFindPackage.cs" />
     <Compile Include="PlaceWorkers\PlaceworkerUtility.cs" />
     <Compile Include="PlaceWorkers\PlaceWorker_AgainstWall.cs" />
     <Compile Include="PlaceWorkers\PlaceWorker_Roofed.cs" />
