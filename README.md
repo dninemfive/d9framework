@@ -3,6 +3,8 @@ Framework mod combining my old Deconstruct Return Fix and Orbital Trade Hook mod
 
 See the [wiki](https://github.com/dninemfive/d9framework/wiki) for more details.
 
+Don't let the license scare you, just ask for permission and I'll probably let you use some of my code here. I'll be specifically licensing certain classes once I figure out how that works.
+
 ## Credits
 cuproPanda: Original code for most of the PlaceWorkers, from AJO.
 
