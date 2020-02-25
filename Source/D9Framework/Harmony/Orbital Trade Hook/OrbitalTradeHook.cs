@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using RimWorld;
 using Verse;
-using Harmony;
+using HarmonyLib;
 using OpCodes = System.Reflection.Emit.OpCodes;
 
 namespace D9Framework

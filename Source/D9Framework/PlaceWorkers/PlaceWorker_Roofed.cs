@@ -12,7 +12,7 @@ namespace D9Framework
     /// <para>Originally by CuproPanda, for Additional Joy Objects.</para>
     public class PlaceWorker_Roofed : PlaceWorker
     {
-        public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null)
+        public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null, Thing thing = null)
         {
             foreach (IntVec3 current in GenAdj.CellsOccupiedBy(loc, rot, checkingDef.Size))
             {
@@ -30,7 +30,7 @@ namespace D9Framework
     /// <para>Originally by CuproPanda, for Additional Joy Objects.</para>
     public class PlaceWorker_RoofHanger : PlaceWorker
     {
-		public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null) {
+		public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null, Thing thing = null) {
             AcceptanceReport roofedReport = base.AllowsPlacing(checkingDef, loc, rot, map, thingToIgnore); //check if tile is roofed
             if (!roofedReport.Accepted) return roofedReport;            
             foreach (IntVec3 c in GenAdj.CellsOccupiedBy(loc, rot, checkingDef.Size)) // Don't allow placing on big things

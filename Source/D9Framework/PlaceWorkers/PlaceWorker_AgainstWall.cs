@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
-using RimWorld;
+using UnityEngine;
 using Verse;
+using RimWorld;
 
 namespace D9Framework
 {
@@ -10,7 +11,7 @@ namespace D9Framework
     /// </summary>
     public class PlaceWorker_AgainstWall : PlaceWorker
     {
-        public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null)
+        public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null, Thing thing = null)
         {
             IntVec3 c = loc - rot.FacingCell;                               // Get the tile behind this object
             Building edifice = c.GetEdifice(map);                           // Determine if the tile is an edifice            
@@ -26,7 +27,7 @@ namespace D9Framework
     /// 
     public class PlaceWorker_OnWall : PlaceWorker
     {
-        public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null)
+        public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null, Thing thing = null)
         {
             Building buil = loc.GetEdifice(map);
             if (!loc.InBounds(map)) return false;

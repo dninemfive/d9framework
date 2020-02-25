@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Verse;
-using Harmony;
+using HarmonyLib;
 
-namespace D9Framework.Harmony
+namespace D9Framework
 {
     [StaticConstructorOnStartup]
     class HarmonyLoader
@@ -13,7 +13,7 @@ namespace D9Framework.Harmony
         static HarmonyLoader()
         {
             ULog.Message("Applying Harmony patches...");
-            var harmony = HarmonyInstance.Create("com.dninemfive.D9Framework");
+            var harmony = new Harmony("com.dninemfive.D9Framework");
             if (D9FModSettings.ApplyCompFromStuff)
             {
                 PatchAll(harmony, typeof(CompFromStuff));                
@@ -31,8 +31,15 @@ namespace D9Framework.Harmony
             }
         }
 
+        // also thanks to lbmaian
+        static void PatchAll(Harmony harmony, Type parentType)
+        {
+            new PatchClassProcessor(harmony, parentType).Patch();
+        }
+
+        /*
         // Thanks to lbmaian for this
-        static void PatchAll(HarmonyInstance harmony, Type parentType)
+        static void PatchAll(Harmony harmony, Type parentType)
         {
             foreach (var type in parentType.GetNestedTypes(AccessTools.all))
             {
@@ -46,5 +53,6 @@ namespace D9Framework.Harmony
                 }
             }
         }
+        */
     }
 }
