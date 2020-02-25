@@ -63,6 +63,8 @@
     <Compile Include="PlaceWorkers\PlaceWorker_AgainstWall.cs" />
     <Compile Include="PlaceWorkers\PlaceWorker_Roofed.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ranged Shield Belt\Gizmo_RangedShieldStatus.cs" />
+    <Compile Include="Ranged Shield Belt\RangedShieldBelt.cs" />
     <Compile Include="Ulog.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
