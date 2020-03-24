@@ -12,7 +12,7 @@ namespace D9Framework
     class CompProperties_SelfRepair : CompProperties
     {
 #pragma warning disable CS0649 //disable the warning that this field is never assigned to, as the game handles that
-        public int TicksPerRepair;
+        public int TicksPerRepair = 250;
         
         public CompProperties_SelfRepair()
         {
