@@ -32,8 +32,8 @@ namespace D9Framework
             }
             if (D9FModSettings.DEBUG) //even though they wouldn't *print* without this if-statement, I don't need to loop through patched methods otherwise
             {
-                ULog.Message("The following patches were applied:");
-                foreach (MethodBase mb in harmony.GetPatchedMethods()) ULog.DebugMessage("\t" + mb.Name, false);
+                ULog.Message("The following methods were successfully patched:", false);
+                foreach (MethodBase mb in harmony.GetPatchedMethods()) ULog.Message("\t" + mb.DeclaringType.Name + "." + mb.Name, false);
             }            
         }
 
@@ -45,23 +45,5 @@ namespace D9Framework
                 new PatchClassProcessor(harmony, type).Patch();
             }
         }
-
-        /*
-        // Thanks to lbmaian for this
-        static void PatchAll(Harmony harmony, Type parentType)
-        {
-            foreach (var type in parentType.GetNestedTypes(AccessTools.all))
-            {
-                // Following copied from HarmonyInstance.PatchAll(Assembly).
-                var harmonyMethods = type.GetHarmonyMethods();
-                if (harmonyMethods != null && harmonyMethods.Count > 0)
-                {
-                    var attributes = HarmonyMethod.Merge(harmonyMethods);
-                    var patchProcessor = new PatchProcessor(harmony, type, attributes);
-                    patchProcessor.Patch();
-                }
-            }
-        }
-        */
     }
 }
