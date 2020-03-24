@@ -5,6 +5,9 @@ See the [wiki](https://github.com/dninemfive/d9framework/wiki) for more details.
 
 Don't let the license scare you, just ask for permission and I'll probably let you use some of my code here. I'll be specifically licensing certain classes once I figure out how that works.
 
+## For Modders
+This mod is like JecsTools or HugsLib - set this mod as a dependency for your own.
+
 ## Credits
 cuproPanda: Original code for most of the PlaceWorkers, from AJO.
 
