@@ -30,7 +30,7 @@ namespace D9Framework
                 PatchAll(harmony, typeof(OrbitalTradeHook));
                 ULog.DebugMessage("\tOrbital Trade Hook enabled.", false);
             }
-            if (D9FModSettings.DEBUG) //even though they wouldn't *print* without this if-statement, I don't need to loop through patched methods otherwise
+            if (D9FModSettings.DEBUG)
             {
                 Log.Message("The following methods were successfully patched:", false);
                 foreach (MethodBase mb in harmony.GetPatchedMethods()) Log.Message("\t" + mb.DeclaringType.Name + "." + mb.Name, false);
