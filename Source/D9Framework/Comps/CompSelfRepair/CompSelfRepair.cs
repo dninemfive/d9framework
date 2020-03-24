@@ -17,12 +17,12 @@ namespace D9Framework
         {
             base.CompTick();
             int hp = base.parent.HitPoints;
-            if (IsCheapIntervalTick(Props.TicksPerRepair) && parent.def.useHitPoints && hp < parent.MaxHitPoints) hp++;
+            if (IsCheapIntervalTick(Props.tickInterval) && parent.def.useHitPoints && hp < parent.MaxHitPoints) hp++;
         }
         public override string CompInspectStringExtra()
         {
             if (!D9FModSettings.DEBUG) return base.CompInspectStringExtra();
-            return "CompSelfRepair with TicksPerRepair " + Props.TicksPerRepair;
+            return "CompSelfRepair with TicksPerRepair " + Props.tickInterval;
         }
     }
 }
