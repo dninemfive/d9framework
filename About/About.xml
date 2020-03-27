@@ -10,5 +10,5 @@
 	<loadAfter>
 		<li>brrainz.harmony</li>
 	</loadAfter>
-	<description>Open-source framework mod allowing mod authors to do various things more easily and reliably.</description>
+	<description>A framework mod allowing mod authors to do various things more easily and reliably. Includes a few bugfixes, most notably a fix for the issue with drop rates when deconstructing certain buildings.</description>
 </ModMetaData>
