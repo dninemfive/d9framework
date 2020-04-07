@@ -32,7 +32,12 @@ namespace D9Framework
             Building buil = loc.GetEdifice(map);
             if (!loc.InBounds(map)) return false;
             if (!PlaceWorkerUtility.IsWall(buil) || buil.Faction != Faction.OfPlayer) return new AcceptanceReport("D9F_MustBePlacedOnWall".Translate(checkingDef.LabelCap));
-            if (PlaceWorkerUtility.ConflictingThing(checkingDef, loc, rot, map)) return new AcceptanceReport("IdenticalThingExists".Translate());
+            //if (PlaceWorkerUtility.ConflictingThing(checkingDef, loc, rot, map)) return new AcceptanceReport("IdenticalThingExists".Translate());
+            return true;
+        }
+
+        public override bool ForceAllowPlaceOver(BuildableDef other)
+        {
             return true;
         }
     }
