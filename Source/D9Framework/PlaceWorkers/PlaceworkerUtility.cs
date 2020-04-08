@@ -16,7 +16,7 @@ namespace D9Framework
         public static bool ConflictingThing(BuildableDef bd, IntVec3 c, Rot4 r, Map map)
         {
             List<Thing> things = map.thingGrid.ThingsListAtFast(c);            
-            foreach (Thing t in things) if (t.def as BuildableDef == bd && t.Rotation == r) return true;
+            foreach (Thing t in things) if (t.def as BuildableDef == bd && t.Rotation == r) return true; 
             return false;
         }
     }

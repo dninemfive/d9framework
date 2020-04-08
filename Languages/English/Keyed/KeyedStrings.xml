@@ -4,12 +4,16 @@
 	<D9FSettingsCategory>D9 Framework</D9FSettingsCategory>
 	<D9FSettingsDebug>Debug</D9FSettingsDebug>
 	<D9FSettingsDebugTooltip>Enable debug logging, especially on load. You generally don't need to enable this unless asked to.</D9FSettingsDebugTooltip>
+	<D9FSettingsApplyAtOwnRisk>Disabling any patches may result in unpredictable behavior and features breaking. Only disable them if you know what you're doing!</D9FSettingsApplyAtOwnRisk>
+	<D9FSettingsDebugModeRequired>If debug mode is disabled, all patches will be applied.</D9FSettingsDebugModeRequired>
+	<D9FSettingsRestartToApply>You must restart the game for patch settings to apply.</D9FSettingsRestartToApply>
 	<D9FSettingsApplyCFS>Apply CompFromStuff patch</D9FSettingsApplyCFS>
-	<D9FSettingsApplyCFSTooltip>Whether to apply the CompFromStuff patch, which allows materials to add additional properties to things made therefrom. If debug mode is disabled, the patch will always be applied.</D9FSettingsApplyCFSTooltip>
+	<D9FSettingsApplyCFSTooltip>Whether to apply the CompFromStuff patch, which allows materials to add additional properties to things made therefrom.</D9FSettingsApplyCFSTooltip>
 	<D9FSettingsApplyOTH>Apply Orbital Trade Hook patch</D9FSettingsApplyOTH>
-	<D9FSettingsApplyOTHTooltip>Whether to apply the Orbital Trade Hook patch, which allows modders to create custom trade beacons. If debug mode is disabled, the patch will always be applied.</D9FSettingsApplyOTHTooltip>
+	<D9FSettingsApplyOTHTooltip>Whether to apply the Orbital Trade Hook patch, which allows modders to create custom trade beacons.</D9FSettingsApplyOTHTooltip>
 	<D9FSettingsApplyDRF>Apply Deconstruct Return Fix patch</D9FSettingsApplyDRF>
-	<D9FSettingsApplyDRFTooltip>Whether to apply the Deconstruct Return Fix patch, which fixes a vanilla bug which prevents buildings from returning all their items when deconstructed. If debug mode is disabled, the patch will always be applied.</D9FSettingsApplyDRFTooltip>
+	<D9FSettingsApplyDRFTooltip>Whether to apply the Deconstruct Return Fix patch, which fixes a vanilla bug which prevents buildings from returning all their items when deconstructed.</D9FSettingsApplyDRFTooltip>
+	<D9FSettingsApplyFAF></D9FSettingsApplyFAF>
 	<!-- AJO PlaceWorkers -->
 	<D9F_Roofed_NeedsRoof>{0} needs to be placed under a roof</D9F_Roofed_NeedsRoof>
 	<D9F_Chandelier_TooTall>{0} is too tall to place a {1} here</D9F_Chandelier_TooTall>

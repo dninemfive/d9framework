@@ -14,7 +14,8 @@ namespace D9Framework
         public static bool ApplyCompFromStuff => !DEBUG || applyCFS;
         public static bool ApplyOrbitalTradeHook => !DEBUG || applyOTH;
         public static bool ApplyDeconstructReturnFix => !DEBUG || applyDRF;
-        public static bool applyCFS = true, applyOTH = true, applyDRF = true; // despite the public flag, don't reference these; they're only public for the purposes of the mod settings screen below. Reference the above variables instead.
+        public static bool ApplyForceAllowPlaceOverFix => !DEBUG || applyFAF;
+        public static bool applyCFS = true, applyOTH = true, applyDRF = true, applyFAF = true; // despite the public flag, don't reference these; they're only public for the purposes of the mod settings screen below. Reference the above variables instead.
 
         public override void ExposeData()
         {
@@ -23,6 +24,7 @@ namespace D9Framework
             Scribe_Values.Look(ref applyCFS, "ApplyCompFromStuff", true);
             Scribe_Values.Look(ref applyOTH, "ApplyOrbitalTradeHook", true);
             Scribe_Values.Look(ref applyDRF, "ApplyDeconstructReturnFix", true);
+            Scribe_Values.Look(ref applyFAF, "ApplyForceAllowPlaceOverFix", true);
         }
     }
     public class D9FrameworkMod : Mod
@@ -40,9 +42,13 @@ namespace D9Framework
             listing.CheckboxLabeled("D9FSettingsDebug".Translate(), ref D9FModSettings.DEBUG, "D9FSettingsDebugTooltip".Translate());
             if (D9FModSettings.DEBUG)
             {
+                listing.Label("D9FSettingsApplyAtOwnRisk".Translate());
+                listing.Label("D9FSettingsRestartToApply".Translate());
+                listing.Label("D9FSettingsDebugModeRequired".Translate());
                 listing.CheckboxLabeled("D9FSettingsApplyCFS".Translate(), ref D9FModSettings.applyCFS, "D9FSettingsApplyCFSTooltip".Translate());
                 listing.CheckboxLabeled("D9FSettingsApplyOTH".Translate(), ref D9FModSettings.applyOTH, "D9FSettingsApplyOTHTooltip".Translate());
                 listing.CheckboxLabeled("D9FSettingsApplyDRF".Translate(), ref D9FModSettings.applyDRF, "D9FSettingsApplyDRFTooltip".Translate());
+                listing.CheckboxLabeled("D9FSettingsApplyFAF".Translate(), ref D9FModSettings.applyFAF, "D9FSettingsApplyFAFTooltip".Translate());
             }
             listing.End();
             base.DoSettingsWindowContents(inRect);

@@ -30,6 +30,11 @@ namespace D9Framework
                 PatchAll(harmony, typeof(OrbitalTradeHook));
                 ULog.DebugMessage("\tOrbital Trade Hook enabled.", false);
             }
+            if (D9FModSettings.ApplyForceAllowPlaceOverFix)
+            {
+                PatchAll(harmony, typeof(ForceAllowPlaceOverFix));
+                ULog.DebugMessage("\tForce Allow Place Over Fix", false);
+            }
             if (D9FModSettings.DEBUG)
             {
                 Log.Message("The following methods were successfully patched:", false);
