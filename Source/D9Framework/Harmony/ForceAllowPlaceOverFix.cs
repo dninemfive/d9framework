@@ -28,18 +28,10 @@ namespace D9Framework
                         && instrList[i+1].operand as FieldInfo == AccessTools.Field(typeof(ThingDefOf), nameof(ThingDefOf.SteamGeyser))    
                         && instrList[i+2].opcode == OpCodes.Bne_Un_S)                                                      // IL 007A: bne.un.s IL_0087
                     {
-                        Log.Message("Are you there, God? It's me, Margaret.");
-                        /*// we want to not return these CodeInstructions
-                        // the number will be indexed once it loops back up
-                        // we start at, let's say, 1, and want to skip 2 and 3 and have the next index be 4
-                        i += 2;
-                        // we need to add an equivalent number of nops to avoid breaking jump statements elsewhere
-                        for (int j = 0; j < 3; j++) yield return new CodeInstruction(OpCodes.Nop);
-                        continue;*/
-                        instrList[i] = new CodeInstruction(OpCodes.Nop);
-                        instrList[i + 1] = new CodeInstruction(OpCodes.Nop);
-                        instrList[i + 2] = new CodeInstruction(OpCodes.Nop);
-                    } //else yield return instructions.ElementAt(i);
+                        instrList[i].opcode   = OpCodes.Nop;
+                        instrList[i+1].opcode = OpCodes.Nop;
+                        instrList[i+2].opcode = OpCodes.Nop;
+                    }
                 }
                 foreach (CodeInstruction ci in instrList) yield return ci;
             }
@@ -62,19 +54,11 @@ namespace D9Framework
                         && instrList[i+3].opcode == OpCodes.Bne_Un_S)                                                // IL 00DC: bne.un.s IL_0087
                     {
                         Log.Message("Are you scared, God? You should be.");
-                        /*                        
-                        // same reasoning as above, but there are four entries now
-                        i += 3;
-                        // ditto
-                        for (int j = 0; j < 4; j++) yield return new CodeInstruction(OpCodes.Nop);
-                        continue;
-                        */
-                        instrList[i]   = new CodeInstruction(OpCodes.Nop);
-                        instrList[i+1] = new CodeInstruction(OpCodes.Nop);
-                        instrList[i+2] = new CodeInstruction(OpCodes.Nop);
-                        instrList[i+3] = new CodeInstruction(OpCodes.Nop);
+                        instrList[i].opcode   = OpCodes.Nop;
+                        instrList[i+1].opcode = OpCodes.Nop;
+                        instrList[i+2].opcode = OpCodes.Nop;
+                        instrList[i+3].opcode = OpCodes.Nop;
                     }
-                    // else yield return instructions.ElementAt(i);
                 }
                 foreach (CodeInstruction ci in instrList) yield return ci;
             }

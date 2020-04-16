@@ -13,7 +13,7 @@ cuproPanda: Original code for most of the PlaceWorkers, from AJO.
 
 lbmaian: more elegant solution for the Orbital Trade Hook
 
-Smash Phil: general transpiler and other coding help
+Smash Phil, erdelf: general transpiler and other coding help
 
 leafzxg: Translations for Chinese (Simplified and Traditional), from AJO
 
