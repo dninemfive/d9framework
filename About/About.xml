@@ -8,6 +8,7 @@
 	</supportedVersions>
 	<loadAfter>
 		<li>brrainz.harmony</li>
+		<!-- add Core and Royalty here -->
 	</loadAfter>
 	<description>A framework mod allowing mod authors to do various things more easily and reliably. Includes a few bugfixes, most notably a fix for the issue with drop rates when deconstructing certain buildings.</description>
 </ModMetaData>
