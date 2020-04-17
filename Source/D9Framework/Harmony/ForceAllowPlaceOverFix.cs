@@ -53,7 +53,6 @@ namespace D9Framework
                         && instrList[i+2].operand as FieldInfo == AccessTools.Field(typeof(ThingDefOf), nameof(ThingDefOf.SteamGeyser))
                         && instrList[i+3].opcode == OpCodes.Bne_Un_S)                                                // IL 00DC: bne.un.s IL_0087
                     {
-                        Log.Message("Are you scared, God? You should be.");
                         instrList[i].opcode   = OpCodes.Nop;
                         instrList[i+1].opcode = OpCodes.Nop;
                         instrList[i+2].opcode = OpCodes.Nop;
