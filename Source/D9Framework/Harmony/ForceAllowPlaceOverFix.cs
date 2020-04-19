@@ -28,9 +28,11 @@ namespace D9Framework
                         && instrList[i+1].operand as FieldInfo == AccessTools.Field(typeof(ThingDefOf), nameof(ThingDefOf.SteamGeyser))    
                         && instrList[i+2].opcode == OpCodes.Bne_Un_S)                                                      // IL 007A: bne.un.s IL_0087
                     {
+                        //for (int j = 0; j < 3; j++) Log.Message(instrList[i + j].opcode.ToString());
                         instrList[i].opcode   = OpCodes.Nop;
                         instrList[i+1].opcode = OpCodes.Nop;
                         instrList[i+2].opcode = OpCodes.Nop;
+                        //for (int j = 0; j < 3; j++) Log.Message(instrList[i + j].opcode.ToString() + " " + instrList[i+j].operand);
                     }
                 }
                 foreach (CodeInstruction ci in instrList) yield return ci;
@@ -53,10 +55,12 @@ namespace D9Framework
                         && instrList[i+2].operand as FieldInfo == AccessTools.Field(typeof(ThingDefOf), nameof(ThingDefOf.SteamGeyser))
                         && instrList[i+3].opcode == OpCodes.Bne_Un_S)                                                // IL 00DC: bne.un.s IL_0087
                     {
+                        //for (int j = 0; j < 4; j++) Log.Message(instrList[i + j].opcode.ToString());
                         instrList[i].opcode   = OpCodes.Nop;
                         instrList[i+1].opcode = OpCodes.Nop;
                         instrList[i+2].opcode = OpCodes.Nop;
                         instrList[i+3].opcode = OpCodes.Nop;
+                        //for (int j = 0; j < 4; j++) Log.Message(instrList[i + j].opcode.ToString() + " " + instrList[i + j].operand);
                     }
                 }
                 foreach (CodeInstruction ci in instrList) yield return ci;
