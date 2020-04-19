@@ -15,7 +15,9 @@ cuproPanda: Original code for most of the PlaceWorkers, from AJO.
 
 lbmaian: more elegant solution for the Orbital Trade Hook
 
-Smash Phil, erdelf: general transpiler and other coding help
+Smash Phil, erdelf, Drowsy Corgi: general transpiler and other coding help
+
+everyone else on the Rimworld Discord/#mod-development
 
 leafzxg: Translations for Chinese (Simplified and Traditional), from AJO
 
