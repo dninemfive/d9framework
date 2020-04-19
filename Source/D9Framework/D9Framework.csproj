@@ -38,6 +38,7 @@
   <ItemGroup>
     <Reference Include="0Harmony, Version=2.0.0.8, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Lib.Harmony.2.0.0.8\lib\net472\0Harmony.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp, Version=1.0.7213.22423, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -105,7 +106,7 @@
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>del 0Harmony.xml
+    <PostBuildEvent>rem del 0Harmony.xml
 del D9Framework.pdb
 copy * "C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\D9 Framework\Assemblies"</PostBuildEvent>
   </PropertyGroup>

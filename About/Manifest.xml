@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Manifest>
     <identifier>D9Framework</identifier>
-    <version>1.0.0</version>
-    <dependencies/>
+    <version>1.1.0</version>
+    <dependencies>
+		<li>Harmony</li>
+	</dependencies>
     <loadAfter/>
-    <suggests/>
+    <suggests/> <!-- TODO: all my mods using D9 Framework -->
     <showCrossPromotions>true</showCrossPromotions>
     <manifestUri>https://raw.githubusercontent.com/dninemfive/d9framework/master/About/Manifest.xml</manifestUri>
     <downloadUri>https://github.com/dninemfive/d9framework/releases/latest</downloadUri>

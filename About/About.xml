@@ -6,9 +6,17 @@
 	<supportedVersions>
 		<li>1.1</li>
 	</supportedVersions>
+	<modDependencies>
+		<li>
+			<displayName>Harmony</displayName>
+			<packageId>brrainz.harmony</packageId>
+			<downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases</downloadUrl>
+			<steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+		</li>
+	</modDependencies>
 	<loadAfter>
-		<li>brrainz.harmony</li>
-		<!-- add Core and Royalty here -->
+		<li>Ludeon.RimWorld</li>
+		<li>Ludeon.RimWorld.Royalty</li>
 	</loadAfter>
 	<description>A framework mod allowing mod authors to do various things more easily and reliably. Includes a few bugfixes, most notably a fix for the issue with drop rates when deconstructing certain buildings.</description>
 </ModMetaData>

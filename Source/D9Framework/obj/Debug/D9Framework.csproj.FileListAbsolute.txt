@@ -9,7 +9,6 @@ C:\Users\dninemfive\Documents\mods\Rimworld\F1.0\D9 Framework\Source\D9Framework
 C:\Users\dninemfive\Documents\mods\Rimworld\F1.0\D9 Framework\Source\D9Framework\bin\Debug\NAudio.dll
 C:\Users\dninemfive\Documents\mods\Rimworld\F1.0\D9 Framework\Source\D9Framework\bin\Debug\NVorbis.dll
 C:\Users\dninemfive\Documents\mods\Rimworld\F1.0\D9 Framework\Source\D9Framework\bin\Debug\UnityEngine.UI.dll
-C:\Users\dninemfive\Documents\mods\Rimworld\F1.0\D9 Framework\Source\D9Framework\obj\Debug\D9Framework.csproj.CopyComplete
 C:\Users\dninemfive\Documents\mods\Rimworld\F1.0\D9 Framework\Source\D9Framework\obj\Debug\D9Framework.dll
 C:\Users\dninemfive\Documents\mods\Rimworld\F1.0\D9 Framework\Source\D9Framework\obj\Debug\D9Framework.pdb
 C:\Users\dninemfive\Documents\mods\Rimworld\F1.0\D9 Framework\Source\D9Framework\bin\Debug\Unity.TextMeshPro.dll
