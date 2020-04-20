@@ -43,7 +43,7 @@ namespace D9Framework
                     }
                 }
                 IEnumerable<Thing> things = c.GetThingList(map);
-                if (things.Where(x => x.def.placeWorkers.Where(y => y.GetType() == typeof(PlaceWorker_RoofHanger)).Any()).Any()) // don't hang if there's already a chandelier here
+                if (things.Where(x => x.def.placeWorkers != null && x.def.placeWorkers.Where(y => y.GetType() == typeof(PlaceWorker_RoofHanger)).Any()).Any()) // don't hang if there's already a chandelier here
                 {
                     return new AcceptanceReport("IdenticalThingExists".Translate());
                 }
