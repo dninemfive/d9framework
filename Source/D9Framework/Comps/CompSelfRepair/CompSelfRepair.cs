@@ -21,8 +21,9 @@ namespace D9Framework
         }
         public override string CompInspectStringExtra()
         {
-            if (!D9FModSettings.DEBUG) return base.CompInspectStringExtra();
-            return "CompSelfRepair with TicksPerRepair " + Props.tickInterval;
+            string ret = base.CompInspectStringExtra();
+            if(Prefs.DevMode) ret += "CompSelfRepair with TicksPerRepair " + Props.tickInterval;
+            return ret;
         }
     }
 }

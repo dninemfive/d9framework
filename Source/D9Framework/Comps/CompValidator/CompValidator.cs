@@ -33,7 +33,7 @@ namespace D9Framework {
         public override string CompInspectStringExtra()
         {
             string ret = base.CompInspectStringExtra();
-            if (D9FModSettings.DEBUG)
+            if (Prefs.DevMode)
             {
                 ret += "PlaceWorkers: (count = " + base.parent.def.PlaceWorkers.Count + "):";
                 for (int i = 0; i < Math.Min(3, base.parent.def.PlaceWorkers.Count); i++) ret += "\n\t" + base.parent.def.PlaceWorkers.ElementAt(i).ToString();
