@@ -27,7 +27,8 @@ namespace D9Framework
             {
                 List<CodeInstruction> instrList = instructions.ToList();
                 Label returnTrue = generator.DefineLabel();
-                for (int i = 0; i < instrList.Count; i++)
+                bool foundFirstReturnTrue = false;
+                for (int i = 0; i < instrList.Count-1; i++)
                 {
                     // Looking for the first half of (oldDef == ThingDefOf.SteamGeyser && !newDef.ForceAllowPlaceOver(oldDef))
                     if (instrList[i + 1].opcode == OpCodes.Ldsfld                                                         // IL 0075: ldsfld class Verse.ThingDef RimWorld.ThingDefOf::SteamGeyser
@@ -40,14 +41,16 @@ namespace D9Framework
                         yield return new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(BuildableDef), nameof(BuildableDef.ForceAllowPlaceOver)));
                         // if the above call leaves 1 on the stack, jump to my "return true" statement
                         yield return new CodeInstruction(OpCodes.Brtrue, returnTrue);
+                    }else if (!foundFirstReturnTrue
+                              && instrList[i].opcode == OpCodes.Ldc_I4_1
+                              && instrList[i+1].opcode == OpCodes.Ret)
+                    {
+                        instrList[i].labels.Add(returnTrue);
+                        foundFirstReturnTrue = true;
                     }
                     yield return instrList[i];
                 }
-                // append a "return true" at the end with my label
-                CodeInstruction loadTrue = new CodeInstruction(OpCodes.Ldc_I4_1);
-                loadTrue.labels.Add(returnTrue);
-                yield return loadTrue;
-                yield return new CodeInstruction(OpCodes.Ret);
+                if (!foundFirstReturnTrue) ULog.Error("FAF: Couldn't find any return true statements in CanPlaceBlueprintOver!");
             }
         }
 
@@ -58,11 +61,12 @@ namespace D9Framework
         class GenConstructBlocksConstruction
         {
             [HarmonyTranspiler]
-            static IEnumerable<CodeInstruction> CanPlaceBlueprintOverTranspiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
+            static IEnumerable<CodeInstruction> BlocksConstrutionTranspiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
             {
                 List<CodeInstruction> instrList = instructions.ToList();
                 Label returnTrue = generator.DefineLabel();
-                for (int i = 0; i < instructions.Count(); i++)
+                bool foundFirstReturnTrue = false;
+                for (int i = 0; i < instrList.Count-2; i++)
                 {
                     // Looking for the first half of (t.def == ThingDefOf.SteamGeyser && thingDef.entityDefToBuild.ForceAllowPlaceOver(t.def))
                     if (instrList[i+2].opcode == OpCodes.Ldsfld                                                     // IL 00D7: ldsfld class Verse.ThingDef RimWorld.ThingDefOf::SteamGeyser
@@ -76,13 +80,16 @@ namespace D9Framework
                         // if the above call leaves 1 on the stack, jump to my "return true" statement
                         yield return new CodeInstruction(OpCodes.Brtrue, returnTrue);
                     }
+                    else if (!foundFirstReturnTrue
+                             && instrList[i].opcode == OpCodes.Ldc_I4_1
+                             && instrList[i + 1].opcode == OpCodes.Ret)
+                    {
+                        instrList[i].labels.Add(returnTrue);
+                        foundFirstReturnTrue = true;
+                    }
                     yield return instrList[i];
                 }
-                // append a "return true" at the end with my label
-                CodeInstruction loadTrue = new CodeInstruction(OpCodes.Ldc_I4_1);
-                loadTrue.labels.Add(returnTrue);
-                yield return loadTrue;
-                yield return new CodeInstruction(OpCodes.Ret);
+                if (!foundFirstReturnTrue) ULog.Error("FAF: Couldn't find any return true statements in BlocksConstruction!");
             }
         }
     }
