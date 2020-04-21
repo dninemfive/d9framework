@@ -157,7 +157,7 @@
       as a factor to reduce the effective mass of items carried
       as inventory.
       
-      Worn items with a InventoryMassReductionOffset stat can modify it.
+      Worn items with an InventoryMassReductionOffset stat can modify it.
     -->
     <defName>InventoryMassReduction</defName>
     <label>inventory mass reduction</label>

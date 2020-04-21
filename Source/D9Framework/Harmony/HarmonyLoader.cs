@@ -35,6 +35,11 @@ namespace D9Framework
                 PatchAll(harmony, typeof(ForceAllowPlaceOverFix));
                 ULog.DebugMessage("\tForce Allow Place Over Fix", false);
             }
+            if (D9FModSettings.ApplyCarryMassFramework)
+            {
+                CMFHarmonyPatch.DoPatch(harmony);
+                ULog.DebugMessage("\tCarry Mass Framework", false);
+            }
             if (D9FModSettings.DEBUG)
             {
                 Log.Message("The following methods were successfully patched:", false);
@@ -42,7 +47,7 @@ namespace D9Framework
             }            
         }
 
-        // also thanks to lbmaian
+        // thanks to lbmaian
         static void PatchAll(Harmony harmony, Type parentType)
         {
             foreach (var type in parentType.GetNestedTypes(AccessTools.all))
