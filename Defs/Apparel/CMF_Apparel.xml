@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!--
+    Below are 2 demo items that show what can be done using the 
+    new StatDefs to affect carry mass behaviour.
+  - >
+
+  <ThingDef ParentName="ApparelBase">
+    <defName>Apparel_BeltOfHolding</defName>
+    <label>belt of holding (demo object)</label>
+    <description>A belt that magically stores your inventory at reduced mass.</description>
+    <graphicData>
+      <texPath>Things/Pawn/Humanlike/Apparel/ShieldBelt/ShieldBelt</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+
+    <statBases>
+      <Mass>3</Mass>
+      <Flammability>0.4</Flammability>
+      <EquipDelay>2</EquipDelay>
+      
+      <! -
+        An item with the InventoryMassReductionOffset stat will increase
+        the InventoryMassReduction stat of the Pawn wearing the item.
+        
+        This could be used for e.g. backpacks that when being worn make 
+        it easier to carry a larger inventory.
+      - >
+      <InventoryMassReductionOffset>0.4</InventoryMassReductionOffset>
+    </statBases>
+    <thingCategories>
+      <li>ApparelArmor</li>
+    </thingCategories>
+    <apparel>
+      <bodyPartGroups>
+        <li>Waist</li>
+      </bodyPartGroups>
+      <layers>
+        <li>Belt</li>
+      </layers>
+      <tags>
+        <li>BeltDefense</li>
+      </tags>
+    </apparel>
+  </ThingDef>
+  
+  <ThingDef ParentName="ApparelArmorPowerBase">
+    <defName>Apparel_RealPowerArmor</defName>
+    <label>real powered armor (demo object)</label>
+  <description>A suit of powered armor that doesn't encumber the user and can help carry heavy objects.</description>
+    <statBases>
+
+      <! -
+        Items can override the GearMass stat with an explicit value 
+        instead of having it derive from the Mass stat
+      - >
+      <GearMass>0</GearMass>
+
+      <! -
+        An item with the CarryMassOffset stat will increase
+        the CarryMass stat of the Pawn wearing the item.
+        
+        This could be used for e.g. powered armor or exoskeletons 
+        that when being worn increase the maxium mass a Pawn
+        can carry (both in inventory and worn/equipped).
+      - >
+      <CarryMassOffset>50</CarryMassOffset>
+    </statBases>
+    <apparel>
+      <tags>
+        <li>SpacerMilitary</li>
+        <li>RoyalCombatGear</li>
+      </tags>
+    </apparel>
+  </ThingDef>
+  
+  <! -
+  -->
+
+</Defs>
