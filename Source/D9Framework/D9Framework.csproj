@@ -35,8 +35,7 @@
   <PropertyGroup>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="0Harmony, Version=2.0.0.8, Culture=neutral, processorArchitecture=MSIL">
+  <ItemGroup>    <Reference Include="0Harmony, Version=2.0.0.8, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Lib.Harmony.2.0.0.8\lib\net472\0Harmony.dll</HintPath>
       <Private>False</Private>
     </Reference>
@@ -75,6 +74,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CarryMassFramework\CMFHarmonyPatch.cs" />
+    <Compile Include="CarryMassFramework\CMFStatDefOf.cs" />
+    <Compile Include="CarryMassFramework\DerivedStatDef.cs" />
     <Compile Include="Comps\CompValidator\CompValidator.cs" />
     <Compile Include="Comps\CompValidator\CompProperties_Validator.cs" />
     <Compile Include="Comps\CompSelfRepair\CompProperties_SelfRepair.cs" />
