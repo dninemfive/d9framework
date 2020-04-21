@@ -8,7 +8,9 @@ namespace D9Framework
 
     class DerivedStatDef : StatDef
     {
+#pragma warning disable CS0649
         public StatDef defaultBaseStat;
+#pragma warning restore CS0649
 
         public static string GetFromBaseStatString(StatDef stat)
         {

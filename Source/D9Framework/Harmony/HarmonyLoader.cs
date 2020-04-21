@@ -40,7 +40,7 @@ namespace D9Framework
                 CMFHarmonyPatch.DoPatch(harmony);
                 ULog.DebugMessage("\tCarry Mass Framework", false);
             }
-            if (D9FModSettings.DEBUG)
+            if (D9FModSettings.PrintPatchedMethods)
             {
                 Log.Message("The following methods were successfully patched:", false);
                 foreach (MethodBase mb in harmony.GetPatchedMethods()) Log.Message("\t" + mb.DeclaringType.Name + "." + mb.Name, false);

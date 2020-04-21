@@ -14,10 +14,12 @@ namespace D9Framework
         public static bool ApplyCompFromStuff => !DEBUG || applyCFS;
         public static bool ApplyOrbitalTradeHook => !DEBUG || applyOTH;
         public static bool ApplyDeconstructReturnFix => !DEBUG || applyDRF;
-        public static bool ApplyForceAllowPlaceOverFix => !DEBUG || applyFAF;
+        public static bool ApplyForceAllowPlaceOverFix => applyFAF;
         public static bool ApplyCarryMassFramework => !DEBUG || applyCMF;
+        public static bool PrintPatchedMethods => DEBUG && printPatchedMethods;
         // despite the public flag, don't reference these; they're only public for the purposes of the mod settings screen below. Reference the above variables instead.
         public static bool applyCFS = true, applyOTH = true, applyDRF = true, applyFAF = false, applyCMF = true;
+        public static bool printPatchedMethods = false;
 
         public override void ExposeData()
         {
@@ -45,6 +47,7 @@ namespace D9Framework
             listing.CheckboxLabeled("D9FSettingsDebug".Translate(), ref D9FModSettings.DEBUG, "D9FSettingsDebugTooltip".Translate());
             if (D9FModSettings.DEBUG)
             {
+                listing.CheckboxLabeled("D9FSettingsPPM".Translate(), ref D9FModSettings.printPatchedMethods, "D9FSettingsPPMTooltip".Translate());
                 listing.Label("D9FSettingsApplyAtOwnRisk".Translate());
                 listing.Label("D9FSettingsRestartToApply".Translate());
                 listing.Label("D9FSettingsDebugModeRequired".Translate());

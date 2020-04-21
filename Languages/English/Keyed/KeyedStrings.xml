@@ -4,6 +4,8 @@
 	<D9FSettingsCategory>D9 Framework</D9FSettingsCategory>
 	<D9FSettingsDebug>Debug</D9FSettingsDebug>
 	<D9FSettingsDebugTooltip>Enable debug logging, especially on load. You generally don't need to enable this unless asked to.</D9FSettingsDebugTooltip>
+	<D9FSettingsPPM>Print patched methods</D9FSettingsPPM>
+	<D9FSettingsPPMTooltip>Whether to print all the Harmony patches which are successfully applied.</D9FSettingsPPMTooltip>
 	<D9FSettingsApplyAtOwnRisk>Disabling any patches may result in unpredictable behavior and features breaking. Only disable them if you know what you're doing!</D9FSettingsApplyAtOwnRisk>
 	<D9FSettingsDebugModeRequired>If debug mode is disabled, all patches will be applied.</D9FSettingsDebugModeRequired>
 	<D9FSettingsRestartToApply>You must restart the game for patch settings to apply.</D9FSettingsRestartToApply>
