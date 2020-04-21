@@ -15,7 +15,7 @@ namespace D9Framework
         public static bool ApplyOrbitalTradeHook => !DEBUG || applyOTH;
         public static bool ApplyDeconstructReturnFix => !DEBUG || applyDRF;
         public static bool ApplyForceAllowPlaceOverFix => !DEBUG || applyFAF;
-        public static bool applyCFS = true, applyOTH = true, applyDRF = true, applyFAF = true; // despite the public flag, don't reference these; they're only public for the purposes of the mod settings screen below. Reference the above variables instead.
+        public static bool applyCFS = true, applyOTH = true, applyDRF = true, applyFAF = false; // despite the public flag, don't reference these; they're only public for the purposes of the mod settings screen below. Reference the above variables instead.
 
         public override void ExposeData()
         {
@@ -24,7 +24,7 @@ namespace D9Framework
             Scribe_Values.Look(ref applyCFS, "ApplyCompFromStuff", true);
             Scribe_Values.Look(ref applyOTH, "ApplyOrbitalTradeHook", true);
             Scribe_Values.Look(ref applyDRF, "ApplyDeconstructReturnFix", true);
-            Scribe_Values.Look(ref applyFAF, "ApplyForceAllowPlaceOverFix", true);
+            Scribe_Values.Look(ref applyFAF, "ApplyForceAllowPlaceOverFix", false);
         }
     }
     public class D9FrameworkMod : Mod
