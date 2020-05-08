@@ -1,5 +1,5 @@
 # D9 Framework
-![version](https://img.shields.io/badge/RimWorld-1.1-brightgreen.svg) ![modVersion](https://img.shields.io/badge/Mod%20version-1.2.0-brightgreen.svg) ![license](https://img.shields.io/badge/License-All%20rights%20reserved-blue.svg)
+![version](https://img.shields.io/badge/RimWorld-1.1-brightgreen.svg) ![modVersion](https://img.shields.io/github/v/release/dninemfive/d9framework?color=brightgreen&label=Mod%20version) ![license](https://img.shields.io/badge/License-All%20rights%20reserved-blue.svg)
 
 [![steamlink](https://raster.shields.io/steam/downloads/2037445541.png?color=blue&label=Workshop&logo=steam)](https://steamcommunity.com/sharedfiles/filedetails/?id=2037445541) ![githubdls](https://img.shields.io/github/downloads/dninemfive/d9framework/total?color=blue&label=Github&logo=github)
 
@@ -11,6 +11,8 @@ Don't let the license scare you, just ask for permission and I'll probably let y
 
 ## For Modders
 This mod is like JecsTools or HugsLib - set this mod as a dependency for your own.
+
+I'd love to see anything you make with this! Feel free to message me on Steam or Discord to show off.
 
 ## Credits
 cuproPanda: Original code for most of the PlaceWorkers, from AJO.
