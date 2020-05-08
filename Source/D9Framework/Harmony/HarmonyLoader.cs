@@ -33,12 +33,12 @@ namespace D9Framework
             if (D9FModSettings.ApplyForceAllowPlaceOverFix)
             {
                 PatchAll(harmony, typeof(ForceAllowPlaceOverFix));
-                ULog.DebugMessage("\tForce Allow Place Over Fix", false);
+                ULog.DebugMessage("\tForce Allow Place Over Fix enabled.", false);
             }
             if (D9FModSettings.ApplyCarryMassFramework)
             {
                 CMFHarmonyPatch.DoPatch(harmony);
-                ULog.DebugMessage("\tCarry Mass Framework", false);
+                ULog.DebugMessage("\tCarry Mass Framework enabled.", false);
             }
             if (D9FModSettings.PrintPatchedMethods)
             {
