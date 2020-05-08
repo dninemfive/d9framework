@@ -1,7 +1,7 @@
 # D9 Framework
 ![version](https://img.shields.io/badge/RimWorld-1.1-brightgreen.svg) ![modVersion](https://img.shields.io/badge/Mod%20version-1.2.0-brightgreen.svg) ![license](https://img.shields.io/badge/License-All%20rights%20reserved-blue.svg)
 
-[![steamlink](https://raster.shields.io/steam/downloads/2037445541.png?color=1b2838&colorA=1b2838&label=Workshop&logo=steam](https://steamcommunity.com/sharedfiles/filedetails/?id=2037445541)
+[![steamlink](https://raster.shields.io/steam/downloads/2037445541.png?color=1b2838&colorA=1b2838&label=Workshop&logo=steam)](https://steamcommunity.com/sharedfiles/filedetails/?id=2037445541)
 
 Framework mod combining my old Deconstruct Return Fix and Orbital Trade Hook mods, along with several utility functions. Somewhat of a work-in-progress, will have many more features in the future but playable now.
 
