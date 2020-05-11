@@ -40,11 +40,16 @@ namespace D9Framework
                 CMFHarmonyPatch.DoPatch(harmony);
                 ULog.DebugMessage("\tCarry Mass Framework enabled.", false);
             }
+            if (D9FModSettings.SuppressDebugWarnings)
+            {
+                PatchAll(harmony, typeof(SuppressDebugWarnings));
+                ULog.DebugMessage("\tSuppress Debug Warnings enabled.");
+            }
             if (D9FModSettings.PrintPatchedMethods)
             {
                 Log.Message("The following methods were successfully patched:", false);
                 foreach (MethodBase mb in harmony.GetPatchedMethods()) Log.Message("\t" + mb.DeclaringType.Name + "." + mb.Name, false);
-            }            
+            }
         }
 
         // thanks to lbmaian

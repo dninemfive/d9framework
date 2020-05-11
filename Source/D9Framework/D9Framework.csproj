@@ -36,9 +36,8 @@
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony, Version=2.0.0.8, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lib.Harmony.2.0.0.8\lib\net472\0Harmony.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="0Harmony, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lib.Harmony.2.0.1\lib\net472\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp, Version=1.0.7213.22423, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -90,6 +89,7 @@
     <Compile Include="Harmony\HarmonyLoader.cs" />
     <Compile Include="Harmony\Orbital Trade Hook\Building_OrbitalTradeBeacon.cs" />
     <Compile Include="Harmony\Orbital Trade Hook\OrbitalTradeHook.cs" />
+    <Compile Include="Harmony\SuppressDebugWarnings.cs" />
     <Compile Include="ModSettings.cs" />
     <Compile Include="PatchOperations\PatchOperationFindPackage.cs" />
     <Compile Include="PlaceWorkers\PlaceworkerUtility.cs" />
@@ -109,7 +109,7 @@
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>rem del 0Harmony.xml
+    <PostBuildEvent>del 0Harmony.xml
 del D9Framework.pdb
 copy * "C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\D9 Framework\Assemblies"</PostBuildEvent>
   </PropertyGroup>
