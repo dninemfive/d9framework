@@ -14,7 +14,7 @@ namespace D9Framework
         static HarmonyLoader()
         {
             ULog.Message("Applying Harmony patches...");
-            var harmony = new Harmony("com.dninemfive.D9Framework");
+            var harmony = D9FrameworkMod.Harmony;
             if (D9FModSettings.ApplyCompFromStuff)
             {
                 PatchAll(harmony, typeof(CompFromStuff));                
@@ -39,12 +39,7 @@ namespace D9Framework
             {
                 CMFHarmonyPatch.DoPatch(harmony);
                 ULog.DebugMessage("\tCarry Mass Framework enabled.", false);
-            }
-            if (D9FModSettings.SuppressDebugWarnings)
-            {
-                PatchAll(harmony, typeof(SuppressDebugWarnings));
-                ULog.DebugMessage("\tSuppress Debug Warnings enabled.");
-            }
+            }            
             if (D9FModSettings.PrintPatchedMethods)
             {
                 Log.Message("The following methods were successfully patched:", false);
@@ -53,7 +48,7 @@ namespace D9Framework
         }
 
         // thanks to lbmaian
-        static void PatchAll(Harmony harmony, Type parentType)
+        public static void PatchAll(Harmony harmony, Type parentType)
         {
             foreach (var type in parentType.GetNestedTypes(AccessTools.all))
             {
