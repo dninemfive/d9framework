@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Reflection;
 using UnityEngine;
 using Verse;
 using HarmonyLib;
@@ -18,9 +19,8 @@ namespace D9Framework
         public static bool ApplyForceAllowPlaceOverFix => applyFAF;
         public static bool ApplyCarryMassFramework => !DEBUG || applyCMF;
         public static bool PrintPatchedMethods => DEBUG && printPatchedMethods;
-        public static bool SuppressDebugWarnings => applySDW;
         // despite the public flag, don't reference these; they're only public for the purposes of the mod settings screen below. Reference the above variables instead.
-        public static bool applyCFS = true, applyOTH = true, applyDRF = true, applyFAF = false, applyCMF = true, applySDW = true;
+        public static bool applyCFS = true, applyOTH = true, applyDRF = true, applyFAF = false, applyCMF = true;
         public static bool printPatchedMethods = false;
 
         public override void ExposeData()
@@ -32,23 +32,14 @@ namespace D9Framework
             Scribe_Values.Look(ref applyDRF, "ApplyDeconstructReturnFix", true);
             Scribe_Values.Look(ref applyFAF, "ApplyForceAllowPlaceOverFix", false);
             Scribe_Values.Look(ref applyCMF, "ApplyCarryMassFramework", true);
-            Scribe_Values.Look(ref applySDW, "ApplySuppressDebugWarnings", true);
         }
     }
     public class D9FrameworkMod : Mod
     {
         D9FModSettings settings;
-        public static Harmony Harmony;
         public D9FrameworkMod(ModContentPack con) : base(con)
         {
             this.settings = GetSettings<D9FModSettings>();
-            // bootstrap the Suppress Debug Warnings patch so it's early enough to actually apply
-            Harmony = new Harmony("com.dninemfive.D9Framework");
-            if (D9FModSettings.SuppressDebugWarnings)
-            {
-                HarmonyLoader.PatchAll(Harmony, typeof(SuppressDebugWarnings));
-                ULog.DebugMessage("\tDebug warnings suppressed.");
-            }
         }
 
         public override void DoSettingsWindowContents(Rect inRect)
@@ -68,7 +59,6 @@ namespace D9Framework
                 listing.CheckboxLabeled("D9FSettingsApplyFAF".Translate(), ref D9FModSettings.applyFAF, "D9FSettingsApplyFAFTooltip".Translate());
                 listing.CheckboxLabeled("D9FSettingsApplyCMF".Translate(), ref D9FModSettings.applyCMF, "D9FSettingsApplyCMFTooltip".Translate());                
             }
-            listing.CheckboxLabeled("D9FSettingsApplySDW".Translate(), ref D9FModSettings.applySDW, "D9FSettingsApplySDWTooltip".Translate());
             listing.End();
             base.DoSettingsWindowContents(inRect);
         }

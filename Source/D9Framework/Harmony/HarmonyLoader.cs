@@ -14,7 +14,7 @@ namespace D9Framework
         static HarmonyLoader()
         {
             ULog.Message("Applying Harmony patches...");
-            var harmony = D9FrameworkMod.Harmony;
+            var harmony = new Harmony("com.dninemfive.D9Framework");
             if (D9FModSettings.ApplyCompFromStuff)
             {
                 PatchAll(harmony, typeof(CompFromStuff));                
@@ -46,7 +46,6 @@ namespace D9Framework
                 foreach (MethodBase mb in harmony.GetPatchedMethods()) Log.Message("\t" + mb.DeclaringType.Name + "." + mb.Name, false);
             }
         }
-
         // thanks to lbmaian
         public static void PatchAll(Harmony harmony, Type parentType)
         {
