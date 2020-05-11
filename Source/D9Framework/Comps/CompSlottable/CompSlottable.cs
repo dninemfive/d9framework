@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 using Verse;
+using RimWorld; 
 
 namespace D9Framework
 {
@@ -30,12 +32,50 @@ namespace D9Framework
             public CompSlottable parent;
             public ThingFilter thingFilter;
             public bool Empty => HeldThing == null;
+            public Command_Action gizmo = null;
+
+            public Command_Action GetOrMakeGizmo
+            {
+                get
+                {
+                    if (gizmo != null) return gizmo;
+                    gizmo = new Command_Action
+                    {
+                        defaultLabel = Empty ? "D9FEmptySlot".Translate() : (TaggedString)HeldThing.Label,
+                        defaultDesc = Empty ? "D9FEmptySlotDesc".Translate() : "D9FFilledSlotDesc".Translate(HeldThing.Label, thingFilter.Summary),
+                        activateSound = SoundDef.Named("Click"),
+                        icon = Empty ? ContentFinder<Texture2D>.Get("UI/Commands/LaunchReport", true) : ContentFinder<Texture2D>.Get(HeldThing.def.graphicData.texPath),
+                        action = () =>
+                        {
+                            // create ThingFilter window
+                        },
+                    };
+                    return gizmo;
+                }
+            }
 
             public bool CanSlot(Thing thing)
             {
                 return Empty && parent.Props.fixedThingFilter.Allows(thing) && thingFilter.Allows(thing);
             }
-
+            public bool TrySlotThing(Thing thing)
+            {
+                if (!CanSlot(thing)) return false;
+                // add thing to holder
+                // mark gizmo to be remade
+                gizmo = null;
+                return true;
+            }
+            public bool TryEmpty()
+            {
+                if (Empty) return false;
+                // remove thing from holder
+                // mark gizmo to be remade
+                gizmo = null;
+                return true;
+            }
+            // Similarly, when clicking "save" on the ThingFilter popup, set gizmo to null
+            #region IThingHolder stuff
             public IThingHolder ParentHolder
             {
                 get
@@ -51,6 +91,7 @@ namespace D9Framework
             {
                 ThingOwnerUtility.AppendThingHoldersFromThings(outChildren, GetDirectlyHeldThings());
             }
+            #endregion IThingHolder stuff
         }
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
@@ -67,12 +108,23 @@ namespace D9Framework
             return false;
         }
 
-        
+        #region IThingHolder stuff
+        public ThingOwner<Thing> GetDirectlyHeldThings()
+        {
+            // if I get NREs I fokkin swear
+            return null;
+        }
+        public void GetChildHolders(List<IThingHolder> outChildren)
+        {
+            foreach (Slot s in slots) outChildren.Add(s);
+        }
+        #endregion IThingHolder stuff
     }
     class CompProperties_Slottable : CompProperties
     {
 #pragma warning disable CS0649
-        public ThingFilter fixedThingFilter;
+        public ThingFilter fixedThingFilter,    // Fixed filter, anything not on this one can never be selected
+                           defaultThingFilter;  // Initial filter settings
         public int slots = 1;
 #pragma warning restore CS0649
 
