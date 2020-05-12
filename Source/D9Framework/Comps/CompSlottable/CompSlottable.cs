@@ -20,7 +20,7 @@ namespace D9Framework
         {
             get
             {
-                foreach (Slot s in slots) if (s.Empty) return false;
+                foreach (Slot s in slots) if (!s.Full) return false;
                 return true;
             }
         }
@@ -31,20 +31,32 @@ namespace D9Framework
             public Thing HeldThing => contents.NullOrEmpty() ? contents[0] : null;
             public CompSlottable parent;
             public ThingFilter thingFilter;
+            public bool Full => !Empty && HeldThing.stackCount >= MaxStackCount;
             public bool Empty => HeldThing == null;
-            public Command_Action gizmo = null;
+            public int MaxStackCount => parent?.Props?.stackCountPerSlot ?? 0;
+            private Command_Action gizmo = null;
 
-            public Command_Action GetOrMakeGizmo
+            public Slot(CompSlottable p, ThingFilter dtf = null)
+            {
+                if (p == null) ULog.Error("Slot constructed with null parent!");
+                parent = p;
+                thingFilter = dtf;
+                contents = new ThingOwner<Thing>(this, true);
+            }
+
+            public Command_Action Gizmo
             {
                 get
                 {
                     if (gizmo != null) return gizmo;
                     gizmo = new Command_Action
                     {
-                        defaultLabel = Empty ? "D9FEmptySlot".Translate() : (TaggedString)HeldThing.Label,
-                        defaultDesc = Empty ? "D9FEmptySlotDesc".Translate() : "D9FFilledSlotDesc".Translate(HeldThing.Label, thingFilter.Summary),
+                        defaultLabel = Empty ? "D9FEmptySlot".Translate() : (TaggedString)HeldThing.Label, // TODO: partially filled summary?
+                        defaultDesc = Empty ? "D9FEmptySlotDesc".Translate() : 
+                                              Full ? "D9FFilledSlotDesc".Translate(HeldThing.Label, thingFilter.Summary) : 
+                                                     "D9FPartiallyFilledSlotDesc".Translate(HeldThing.Label, thingFilter.Summary, HeldThing.stackCount),
                         activateSound = SoundDef.Named("Click"),
-                        icon = Empty ? ContentFinder<Texture2D>.Get("UI/Commands/LaunchReport", true) : ContentFinder<Texture2D>.Get(HeldThing.def.graphicData.texPath),
+                        icon = Empty ? ContentFinder<Texture2D>.Get("UI/Commands/LaunchReport", true) : ContentFinder<Texture2D>.Get(HeldThing.def.graphicData.texPath), // TODO: custom texture for empty gizmo
                         action = () =>
                         {
                             // create ThingFilter window
@@ -56,7 +68,7 @@ namespace D9Framework
 
             public bool CanSlot(Thing thing)
             {
-                return Empty && parent.Props.fixedThingFilter.Allows(thing) && thingFilter.Allows(thing);
+                return !Full && parent.Props.fixedThingFilter.Allows(thing) && thingFilter.Allows(thing) && HeldThing.stackCount + thing.stackCount <= MaxStackCount;
             }
             public bool TrySlotThing(Thing thing)
             {
@@ -94,11 +106,21 @@ namespace D9Framework
             #endregion IThingHolder stuff
         }
 
+        public override void PostSpawnSetup(bool respawningAfterLoad)
+        {
+            base.PostSpawnSetup(respawningAfterLoad);
+            if (!respawningAfterLoad)
+            {
+                slots = new List<Slot>();
+                for (int i = 0; i < Props.slots; i++) slots.Add(new Slot(this, Props.defaultThingFilter));
+            }
+        }
+
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
             foreach(Slot s in slots)
             {
-                
+                yield return s.Gizmo;
             }
         }
 
@@ -109,10 +131,9 @@ namespace D9Framework
         }
 
         #region IThingHolder stuff
-        public ThingOwner<Thing> GetDirectlyHeldThings()
+        public ThingOwner GetDirectlyHeldThings()
         {
-            // if I get NREs I fokkin swear
-            return null;
+            return new ThingOwner<Thing>(this);
         }
         public void GetChildHolders(List<IThingHolder> outChildren)
         {
@@ -125,7 +146,8 @@ namespace D9Framework
 #pragma warning disable CS0649
         public ThingFilter fixedThingFilter,    // Fixed filter, anything not on this one can never be selected
                            defaultThingFilter;  // Initial filter settings
-        public int slots = 1;
+        public int slots = 1,
+                   stackCountPerSlot = 1;
 #pragma warning restore CS0649
 
         public CompProperties_Slottable()
