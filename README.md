@@ -15,6 +15,8 @@ This mod is like JecsTools or HugsLib - set this mod as a dependency for your ow
 I'd love to see anything you make with this! Feel free to message me on Steam or Discord to show off.
 
 ## Credits
+ElminsterAU: Carry Mass Framework implementation and pull request.
+
 cuproPanda: Original code for most of the PlaceWorkers, from AJO.
 
 lbmaian: more elegant solution for the Orbital Trade Hook

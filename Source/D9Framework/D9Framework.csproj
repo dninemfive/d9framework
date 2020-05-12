@@ -74,6 +74,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Comps\CompSlottable\CompSlottable.cs" />
     <Compile Include="Harmony\CarryMassFramework\CMFHarmonyPatch.cs" />
     <Compile Include="Harmony\CarryMassFramework\CMFStatDefOf.cs" />
     <Compile Include="Harmony\CarryMassFramework\DerivedStatDef.cs" />
