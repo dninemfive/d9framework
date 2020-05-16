@@ -30,21 +30,24 @@ namespace D9Framework
             ThingOwner<Thing> contents;
             public Thing HeldThing => contents.NullOrEmpty() ? contents[0] : null;
             public CompSlottable parent;
-            public ThingFilter thingFilter;
+            public ThingFilter fixedThingFilter, thingFilter;
             public bool Full => !Empty && HeldThing.stackCount >= MaxStackCount;
             public bool Empty => HeldThing == null;
-            public int MaxStackCount => parent?.Props?.stackCountPerSlot ?? 0;
+            public bool PartiallyFull => !Empty && !Full;
+            public int MaxStackCount;
             private Command_Action gizmo = null;
 
-            public Slot(CompSlottable p, ThingFilter dtf = null)
+            public Slot(CompSlottable p, int stackCount, ThingFilter fixedFilter = null, ThingFilter defaultFilter = null)
             {
                 if (p == null) ULog.Error("Slot constructed with null parent!");
                 parent = p;
-                thingFilter = dtf;
+                MaxStackCount = stackCount;
+                fixedThingFilter = fixedFilter;
+                thingFilter = defaultFilter;
                 contents = new ThingOwner<Thing>(this, true);
             }
 
-            public Command_Action Gizmo
+            public Gizmo Gizmo
             {
                 get
                 {
@@ -59,7 +62,7 @@ namespace D9Framework
                         icon = Empty ? ContentFinder<Texture2D>.Get("UI/Commands/LaunchReport", true) : ContentFinder<Texture2D>.Get(HeldThing.def.graphicData.texPath), // TODO: custom texture for empty gizmo
                         action = () =>
                         {
-                            // create ThingFilter window
+                            // open tab for this slot
                         },
                     };
                     return gizmo;
@@ -68,7 +71,7 @@ namespace D9Framework
 
             public bool CanSlot(Thing thing)
             {
-                return !Full && parent.Props.fixedThingFilter.Allows(thing) && thingFilter.Allows(thing) && HeldThing.stackCount + thing.stackCount <= MaxStackCount;
+                return !Full && fixedThingFilter.Allows(thing) && thingFilter.Allows(thing) && HeldThing.stackCount + thing.stackCount <= MaxStackCount;
             }
             public bool TrySlotThing(Thing thing)
             {
@@ -112,7 +115,13 @@ namespace D9Framework
             if (!respawningAfterLoad)
             {
                 slots = new List<Slot>();
-                for (int i = 0; i < Props.slots; i++) slots.Add(new Slot(this, Props.defaultThingFilter));
+                foreach (CompProperties_Slottable.SlotSettings s in Props.slots)
+                {
+                    int stack = s.stackCount ?? Props.slotDefaults.stackCount ?? 1;
+                    ThingFilter fixedTf = s.fixedThingFilter ?? Props.slotDefaults.fixedThingFilter;
+                    ThingFilter defaultTf = s.defaultThingFilter ?? Props.slotDefaults.defaultThingFilter;                    
+                    slots.Add(new Slot(this, stack, fixedTf, defaultTf));
+                }
             }
         }
 
@@ -144,15 +153,32 @@ namespace D9Framework
     class CompProperties_Slottable : CompProperties
     {
 #pragma warning disable CS0649
-        public ThingFilter fixedThingFilter,    // Fixed filter, anything not on this one can never be selected
-                           defaultThingFilter;  // Initial filter settings
-        public int slots = 1,
-                   stackCountPerSlot = 1;
+        public SlotSettings slotDefaults;
+        public List<SlotSettings> slots;
+        public class SlotSettings
+        {
+            public ThingFilter fixedThingFilter,    // Fixed filter, anything not on this one can never be selected
+                           defaultThingFilter;      // Initial filter settings
+            public int? stackCount;                 // nullable so default has chance of being applied
+        }
+        public bool showFilledBar = false;          // fuel-like percentage filled bar
 #pragma warning restore CS0649
 
         public CompProperties_Slottable()
         {
             base.compClass = typeof(CompSlottable);
+        }
+
+        public override IEnumerable<string> ConfigErrors(ThingDef parentDef)
+        {
+            foreach (String s in base.ConfigErrors(parentDef)) yield return s;
+            if(!slotDefaults.stackCount.HasValue)
+            {
+                foreach (SlotSettings s in slots) if (!slotDefaults.stackCount.HasValue) {
+                        yield return "D9F_CompSlottable_NullStackCount".Translate(parentDef.defName);
+                        break; // only print once per def
+                             }
+            }
         }
     }
 }
