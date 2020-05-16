@@ -13,6 +13,20 @@ namespace D9Framework
     /// Adds slots which can accept items. Slots have filters (a standard ThingFilter for now) and are either loaded automatically by pawns using a WorkGiver or a pawn can be ordered to 
     /// load them with a FloatMenu.
     /// </summary>
+    /*
+     * Remaining todo:
+     *      - Write the ITab. Should have subtabs either to the left of or on top of filters, and make use of IStoreSettingsParent if possible.
+     *      - Make the gizmos open the appropriate ITab.
+     *      - Allow the each slot to be forbidden, with the appropriate overlay if the whole comp is forbidden.
+     *      - Add a boolean setting to have an overlay when the slot is empty, if desired.
+     *      - Allow functionality without the ITab, including emptying all slots or each slot individually.
+     *      - Write the WorkGiver.
+     *      - Possibly a validator for pawns being able to slot things in? Might be best as an extension.
+     *      - Clean up and document code better.
+     *      - Handle priority for loading slots?
+     *          - FloatMenu to load/unload (specific?) slots
+     *          - Comp for things which can be slotted in, just to provide a FloatMenu in the other direction?
+     */
     class CompSlottable : ThingComp, IThingHolder
     {
         public CompProperties_Slottable Props => (CompProperties_Slottable)base.props;
@@ -35,9 +49,10 @@ namespace D9Framework
             public bool Empty => HeldThing == null;
             public bool PartiallyFull => !Empty && !Full;
             public int MaxStackCount;
+            public string label;
             private Command_Action gizmo = null;
 
-            public Slot(CompSlottable p, int stackCount, ThingFilter fixedFilter = null, ThingFilter defaultFilter = null)
+            public Slot(CompSlottable p, int stackCount, string label, ThingFilter fixedFilter = null, ThingFilter defaultFilter = null)
             {
                 if (p == null) ULog.Error("Slot constructed with null parent!");
                 parent = p;
@@ -118,9 +133,10 @@ namespace D9Framework
                 foreach (CompProperties_Slottable.SlotSettings s in Props.slots)
                 {
                     int stack = s.stackCount ?? Props.slotDefaults.stackCount ?? 1;
+                    string label = s.label ?? Props.slotDefaults.label ?? "D9F_CompSlottable_Label".Translate(slots.Count + 1); // default: "Slot {index}"
                     ThingFilter fixedTf = s.fixedThingFilter ?? Props.slotDefaults.fixedThingFilter;
                     ThingFilter defaultTf = s.defaultThingFilter ?? Props.slotDefaults.defaultThingFilter;                    
-                    slots.Add(new Slot(this, stack, fixedTf, defaultTf));
+                    slots.Add(new Slot(this, stack, label, fixedTf, defaultTf));
                 }
             }
         }
@@ -159,7 +175,8 @@ namespace D9Framework
         {
             public ThingFilter fixedThingFilter,    // Fixed filter, anything not on this one can never be selected
                            defaultThingFilter;      // Initial filter settings
-            public int? stackCount;                 // nullable so default has chance of being applied
+            public int? stackCount = null;                 // nullable so default has chance of being applied
+            public string label = null;
         }
         public bool showFilledBar = false;          // fuel-like percentage filled bar
 #pragma warning restore CS0649
@@ -174,10 +191,19 @@ namespace D9Framework
             foreach (String s in base.ConfigErrors(parentDef)) yield return s;
             if(!slotDefaults.stackCount.HasValue)
             {
-                foreach (SlotSettings s in slots) if (!slotDefaults.stackCount.HasValue) {
-                        yield return "D9F_CompSlottable_NullStackCount".Translate(parentDef.defName);
+                foreach (SlotSettings s in slots) if (!slotDefaults.stackCount.HasValue)
+                    {
+                        yield return "Stack count for at least one slot is null and the default stack count is null.";
                         break; // only print once per def
-                             }
+                    }
+            }
+            if(Prefs.DevMode && !parentDef.inspectorTabs.Where(x => x == typeof(ITab_CompSlottable)).Any() && slotDefaults.defaultThingFilter != null)
+            {
+                foreach (SlotSettings s in slots) if (s.defaultThingFilter != null)
+                    {
+                        Log.Warning("Potential config error in " + parentDef.defName + ": has default thingFilters but no ITab_CompSlottable. Players will not be able to change filter settings!");
+                        break;
+                    }
             }
         }
     }
