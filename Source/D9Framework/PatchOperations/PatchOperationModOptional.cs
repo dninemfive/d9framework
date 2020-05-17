@@ -24,18 +24,24 @@ namespace D9Framework
      */
     class PatchOperationModOptional : PatchOperation
     {
-        string optionsClassName;
+        string modClassName;
         List<string> optionNames;
         PatchOperation match, nomatch;
 
         protected override bool ApplyWorker(XmlDocument xml)
         {
             // TODO: handle non-static settings types
-            Type type = AccessTools.TypeByName(optionsClassName);
+            Mod targetMod = null;
+            foreach (Mod m in LoadedModManager.ModHandles) if (nameof(m) == modClassName)
+                {
+                    targetMod = m;
+                    break;
+                }
+            if (targetMod == null) return false;
             bool found = false;
             foreach (string name in optionNames)
             {
-                if (SettingExistsAndIsEnabled(type, name))
+                if (SettingExistsAndIsEnabled(targetMod, name))
                 {
                     found = true;
                     break;
@@ -52,15 +58,20 @@ namespace D9Framework
             return true;
         }
 
-        private bool SettingExistsAndIsEnabled(Type type, string name)
+        private bool SettingExistsAndIsEnabled(Mod mod, string name)
         {
-            FieldInfo field = AccessTools.Field(type, name);
+            Type modType = mod.GetType();
+            // case 1: field
+            FieldInfo settingsField = AccessTools.Field(modType, "modSettings");
+            var settings = settingsField.GetValue(mod);
+            Type settingsType = settings.GetType();
+            FieldInfo field = AccessTools.Field(settingsType, name);
             if (field != null)
             {
-                if (!(field.FieldType == typeof(bool))) return false;
-                return false;
+                bool? result = field.GetValue(settings) as bool?;
+                if (result.HasValue) return result.Value;
             }
-            // get getter
+            // case 2: getter
             return true;
         }
     }
