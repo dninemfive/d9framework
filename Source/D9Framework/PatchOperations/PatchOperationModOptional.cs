@@ -13,6 +13,15 @@ namespace D9Framework
     /// <summary>
     /// Applies a patch if any specified boolean fields in a particular specified type are true.
     /// </summary>
+    /*
+     * TODO:
+     *      Checks for the four cases:
+     *      1. static class, field
+     *      2. static class, property (-> getter)
+     *      3. non-static class, field
+     *      4. non-static class, property
+     *      (actually, might have to handle static/non-static fields but I don't think so)
+     */
     class PatchOperationModOptional : PatchOperation
     {
         string optionsClassName;
@@ -26,7 +35,7 @@ namespace D9Framework
             bool found = false;
             foreach (string name in optionNames)
             {
-                if (SettingIsEnabled(type, name))
+                if (SettingExistsAndIsEnabled(type, name))
                 {
                     found = true;
                     break;
@@ -43,7 +52,7 @@ namespace D9Framework
             return true;
         }
 
-        private bool SettingIsEnabled(Type type, string name)
+        private bool SettingExistsAndIsEnabled(Type type, string name)
         {
             FieldInfo field = AccessTools.Field(type, name);
             if (field != null)

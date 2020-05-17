@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Comps\CompSlottable\CompSlottable.cs" />
+    <Compile Include="Comps\CompSlottable\ITab_CompSlottable.cs" />
     <Compile Include="Harmony\CarryMassFramework\CMFHarmonyPatch.cs" />
     <Compile Include="Harmony\CarryMassFramework\CMFStatDefOf.cs" />
     <Compile Include="Harmony\CarryMassFramework\DerivedStatDef.cs" />
@@ -92,7 +93,9 @@
     <Compile Include="Harmony\Orbital Trade Hook\OrbitalTradeHook.cs" />
     <Compile Include="Harmony\SuppressDebugWarnings.cs" />
     <Compile Include="ModSettings.cs" />
+    <Compile Include="PatchOperations\PatchOperationAddSafe.cs" />
     <Compile Include="PatchOperations\PatchOperationFindPackage.cs" />
+    <Compile Include="PatchOperations\PatchOperationModOptional.cs" />
     <Compile Include="PlaceWorkers\PlaceworkerUtility.cs" />
     <Compile Include="PlaceWorkers\PlaceWorker_AgainstWall.cs" />
     <Compile Include="PlaceWorkers\PlaceWorker_Roofed.cs" />
