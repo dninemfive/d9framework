@@ -33,9 +33,13 @@ namespace D9Framework
                 }
             }
             if (found)
+            {
                 if (match != null) return match.Apply(xml);
+            }
             else
+            {
                 if (nomatch != null) return nomatch.Apply(xml);
+            }
             return true;
         }
 
