@@ -15,22 +15,17 @@ namespace D9Framework
     /// </summary>
     /*
      * TODO:
-     *      Checks for the four cases:
-     *      1. static class, field
-     *      2. static class, property (-> getter)
-     *      3. non-static class, field
-     *      4. non-static class, property
-     *      (actually, might have to handle static/non-static fields but I don't think so)
+     *      Make optionNames into pairs of names and values, compare
      */
     class PatchOperationModOptional : PatchOperation
     {
         string modClassName;
         List<string> optionNames;
         PatchOperation match, nomatch;
+        private const string SettingsFieldName = "modSettings";
 
         protected override bool ApplyWorker(XmlDocument xml)
         {
-            // TODO: handle non-static settings types
             Mod targetMod = null;
             foreach (Mod m in LoadedModManager.ModHandles) if (nameof(m) == modClassName)
                 {
@@ -38,10 +33,13 @@ namespace D9Framework
                     break;
                 }
             if (targetMod == null) return false;
+            // cache settings stuff
+            var settings = AccessTools.Field(targetMod.GetType(), SettingsFieldName).GetValue(targetMod);
+            Type settingsType = settings.GetType();
             bool found = false;
             foreach (string name in optionNames)
             {
-                if (SettingExistsAndIsEnabled(targetMod, name))
+                if (SettingExistsAndIsEnabled(settings, settingsType, name))
                 {
                     found = true;
                     break;
@@ -58,21 +56,17 @@ namespace D9Framework
             return true;
         }
 
-        private bool SettingExistsAndIsEnabled(Mod mod, string name)
-        {
-            Type modType = mod.GetType();
-            // case 1: field
-            FieldInfo settingsField = AccessTools.Field(modType, "modSettings");
-            var settings = settingsField.GetValue(mod);
-            Type settingsType = settings.GetType();
+        private bool SettingExistsAndIsEnabled(object settings, Type settingsType, string name)
+        {            
+            // case 1: field            
             FieldInfo field = AccessTools.Field(settingsType, name);
-            if (field != null)
-            {
-                bool? result = field.GetValue(settings) as bool?;
-                if (result.HasValue) return result.Value;
-            }
+            bool? result = field?.GetValue(settings) as bool?;
+            if (result.HasValue) return result.Value;
             // case 2: getter
-            return true;
+            MethodInfo getter = AccessTools.PropertyGetter(settingsType, name);
+            result = getter.Invoke(settingsType, null) as bool?;
+            if (result.HasValue) return result.Value;
+            return false;
         }
     }
 }
