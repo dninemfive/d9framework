@@ -48,20 +48,24 @@ namespace D9Framework
                 // check for identical node
                 if (XmlNodesEqual(targetChild, parent))
                 {
+                    if (identicalNodeExists) Log.Warning("Multiple matching nodes in " + target);
                     identicalNodeExists = true;
                     // append children to existing node
+                    foreach(XmlNode child in parent.ChildNodes) AppendOrPrependNode(targetChild, child, parentOrder);
                 }        
             }
             if (!identicalNodeExists)
             {
-                // create node
-                // append children to parent
-                foreach (XmlNode child in parent.ChildNodes) AppendOrPrependNode(target, child, childOrder);
+                AppendOrPrependNode(target, parent, parentOrder);
             }
         }
 
         private static bool XmlNodesEqual(XmlNode a, XmlNode b)
         {
+            if (a.Name != b.Name) return false;
+            if (a.Attributes != b.Attributes) return false;
+            Type aType = a.GetType(), bType = b.GetType();
+            if (!aType.IsAssignableFrom(bType) && !bType.IsAssignableFrom(aType)) return false;
             return true;
         }
 
