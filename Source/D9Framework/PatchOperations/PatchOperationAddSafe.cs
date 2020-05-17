@@ -12,23 +12,21 @@ namespace D9Framework
     /// <summary>
     /// Works exactly like PatchOperationAdd, except that if the parent node doesn't exist this operation creates it.
     /// </summary>
-    class PatchOperationAddSafe : PatchOperationPathed
+    class PatchOperationAddSafe : PatchOperationAdd
     {
         private enum Order { Append, Prepend }
         private XmlContainer value;
-        private Order order = Order.Append;
+        private Order parentOrder = Order.Append, childOrder = Order.Append;
 
         protected override bool ApplyWorker(XmlDocument xml)
         {
-            string parentPath = GetParentPath(xpath);
-
-        }
-
-        private string GetParentPath(string xp)
-        {
-            if (xp.Length < 3) return xp;
-            if (xp.Substring(xp.Length - 3) == "/..") return GetParentPath(xp.Substring(0, xp.Length - 3));
-            return xp;
+            // select nodes with xpath
+            // for each parent:
+            //      if identical node exists,
+            //          append children to node
+            //      else,
+            //          create parent
+            //          append children to node
         }
     }
 }
