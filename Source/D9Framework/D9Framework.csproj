@@ -87,7 +87,6 @@
     <Compile Include="Harmony\CompFromStuff\CompsToAddWhenStuff.cs" />
     <Compile Include="Harmony\DeconstructReturnFix.cs" />
     <Compile Include="Harmony\CompFromStuff\CompFromStuff.cs" />
-    <Compile Include="Harmony\ForceAllowPlaceOverFix.cs" />
     <Compile Include="Harmony\HarmonyLoader.cs" />
     <Compile Include="Harmony\Orbital Trade Hook\Building_OrbitalTradeBeacon.cs" />
     <Compile Include="Harmony\Orbital Trade Hook\OrbitalTradeHook.cs" />

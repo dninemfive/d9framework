@@ -30,11 +30,6 @@ namespace D9Framework
                 PatchAll(harmony, typeof(OrbitalTradeHook));
                 ULog.DebugMessage("\tOrbital Trade Hook enabled.", false);
             }
-            if (D9FModSettings.ApplyForceAllowPlaceOverFix)
-            {
-                PatchAll(harmony, typeof(ForceAllowPlaceOverFix));
-                ULog.DebugMessage("\tForce Allow Place Over Fix enabled.", false);
-            }
             if (D9FModSettings.ApplyCarryMassFramework)
             {
                 CMFHarmonyPatch.DoPatch(harmony);
