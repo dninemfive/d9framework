@@ -15,8 +15,6 @@
 	<D9FSettingsApplyOTHTooltip>Whether to apply the Orbital Trade Hook patch, which allows modders to create custom trade beacons.</D9FSettingsApplyOTHTooltip>
 	<D9FSettingsApplyDRF>Apply Deconstruct Return Fix patch</D9FSettingsApplyDRF>
 	<D9FSettingsApplyDRFTooltip>Whether to apply the Deconstruct Return Fix patch, which fixes a vanilla bug which prevents buildings from returning all their items when deconstructed.</D9FSettingsApplyDRFTooltip>
-	<D9FSettingsApplyFAF>Apply Force Allow Place Over Fix patch</D9FSettingsApplyFAF>
-	<D9FSettingsApplyFAFTooltip>Whether to apply the Force Allow Place Over Fix patch, which is meant to fix an obscure vanilla bug. Disabled by default for now.</D9FSettingsApplyFAFTooltip>
 	<D9FSettingsApplyCMF>Apply Carry Mass Framework patches</D9FSettingsApplyCMF>
 	<D9FSettingsApplyCMFTooltip>Whether to apply the patches for the Carry Mass Framework, which allows mod authors to modify the way carry mass works in game.</D9FSettingsApplyCMFTooltip>
 	<!-- AJO PlaceWorkers -->
