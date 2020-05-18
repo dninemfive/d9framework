@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,10 +13,11 @@ namespace D9Framework
     /// <summary>
     /// Applies a patch if any specified boolean fields in a particular specified type are true.
     /// </summary>
-    /*
+     *
      * TODO:
-     *      Make optionNames into pairs of names and values, compare
-     */
+     *      1. Make user specify the mod settings type in addition to the class name, or if not specified append "Settings" to modClassName
+     *      Optional: Make optionNames into pairs of names and values, compare
+     *
     class PatchOperationModOptional : PatchOperation
     {
 #pragma warning disable CS0649
@@ -71,4 +72,4 @@ namespace D9Framework
             return false;
         }
     }
-}
+}*/

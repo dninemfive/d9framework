@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +12,7 @@ namespace D9Framework
     /// <summary>
     /// Works exactly like PatchOperationAdd, except that if the parent node doesn't exist this operation creates it.
     /// </summary>
+    // TODO: fix
     class PatchOperationAddSafe : PatchOperationPathed
     {
 #pragma warning disable CS0649
@@ -86,4 +87,4 @@ namespace D9Framework
             }
         }
     }
-}
+}*/
