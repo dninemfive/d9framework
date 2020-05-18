@@ -14,9 +14,11 @@ namespace D9Framework
     /// </summary>
     class PatchOperationAddSafe : PatchOperationPathed
     {
+#pragma warning disable CS0649
         private enum Order { Append, Prepend }
         private XmlContainer value;
         private Order parentOrder = Order.Append, childOrder = Order.Append;
+#pragma warning restore CS0649
 
         protected override bool ApplyWorker(XmlDocument xml)
         {
@@ -51,7 +53,7 @@ namespace D9Framework
                     if (identicalNodeExists) Log.Warning("Multiple matching nodes in " + target);
                     identicalNodeExists = true;
                     // append children to existing node
-                    foreach(XmlNode child in parent.ChildNodes) AppendOrPrependNode(targetChild, child, parentOrder);
+                    foreach(XmlNode child in parent.ChildNodes) AppendOrPrependNode(targetChild, child, childOrder);
                 }        
             }
             if (!identicalNodeExists)

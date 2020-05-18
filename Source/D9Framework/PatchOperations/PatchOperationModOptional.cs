@@ -19,10 +19,12 @@ namespace D9Framework
      */
     class PatchOperationModOptional : PatchOperation
     {
+#pragma warning disable CS0649
         string modClassName;
         List<string> optionNames;
         PatchOperation match, nomatch;
         private const string SettingsFieldName = "modSettings";
+#pragma warning restore CS0649
 
         protected override bool ApplyWorker(XmlDocument xml)
         {

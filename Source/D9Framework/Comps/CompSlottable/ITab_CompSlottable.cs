@@ -8,7 +8,7 @@ using RimWorld;
 
 namespace D9Framework
 {
-    class ITab_CompSlottable : ITab
+    class ITab_CompSlottable
     {
     }
 }

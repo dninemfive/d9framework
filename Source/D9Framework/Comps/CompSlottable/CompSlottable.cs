@@ -52,11 +52,12 @@ namespace D9Framework
             public string label;
             private Command_Action gizmo = null;
 
-            public Slot(CompSlottable p, int stackCount, string label, ThingFilter fixedFilter = null, ThingFilter defaultFilter = null)
+            public Slot(CompSlottable p, int stackCount, string l, ThingFilter fixedFilter = null, ThingFilter defaultFilter = null)
             {
                 if (p == null) ULog.Error("Slot constructed with null parent!");
                 parent = p;
                 MaxStackCount = stackCount;
+                label = l;
                 fixedThingFilter = fixedFilter;
                 thingFilter = defaultFilter;
                 contents = new ThingOwner<Thing>(this, true);
