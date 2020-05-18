@@ -43,6 +43,7 @@
     <minifiedThingInherits>true</minifiedThingInherits>
     <displayPriorityInCategory>1499</displayPriorityInCategory>
     <showOnUnhaulables>false</showOnUnhaulables>
+	<showIfUndefined>false</showIfUndefined>
 
     <!--
       Removed to keep behaviour identical to vanilla.
