@@ -23,6 +23,10 @@ lbmaian: more elegant solution for the Orbital Trade Hook
 
 Smash Phil, erdelf, Drowsy Corgi: general transpiler and other coding help
 
+Jamaican Castle: reflection and caching help
+
+Madara Uchiha: code review
+
 everyone else on the Rimworld Discord/#mod-development
 
 leafzxg: Translations for Chinese (Simplified and Traditional), from AJO
