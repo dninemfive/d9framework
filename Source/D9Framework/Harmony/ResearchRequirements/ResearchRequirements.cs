@@ -30,6 +30,7 @@ namespace D9Framework
         public ResearchProjectDef parent;
         public int boostAmount = 0;
         public Type reqClass;
+        public LetterProps letter;        
     }
     public abstract class ResearchReq
     {

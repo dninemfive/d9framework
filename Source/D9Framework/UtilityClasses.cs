@@ -12,6 +12,11 @@ namespace D9Framework
         public static void AddProgress(this ResearchProjectDef proj, int amount)
         {
             // implementation TBD
-        }
+        }        
+    }
+    public class LetterProps
+    {
+        string labelKey, descriptionKey;
+        LetterDef def = null;
     }
 }
