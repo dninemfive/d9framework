@@ -30,6 +30,7 @@ namespace D9Framework
     class CompSlottable : ThingComp, IThingHolder
     {
         public CompProperties_Slottable Props => (CompProperties_Slottable)base.props;
+        public bool ShowPrioritySetting => Props.showPrioritySetting;
         public bool Full
         {
             get
@@ -38,8 +39,8 @@ namespace D9Framework
                 return true;
             }
         }
-        List<Slot> slots;
-        public class Slot : IThingHolder
+        public List<Slot> Slots;
+        public class Slot : IThingHolder, IStoreSettingsParent
         {
             ThingOwner<Thing> contents;
             public Thing HeldThing => contents.NullOrEmpty() ? contents[0] : null;
@@ -180,6 +181,7 @@ namespace D9Framework
             public string label = null;
         }
         public bool showFilledBar = false;          // fuel-like percentage filled bar
+        public bool showPrioritySetting = false;
 #pragma warning restore CS0649
 
         public CompProperties_Slottable()
