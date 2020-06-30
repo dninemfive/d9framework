@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -43,4 +43,4 @@ namespace D9Framework
             if(props.boostAmount > 0) props.parent.AddProgress(props.boostAmount);
         }
     }
-}
+}*/
