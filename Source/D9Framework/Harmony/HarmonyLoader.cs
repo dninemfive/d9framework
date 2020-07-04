@@ -34,7 +34,12 @@ namespace D9Framework
             {
                 CMFHarmonyPatch.DoPatch(harmony);
                 ULog.DebugMessage("\tCarry Mass Framework enabled.", false);
-            }            
+            }
+            if (D9FModSettings.ApplyNegativeFertilityPatch)
+            {
+                PatchAll(harmony, typeof(NegativeFertilityPatch));
+                ULog.DebugMessage("\tNegative Fertility Patch enabled.", false);
+            }
             if (D9FModSettings.PrintPatchedMethods)
             {
                 Log.Message("The following methods were successfully patched:", false);

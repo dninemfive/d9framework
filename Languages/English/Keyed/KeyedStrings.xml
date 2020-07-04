@@ -17,6 +17,8 @@
 	<D9FSettingsApplyDRFTooltip>Whether to apply the Deconstruct Return Fix patch, which fixes a vanilla bug which prevents buildings from returning all their items when deconstructed.</D9FSettingsApplyDRFTooltip>
 	<D9FSettingsApplyCMF>Apply Carry Mass Framework patches</D9FSettingsApplyCMF>
 	<D9FSettingsApplyCMFTooltip>Whether to apply the patches for the Carry Mass Framework, which allows mod authors to modify the way carry mass works in game.</D9FSettingsApplyCMFTooltip>
+	<D9FSettingsApplyNFP>Apply Negative Fertility Patch</D9FSettingsApplyNFP>
+	<D9FSettingsApplyNFPTooltip>Whether to apply the Negative Fertility Patch, which allows specific plants to grow faster in less fertile soil.</D9FSettingsApplyNFPTooltip>
 	<!-- AJO PlaceWorkers -->
 	<D9F_Roofed_NeedsRoof>{0} needs to be placed under a roof</D9F_Roofed_NeedsRoof>
 	<D9F_Chandelier_TooTall>{0} is too tall to place a {1} here</D9F_Chandelier_TooTall>
