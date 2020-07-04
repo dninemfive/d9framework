@@ -13,21 +13,29 @@ namespace D9Framework
     [StaticConstructorOnStartup]
     static class NegativeFertilityPatch
     {
-        public static float EffectiveMaxFertility;
+        public static float MaxNaturalFertility;
 
         static NegativeFertilityPatch()
         {
+            HashSet<TerrainDef> allPossibleNaturalTerrains = new HashSet<TerrainDef>();
+            foreach (BiomeDef bd in DefDatabase<BiomeDef>.AllDefsListForReading)
+            {
+                foreach (TerrainThreshold tt in bd.terrainsByFertility) allPossibleNaturalTerrains.Add(tt.terrain);
+                foreach (TerrainPatchMaker tpm in bd.terrainPatchMakers)
+                    foreach (TerrainThreshold tt in tpm.thresholds) allPossibleNaturalTerrains.Add(tt.terrain);
+            }
             IEnumerable<TerrainDef> terrainsByFertility = (from td in DefDatabase<TerrainDef>.AllDefsListForReading
+                                                           where allPossibleNaturalTerrains.Contains(td)
                                                            orderby td.fertility descending
                                                            select td);
             if (terrainsByFertility.EnumerableNullOrEmpty())
             {
                 ULog.Error("Negative Fertility Patch: terrainsByFertility was empty. Setting EffectiveMaxFertility to 1.");
-                EffectiveMaxFertility = 1f;
+                MaxNaturalFertility = 1f;
             }
             else
             {
-                EffectiveMaxFertility = terrainsByFertility.ElementAt(0).fertility;
+                MaxNaturalFertility = terrainsByFertility.First().fertility;
             }
         }
 
@@ -40,7 +48,7 @@ namespace D9Framework
                 UseNegativeFertility me;
                 if ((me = __instance.def.GetModExtension<UseNegativeFertility>()) != null)
                 {
-                    __result = Mathf.Clamp((EffectiveMaxFertility - __instance.Map.fertilityGrid.FertilityAt(__instance.Position)) * __instance.def.plant.fertilitySensitivity + (1f - __instance.def.plant.fertilitySensitivity),
+                    __result = Mathf.Clamp((MaxNaturalFertility - __instance.Map.fertilityGrid.FertilityAt(__instance.Position)) * __instance.def.plant.fertilitySensitivity + (1f - __instance.def.plant.fertilitySensitivity),
                                me.minFertility, 
                                me.maxFertility);
                 }
@@ -49,6 +57,6 @@ namespace D9Framework
     }
     public class UseNegativeFertility : DefModExtension
     {
-        public float minFertility = 0.05f, maxFertility = 1.5f;
+        public float minFertility = 0.05f, maxFertility = 1.4f;
     }
 }
