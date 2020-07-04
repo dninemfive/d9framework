@@ -12,7 +12,7 @@ namespace D9Framework
 {
     static class NegativeFertilityPatch
     {
-        [HarmonyPatch(typeof(Plant), nameof(Plant.GrowthRateFactor_Fertility), new Type[] { })]
+        [HarmonyPatch(typeof(Plant), nameof(Plant.GrowthRateFactor_Fertility), MethodType.Getter)]
         class NegativeFertilityPostfix
         {
             [HarmonyPostfix]
