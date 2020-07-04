@@ -49,6 +49,6 @@ namespace D9Framework
     }
     public class UseNegativeFertility : DefModExtension
     {
-        public float minFertility = 0.05f, maxFertility = 1f;
+        public float minFertility = 0.05f, maxFertility = 1.5f;
     }
 }
