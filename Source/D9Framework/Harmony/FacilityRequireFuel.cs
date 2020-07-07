@@ -10,10 +10,8 @@ using RimWorld;
 
 namespace D9Framework
 {
-    public class FacilityRequireFuel : ClassWithPatches
+    static class FacilityRequireFuel
     {
-        public override string PlainName => "Facility Require Fuel";
-
         [HarmonyPatch(typeof(CompFacility), nameof(CompFacility.CanBeActive), MethodType.Getter)]
         class FacilityRequireFuelPatch
         {

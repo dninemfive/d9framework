@@ -11,13 +11,11 @@ using RimWorld;
 namespace D9Framework
 {
     [StaticConstructorOnStartup]
-    public class NegativeFertilityPatch : ClassWithPatches
+    static class NegativeFertilityPatch
     {
-        public override string PlainName => "Negative Fertility Patch";
-
         public static float MaxNaturalFertility;
 
-        public NegativeFertilityPatch()
+        static NegativeFertilityPatch()
         {
             HashSet<TerrainDef> allPossibleNaturalTerrains = new HashSet<TerrainDef>();
             foreach (BiomeDef bd in DefDatabase<BiomeDef>.AllDefsListForReading)
