@@ -87,10 +87,12 @@
     <Compile Include="Harmony\DeconstructReturnFix.cs" />
     <Compile Include="Harmony\CompFromStuff\CompFromStuff.cs" />
     <Compile Include="Harmony\HarmonyLoader.cs" />
+    <Compile Include="Harmony\FacilityRequireFuel.cs" />
     <Compile Include="Harmony\NegativeFertilityPatch.cs" />
     <Compile Include="Harmony\Orbital Trade Hook\Building_OrbitalTradeBeacon.cs" />
     <Compile Include="Harmony\Orbital Trade Hook\OrbitalTradeHook.cs" />
     <Compile Include="Harmony\ResearchRequirements\ResearchRequirements.cs" />
+    <Compile Include="Misc\DoubleStuffThing.cs" />
     <Compile Include="Misc\IngredientValueGetter_Mass.cs" />
     <Compile Include="ModSettings.cs" />
     <Compile Include="PatchOperations\PatchOperationRoyaltyInstalled.cs" />
