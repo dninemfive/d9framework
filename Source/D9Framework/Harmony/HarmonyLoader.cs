@@ -15,6 +15,14 @@ namespace D9Framework
         {
             ULog.Message("Applying Harmony patches...");
             var harmony = new Harmony("com.dninemfive.D9Framework");
+            string patchesApplied = "";
+            foreach(var type in typeof(HarmonyLoader).Assembly.GetTypes())
+            {
+                if(type is ClassWithPatches cwp)
+                {
+
+                }
+            }
             if (D9FModSettings.ApplyCompFromStuff)
             {
                 PatchAll(harmony, typeof(CompFromStuff));                

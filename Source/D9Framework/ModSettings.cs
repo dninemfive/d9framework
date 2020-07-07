@@ -13,6 +13,13 @@ namespace D9Framework
     {        
         public static bool DEBUG = false; //for release set false by default
 
+        // PlainName, whether to apply by default
+        public static Dictionary<string, bool> PatchesToApply = new Dictionary<string, bool>()
+        {
+            { "Comp From Stuff", true },
+            { "Orbital Trade Hook", true },
+            { "Deconstruct Return Fix", true }
+        };
         public static bool ApplyCompFromStuff => !DEBUG || applyCFS;
         public static bool ApplyOrbitalTradeHook => !DEBUG || applyOTH;
         public static bool ApplyDeconstructReturnFix => !DEBUG || applyDRF;
@@ -25,6 +32,7 @@ namespace D9Framework
 
         public override void ExposeData()
         {
+            // TODO: backwards compatibility, adding these settings to the dictionary
             base.ExposeData();
             Scribe_Values.Look(ref DEBUG, "debug", false);
             Scribe_Values.Look(ref applyCFS, "ApplyCompFromStuff", true);

@@ -13,8 +13,10 @@ namespace D9Framework
     /// <summary>
     /// Fixes the bug where the game will never drop a single item set to drop 100% of the time. 
     /// </summary>
-    static class DeconstructReturnFix
+    public class DeconstructReturnFix : ClassWithPatches
     {
+        public override string PlainName => "Deconstruct Return Fix";
+
         [HarmonyPatch(typeof(GenLeaving), "DoLeavingsFor", new Type[] { typeof(Thing), typeof(Map), typeof(DestroyMode), typeof(CellRect), typeof(Predicate<IntVec3>), typeof(List<Thing>)})]
         class CalcFix
         {
