@@ -25,7 +25,7 @@ Jamaican Castle: reflection and caching help
 
 Madara Uchiha: code review
 
-everyone else on the Rimworld Discord/#mod-development
+everyone else on the [RimWorld discord](https://discord.gg/rimworld)#mod-development
 
 leafzxg: Translations for Chinese (Simplified and Traditional), from AJO
 
