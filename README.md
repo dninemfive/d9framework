@@ -3,14 +3,12 @@
 
 [![steamlink](https://raster.shields.io/steam/downloads/2037445541.png?color=blue&label=Workshop&logo=steam)](https://steamcommunity.com/sharedfiles/filedetails/?id=2037445541) ![githubdls](https://img.shields.io/github/downloads/dninemfive/d9framework/total?color=blue&label=Github&logo=github)
 
-Framework mod combining my old Deconstruct Return Fix and Orbital Trade Hook mods, along with several utility functions. Somewhat of a work-in-progress, will have many more features in the future but playable now.
-
-See the [wiki](https://github.com/dninemfive/d9framework/wiki) for more details.
+Framework mod combining my old Deconstruct Return Fix and Orbital Trade Hook mods plus a number of useful Harmony patches and XML-only features. See the [wiki](https://github.com/dninemfive/d9framework/wiki) for a complete list.
 
 Don't let the license scare you, just ask for permission and I'll probably let you use some of my code here. I'll be specifically licensing certain classes once I figure out how that works.
 
 ## For Modders
-This mod is like JecsTools or HugsLib - set this mod as a dependency for your own.
+This mod is like JecsTools or HugsLib - set this mod as a dependency for your own. See the [wiki](https://github.com/dninemfive/d9framework/wiki#for-modders) for more details.
 
 I'd love to see anything you make with this! Feel free to message me on Steam or Discord to show off.
 
