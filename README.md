@@ -1,7 +1,7 @@
 # D9 Framework
 ![version](https://img.shields.io/badge/RimWorld-1.1-brightgreen.svg) ![modVersion](https://img.shields.io/github/v/release/dninemfive/d9framework?color=brightgreen&label=Mod%20version) ![license](https://img.shields.io/badge/License-All%20rights%20reserved-blue.svg)
 
-[![steamlink](https://raster.shields.io/steam/downloads/2037445541.png?color=blue&label=Workshop&logo=steam)](https://steamcommunity.com/sharedfiles/filedetails/?id=2037445541) ![githubdls](https://img.shields.io/github/downloads/dninemfive/d9framework/total?color=blue&label=Github&logo=github)
+[![steamlink](https://raster.shields.io/steam/downloads/2037445541.png?color=blue&label=Workshop&logo=steam)](https://steamcommunity.com/sharedfiles/filedetails/?id=2037445541) [![githubdls](https://img.shields.io/github/downloads/dninemfive/d9framework/total?color=blue&label=Github&logo=github)](https://github.com/dninemfive/d9framework/releases/latest)
 
 Framework mod combining my old Deconstruct Return Fix and Orbital Trade Hook mods plus a number of useful Harmony patches and XML-only features. See the [wiki](https://github.com/dninemfive/d9framework/wiki) for a complete list.
 
