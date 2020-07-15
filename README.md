@@ -13,22 +13,13 @@ This mod is like JecsTools or HugsLib - set this mod as a dependency for your ow
 I'd love to see anything you make with this! Feel free to message me on Steam or Discord to show off.
 
 ## Credits
-ElminsterAU: Carry Mass Framework implementation and pull request.
-
-cuproPanda: Original code for most of the PlaceWorkers, from AJO.
-
-lbmaian: more elegant solution for the Orbital Trade Hook
-
-Smash Phil, erdelf, Drowsy Corgi: general transpiler and other coding help
-
-Jamaican Castle: reflection and caching help
-
-Madara Uchiha: code review
-
-everyone else on the [RimWorld discord](https://discord.gg/rimworld)#mod-development
-
-leafzxg: Translations for Chinese (Simplified and Traditional), from AJO
-
-CANALETA: Translations for Spanish (Latin American and Continental), from AJO
-
-namidasechi: Translation for Japanese, from AJO
+- [ElminsterAU](https://github.com/ElminsterAU): Carry Mass Framework implementation and pull request.
+- [cuproPanda](https://github.com/CuproPanda): Original code for most of the PlaceWorkers, from AJO.
+- [lbmaian](https://github.com/lbmaian): more elegant solution for the Orbital Trade Hook
+- [Smash Phil](https://github.com/SmashPhil), [erdelf](https://github.com/erdelf), Drowsy Corgi: general transpiler and other coding help
+- [Jamaican Castle](https://steamcommunity.com/profiles/76561197998915712): reflection and caching help
+- [Madara Uchiha](https://github.com/MadaraUchiha): code review
+- everyone else on the [RimWorld discord](https://discord.gg/rimworld)#mod-development
+- [leafzxg](https://github.com/leafzxg): Translations for Chinese (Simplified and Traditional), from AJO
+- [CANALETA](https://github.com/CANALETA): Translations for Spanish (Latin American and Continental), from AJO
+- [namidasechi](https://steamcommunity.com/profiles/76561198099924163): Translation for Japanese, from AJO
