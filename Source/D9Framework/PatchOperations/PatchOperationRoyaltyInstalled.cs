@@ -9,6 +9,12 @@ using System.Xml;
 
 namespace D9Framework
 {
+    /// <summary>
+    /// <c>PatchOperation</c> which applies <c>match</c> if Royalty is owned by the player, or <c>nomatch</c> otherwise.
+    /// </summary>
+    /// <remarks>
+    /// The naming discrepancy is inherited from the base game, and appears to be intended by Tynan.
+    /// </remarks>
     class PatchOperationRoyaltyInstalled : PatchOperation
     {
 # pragma warning disable CS0649

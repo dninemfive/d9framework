@@ -8,13 +8,16 @@ using RimWorld;
 
 namespace D9Framework
 {
+    /// <summary>
+    /// <c>Gizmo</c> which displays the current energy state of the <see cref="D9Framework.RangedShieldBelt"/>. Identical to the vanilla one, except references the aforementioned class since it's no longer a subclass.
+    /// </summary>
     [StaticConstructorOnStartup]
     class Gizmo_RangedShieldStatus : Gizmo
     {
+        #region misc properties
         public RangedShieldBelt shield;
 
         private static readonly Texture2D FullShieldBarTex = SolidColorMaterials.NewSolidColorTexture(new Color(0.2f, 0.2f, 0.24f));
-
         private static readonly Texture2D EmptyShieldBarTex = SolidColorMaterials.NewSolidColorTexture(Color.clear);
 
         public Gizmo_RangedShieldStatus()
@@ -26,6 +29,7 @@ namespace D9Framework
         {
             return 140f;
         }
+        #endregion misc properties
 
         public override GizmoResult GizmoOnGUI(Vector2 topLeft, float maxWidth)
         {

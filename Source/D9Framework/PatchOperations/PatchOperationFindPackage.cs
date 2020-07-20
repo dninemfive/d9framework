@@ -9,6 +9,9 @@ using System.Xml;
 
 namespace D9Framework
 {
+    /// <summary>
+    /// <c>PatchOperation</c> which applies <c>match</c> if a mod matching one of the target <c>packageIds</c> is enabled in the current load order, or otherwise applies <c>nomatch</c>.
+    /// </summary>
     class PatchOperationFindPackage : PatchOperation
     {
 # pragma warning disable CS0649

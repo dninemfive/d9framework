@@ -9,43 +9,40 @@ using Verse.Sound;
 
 namespace D9Framework
 {
+    /// <summary>
+    /// <c>ThingClass</c> which acts like the vanilla <c>ShieldBelt</c> class but allows the user to fire ranged weapons while worn.
+    /// </summary>
+    /// <remarks>
+    /// Used to be a pretty simple subclass of <c>ShieldBelt</c>, but that ran into compatibility problems:
+    /// <list type="bullet">
+    /// <item>Some mods check whether ranged shots were allowed by seeing if the thingClass <c>is</c> a ShieldBelt, which returned true in this case, 
+    /// causing errors including them being automatically, erroneously, unequipped on ranged pawns.</item>
+    /// <item>A growing number of patches were necessary to prevent the vanilla game treating ranged shield belts in the same way.</item>
+    /// </list>
+    /// </remarks>
     [StaticConstructorOnStartup]
     public class RangedShieldBelt : Apparel
     {
+        #region fields
         private float energy;
-
         private int ticksToReset = -1;
-
         private int lastKeepDisplayTick = -9999;
-
         private Vector3 impactAngleVect;
-
         private int lastAbsorbDamageTick = -9999;
-
         private const float MinDrawSize = 1.2f;
-
         private const float MaxDrawSize = 1.55f;
-
         private const float MaxDamagedJitterDist = 0.05f;
-
         private const int JitterDurationTicks = 8;
-
         private int StartingTicksToReset = 3200;
-
         private float EnergyOnReset = 0.2f;
-
         private float EnergyLossPerDamage = 0.033f;
-
         private int KeepDisplayingTicks = 1000;
-
         private float ApparelScorePerEnergyMax = 0.25f;
-
         private static readonly Material BubbleMat = MaterialPool.MatFrom("Other/ShieldBubble", ShaderDatabase.Transparent);
-
+        #endregion fields
+        #region properties
         private float EnergyMax => this.GetStatValue(StatDefOf.EnergyShieldEnergyMax, true);
-
         private float EnergyGainPerTick => this.GetStatValue(StatDefOf.EnergyShieldRechargeRate, true) / 60f;
-
         public float Energy => energy;
 
         public ShieldState ShieldState
@@ -65,29 +62,14 @@ namespace D9Framework
             get
             {
                 Pawn wearer = base.Wearer;
-                if (wearer.Spawned && !wearer.Dead && !wearer.Downed)
-                {
-                    if (wearer.InAggroMentalState)
-                    {
-                        return true;
-                    }
-                    if (wearer.Drafted)
-                    {
-                        return true;
-                    }
-                    if (wearer.Faction.HostileTo(Faction.OfPlayer) && !wearer.IsPrisoner)
-                    {
-                        return true;
-                    }
-                    if (Find.TickManager.TicksGame < lastKeepDisplayTick + KeepDisplayingTicks)
-                    {
-                        return true;
-                    }
-                    return false;
-                }
-                return false;
+                return wearer.Spawned && !wearer.Dead && !wearer.Downed &&
+                       wearer.InAggroMentalState &&
+                       wearer.Drafted &&
+                       wearer.Faction.HostileTo(Faction.OfPlayer) && !wearer.IsPrisoner &&
+                       Find.TickManager.TicksGame < lastKeepDisplayTick + KeepDisplayingTicks;
             }
         }
+        #endregion properties
 
         public override void ExposeData()
         {
