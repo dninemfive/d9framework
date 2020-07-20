@@ -9,6 +9,10 @@ using HarmonyLib;
 
 namespace D9Framework
 {
+    /// <summary>
+    /// <c>ModSettings</c> class for D9 Framework. Mainly handles which Harmony patches should be applied and saves all specified settings.
+    /// </summary>
+    /// <remarks>Static for convenience.</remarks>
     public class D9FModSettings : ModSettings
     {        
         public static bool DEBUG = false; //for release set false by default
@@ -34,6 +38,9 @@ namespace D9Framework
             Scribe_Values.Look(ref applyNFP, "ApplyNegativeFertilityPatch", true);
         }
     }
+    /// <summary>
+    /// <c>Mod</c> class for D9 Framework. Mainly handles the settings screen.
+    /// </summary>
     public class D9FrameworkMod : Mod
     {
         D9FModSettings settings;
