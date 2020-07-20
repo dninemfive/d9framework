@@ -7,11 +7,13 @@ using Verse;
 namespace D9Framework
 {
     /// <summary>
-    /// ModExtension for use with CompsFromStuff. Should be self-explanatory; if not, read https://rimworldwiki.com/wiki/Modding_Tutorials/DefModExtension.
+    /// <c>DefModExtension</c> for use with <see cref="D9Framework.CompFromStuff"/>. Specifies the <c>ThingComps</c>, by their <c>CompProperties</c>, 
+    /// which should be added to newly-generated items made from the specified Stuff.
     /// </summary>
     class CompsToAddWhenStuff : DefModExtension
     {
 # pragma warning disable CS0649 //disable the warning that this field is never assigned to, as the game handles that
         public List<CompProperties> comps;
+#pragma warning restore CS0649
     }
 }

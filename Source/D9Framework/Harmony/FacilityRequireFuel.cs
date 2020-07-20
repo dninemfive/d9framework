@@ -10,6 +10,9 @@ using RimWorld;
 
 namespace D9Framework
 {
+    /// <summary>
+    /// Patches <see cref="RimWorld.CompFacility"/> to be inactive if the parent <c>Thing</c> has a <c>CompRefuelable</c> which is unfueled.
+    /// </summary>
     static class FacilityRequireFuel
     {
         [HarmonyPatch(typeof(CompFacility), nameof(CompFacility.CanBeActive), MethodType.Getter)]

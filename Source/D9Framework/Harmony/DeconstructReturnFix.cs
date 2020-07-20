@@ -11,7 +11,7 @@ using UnityEngine;
 namespace D9Framework
 {
     /// <summary>
-    /// Fixes the bug where the game will never drop a single item set to drop 100% of the time. 
+    /// Harmony patch fixing a bug in the base game which prevents items from dropping in certain scenarios.
     /// </summary>
     static class DeconstructReturnFix
     {

@@ -11,13 +11,10 @@ using OpCodes = System.Reflection.Emit.OpCodes;
 namespace D9Framework
 {
     /// <summary>
-    /// Hook allowing modders to easily create custom trade beacons by extending <c>D9Framework.Building_OrbitalTradeBeacon</c>
+    /// Hook allowing modders to easily create custom trade beacons by extending <see cref="D9Framework.Building_CustomTradeBeacon"/>.
     /// </summary>
     public class OrbitalTradeHook
     {
-        static OrbitalTradeHook()
-        {            
-        }
         // TODO: transpile Building_OrbitalTradeBeacon.AllPowered to do the standard (fuel?.HasFuel || power?.Powered) check
 
         // thanks, lbmaian!

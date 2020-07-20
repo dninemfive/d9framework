@@ -9,7 +9,7 @@ using RimWorld;
 namespace D9Framework
 {
     /// <summary>
-    /// Abstract class you can extend to make Orbital Trade Beacons using the orbital trade hook.
+    /// Abstract class you can extend to make Orbital Trade Beacons using the <see cref="D9Framework.OrbitalTradeHook"/>.
     /// </summary>
     public abstract class Building_CustomTradeBeacon : Building_OrbitalTradeBeacon
     {
