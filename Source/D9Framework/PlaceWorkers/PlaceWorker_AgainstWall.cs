@@ -6,8 +6,10 @@ using RimWorld;
 namespace D9Framework
 {
     /// <summary>
-    /// Only allows an object to be placed against a wall (Checks the cell behind this object)
-    /// <para>Originally by CuproPanda, for Additional Joy Objects.</para>
+    /// <c>PlaceWorker</c> requiring that the parent <c>Thing</c> be placed on a cell adjacent to but facing away from a wall. <seealso cref="D9Framework.CompValidator"/>
+    /// <remarks>
+    /// Originally by CuproPanda, for Additional Joy Objects.
+    /// </remarks>
     /// </summary>
     public class PlaceWorker_AgainstWall : PlaceWorker
     {
@@ -22,9 +24,8 @@ namespace D9Framework
         }
     }
     /// <summary>
-    /// Only allows an object to be placed on a wall, as long as there isn't the same def facing the same way.
-    /// </summary>
-    /// 
+    /// <c>PlaceWorker</c> requiring that the parent <c>Thing</c> be placed on a wall but not overlapping the same <c>Thing</c> in the same rotation. <seealso cref="D9Framework.CompValidator"/>
+    /// </summary> 
     public class PlaceWorker_OnWall : PlaceWorker
     {
         public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null, Thing thing = null)

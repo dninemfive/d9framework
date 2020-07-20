@@ -7,9 +7,9 @@ using Verse;
 namespace D9Framework
 {
     /// <summary>
-    /// Restrict buildings to being placed under a roof
+    /// <c>PlaceWorker</c> requiring that the parent <c>Thing</c> be placed under a roof. <seealso cref="D9Framework.CompValidator"/>
     /// </summary>
-    /// <para>Originally by CuproPanda, for Additional Joy Objects.</para>
+    /// <remarks>Originally by CuproPanda, for Additional Joy Objects.</remarks>
     public class PlaceWorker_Roofed : PlaceWorker
     {
         public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null, Thing thing = null)
@@ -22,9 +22,9 @@ namespace D9Framework
         }
     }
     /// <summary>
-    /// Require that the building be placed "hanging" from a roof, i.e. that the tile is roofed, it's not above anything which touches the roof, and it's not on the same tile as another RoofHanger
+    /// <c>PlaceWorker</c> requiring that the parent <c>Thing</c> be placed under a roof and not over another <c>Thing</c> which is too tall. <seealso cref="D9Framework.CompValidator"/>
     /// </summary>
-    /// <para>Originally by CuproPanda, for Additional Joy Objects.</para>
+    /// <remarks>Originally by CuproPanda, for Additional Joy Objects.</remarks>
     public class PlaceWorker_RoofHanger : PlaceWorker_Roofed
     {
 		public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map, Thing thingToIgnore = null, Thing thing = null) {
