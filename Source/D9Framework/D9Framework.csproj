@@ -78,10 +78,8 @@
     <Compile Include="Harmony\CarryMassFramework\CMFHarmonyPatch.cs" />
     <Compile Include="Harmony\CarryMassFramework\CMFStatDefOf.cs" />
     <Compile Include="Harmony\CarryMassFramework\DerivedStatDef.cs" />
-    <Compile Include="Comps\CompValidator\CompValidator.cs" />
-    <Compile Include="Comps\CompValidator\CompProperties_Validator.cs" />
-    <Compile Include="Comps\CompSelfRepair\CompProperties_SelfRepair.cs" />
-    <Compile Include="Comps\CompSelfRepair\CompSelfRepair.cs" />
+    <Compile Include="Comps\CompValidator.cs" />
+    <Compile Include="Comps\CompSelfRepair.cs" />
     <Compile Include="Comps\CompWithCheapHashInterval.cs" />
     <Compile Include="Harmony\CompFromStuff\CompsToAddWhenStuff.cs" />
     <Compile Include="Harmony\DeconstructReturnFix.cs" />
@@ -92,7 +90,6 @@
     <Compile Include="Harmony\Orbital Trade Hook\Building_OrbitalTradeBeacon.cs" />
     <Compile Include="Harmony\Orbital Trade Hook\OrbitalTradeHook.cs" />
     <Compile Include="Harmony\ResearchRequirements\ResearchRequirements.cs" />
-    <Compile Include="Misc\DoubleStuffThing.cs" />
     <Compile Include="Misc\IngredientValueGetter_Mass.cs" />
     <Compile Include="ModSettings.cs" />
     <Compile Include="PatchOperations\PatchOperationRoyaltyInstalled.cs" />
@@ -103,7 +100,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Misc\Ranged Shield Belt\Gizmo_RangedShieldStatus.cs" />
     <Compile Include="Misc\Ranged Shield Belt\RangedShieldBelt.cs" />
-    <Compile Include="UtilityClasses.cs" />
     <Compile Include="Ulog.cs" />
   </ItemGroup>
   <ItemGroup>
