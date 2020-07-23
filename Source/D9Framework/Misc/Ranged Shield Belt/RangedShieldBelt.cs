@@ -62,10 +62,10 @@ namespace D9Framework
             get
             {
                 Pawn wearer = base.Wearer;
-                return wearer.Spawned && !wearer.Dead && !wearer.Downed &&
-                       wearer.InAggroMentalState &&
-                       wearer.Drafted &&
-                       wearer.Faction.HostileTo(Faction.OfPlayer) && !wearer.IsPrisoner &&
+                return (wearer.Spawned && !wearer.Dead && !wearer.Downed) &&
+                       wearer.InAggroMentalState ||
+                       wearer.Drafted ||
+                       (wearer.Faction.HostileTo(Faction.OfPlayer) && !wearer.IsPrisoner) ||
                        Find.TickManager.TicksGame < lastKeepDisplayTick + KeepDisplayingTicks;
             }
         }
