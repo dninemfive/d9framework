@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Verse;
 using RimWorld;
 
-namespace D9Framework.Comps
+namespace D9Framework
 {
     /// <summary>
     /// Applies a specified hediff at a specified interval when the parent, which must be <c>Apparel</c>, is worn.
@@ -20,30 +20,30 @@ namespace D9Framework.Comps
     /// </remarks>
     class CompApplyHediffWhenWorn : CompWithCheapHashInterval
     {
-        Apparel Apparel => base.parent as Apparel;
-        CompProperties_ApplyHediffWhenWorn Props => (CompProperties_ApplyHediffWhenWorn)base.props;
+        public Apparel Apparel => base.parent as Apparel;
+        public CompProperties_ApplyHediffWhenWorn Props => (CompProperties_ApplyHediffWhenWorn)base.props;
 
-        public void ApplyHediff()
+        public void ApplyHediffs()
         {
-            Apparel.Wearer.health.AddHediff(Props.hediffToApply, null, null, null);
+            foreach(HediffDef hd in Props.hediffsToApply) Apparel.Wearer.health.AddHediff(hd, null, null, null);
         }
 
         public override void CompTick()
         {
             base.CompTick();
-            if (IsCheapIntervalTick(Props.tickInterval)) ApplyHediff();
+            if (IsCheapIntervalTick(Props.tickInterval)) ApplyHediffs();
         }
         public override void CompTickRare()
         {
             base.CompTickRare();
-            ApplyHediff();
+            ApplyHediffs();
         }
     }
-    class CompProperties_ApplyHediffWhenWorn : CompProperties
+    public class CompProperties_ApplyHediffWhenWorn : CompProperties
     {
 #pragma warning disable CS0649
         public int tickInterval = 250;
-        public HediffDef hediffToApply;
+        public List<HediffDef> hediffsToApply;
 #pragma warning restore CS0649
 
         public CompProperties_ApplyHediffWhenWorn()
