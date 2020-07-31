@@ -16,17 +16,11 @@ namespace D9Framework
     public class D9FModSettings : ModSettings
     {        
         public static bool DEBUG = false; //for release set false by default
-
-        public static bool ApplyCompFromStuff => !DEBUG || applyCFS;
-        public static bool ApplyOrbitalTradeHook => !DEBUG || applyOTH;
-        public static bool ApplyDeconstructReturnFix => !DEBUG || applyDRF;
-        public static bool ApplyCarryMassFramework => !DEBUG || applyCMF;
-        public static bool ApplyNegativeFertilityPatch => !DEBUG || applyNFP;
         public static bool PrintPatchedMethods => DEBUG && printPatchedMethods;
-        // despite the public flag, don't reference these; they're only public for the purposes of the mod settings screen below. Reference the above variables instead.
-        public static bool applyCFS = true, applyOTH = true, applyDRF = true, applyCMF = true, applyNFP = true;
         public static bool printPatchedMethods = false;
 
+        // despite being public, please don't fuck with these. Access patch application settings with ShouldPatch, and don't touch SettingsUIKeys.
+        // They're only public so I can use them in the mod settings screen.
         public static Dictionary<string, bool> PatchApplicationSettings;
         public static Dictionary<string, (string labelKey, string descKey)> SettingsUIKeys;
 
@@ -79,8 +73,10 @@ namespace D9Framework
                 listing.Label("D9FSettingsDebugModeRequired".Translate());
                 foreach(string key in D9FModSettings.PatchApplicationSettings.Keys)
                 {
-                    // TODO: figure out how to do this extendably. Guessing you can make a List of boolean references to pass. The cur workaround used above (probably) won't work here.
-                    listing.CheckBoxLabeled(D9FModSettings.SettingsUIKeys[key].labelKey.Translate(), ref D9FModSettings.PatchApplicationSettings[key], D9FModSettings.SettingsUIKeys[key].descKey.Translate());
+                    // This probably won't work, but it's worth a try.
+                    bool cur = D9FModSettings.PatchApplicationSettings[key];
+                    listing.CheckboxLabeled(D9FModSettings.SettingsUIKeys[key].labelKey.Translate(), ref cur, D9FModSettings.SettingsUIKeys[key].descKey.Translate());
+                    D9FModSettings.PatchApplicationSettings[key] = cur;
                 }
             }
             listing.End();

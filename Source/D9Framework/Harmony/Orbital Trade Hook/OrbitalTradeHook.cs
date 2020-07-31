@@ -13,6 +13,7 @@ namespace D9Framework
     /// <summary>
     /// Hook allowing modders to easily create custom trade beacons by extending <see cref="D9Framework.Building_CustomTradeBeacon"/>.
     /// </summary>
+    [ClassWithPatches("Orbital Trade Hook", "ApplyOrbitalTradeHook", "D9FSettingsApplyOTH")]
     public class OrbitalTradeHook
     {
         // TODO: transpile Building_OrbitalTradeBeacon.AllPowered to do the standard (fuel?.HasFuel || power?.Powered) check

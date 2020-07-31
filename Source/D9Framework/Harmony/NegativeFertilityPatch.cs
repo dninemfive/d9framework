@@ -17,6 +17,7 @@ namespace D9Framework
     /// Generally mod-compatible and performant because of how it caches <c>MaxNaturalFertility</c>, but probably contributes to longer start-up times.
     /// </remarks>
     [StaticConstructorOnStartup]
+    [ClassWithPatches("Negative Fertility Patch", "ApplyNegativeFertilityPatch", "D9FSettingsApplyNFP")]
     static class NegativeFertilityPatch
     {
         public static float MaxNaturalFertility;

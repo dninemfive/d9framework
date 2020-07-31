@@ -13,6 +13,7 @@ namespace D9Framework
     /// <summary>
     /// Harmony patch fixing a bug in the base game which prevents items from dropping in certain scenarios.
     /// </summary>
+    [ClassWithPatches("Deconstruct Return Fix", "ApplyDeconstructReturnFix", "D9FSettingsApplyDRF")]
     static class DeconstructReturnFix
     {
         [HarmonyPatch(typeof(GenLeaving), "DoLeavingsFor", new Type[] { typeof(Thing), typeof(Map), typeof(DestroyMode), typeof(CellRect), typeof(Predicate<IntVec3>), typeof(List<Thing>)})]

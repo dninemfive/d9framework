@@ -24,30 +24,15 @@ namespace D9Framework
         {
             ULog.Message("Applying Harmony patches...");
             var harmony = new Harmony("com.dninemfive.D9Framework");
-            if (D9FModSettings.ApplyCompFromStuff)
+            // https://stackoverflow.com/questions/2639418/use-reflection-to-get-a-list-of-static-classes
+            foreach(Type type in typeof(HarmonyLoader).Assembly.GetTypes().Where(t => t.IsClass && t.IsSealed && t.IsAbstract))
             {
-                PatchAll(harmony, typeof(CompFromStuff));                
-                ULog.DebugMessage("\tCompFromStuff enabled.", false);
-            }
-            if (D9FModSettings.ApplyDeconstructReturnFix)
-            {
-                PatchAll(harmony, typeof(DeconstructReturnFix));
-                ULog.DebugMessage("\tDeconstruct Return Fix enabled.", false);
-            }
-            if (D9FModSettings.ApplyOrbitalTradeHook)
-            {
-                PatchAll(harmony, typeof(OrbitalTradeHook));
-                ULog.DebugMessage("\tOrbital Trade Hook enabled.", false);
-            }
-            if (D9FModSettings.ApplyCarryMassFramework)
-            {
-                CMFHarmonyPatch.DoPatch(harmony);
-                ULog.DebugMessage("\tCarry Mass Framework enabled.", false);
-            }
-            if (D9FModSettings.ApplyNegativeFertilityPatch)
-            {
-                PatchAll(harmony, typeof(NegativeFertilityPatch));
-                ULog.DebugMessage("\tNegative Fertility Patch enabled.", false);
+                ClassWithPatchesAttribute attr;
+                if ((attr = type.TryGetAttribute<ClassWithPatchesAttribute>()) != null)
+                {
+                    PatchAll(harmony, type);
+                    ULog.DebugMessage("\t" + attr.PlainName + " enabled.", false);
+                }
             }
             if (D9FModSettings.PrintPatchedMethods)
             {

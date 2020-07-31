@@ -9,6 +9,7 @@ using HarmonyLib;
 
 namespace D9Framework
 {
+    [ClassWithPatches("Calculate Bleed Rate Patch", "ApplyCalculateBleedRate", "D9FSettingsApplyCBR")]
     static class HealingRateAsStat
     {
         [HarmonyPatch(typeof(Pawn_HealthTracker), nameof(Pawn_HealthTracker.HealthTick))]

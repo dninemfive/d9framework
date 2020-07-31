@@ -13,6 +13,7 @@ namespace D9Framework
     /// <summary>
     /// Allows modder to add comps to any items created with a certain Stuff using the <c>CompsToAddWhenStuff</c> <c>ModExtension</c>.
     /// </summary>
+    [ClassWithPatches("Comp From Stuff", "ApplyCompFromStuff", "D9FSettingsApplyCFS")]
     static class CompFromStuff
     {
         [HarmonyPatch(typeof(ThingMaker), nameof(ThingMaker.MakeThing), new Type[] { typeof(ThingDef), typeof(ThingDef) })]

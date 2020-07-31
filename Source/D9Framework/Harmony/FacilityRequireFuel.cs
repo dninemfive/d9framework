@@ -13,6 +13,7 @@ namespace D9Framework
     /// <summary>
     /// Patches <see cref="RimWorld.CompFacility"/> to be inactive if the parent <c>Thing</c> has a <c>CompRefuelable</c> which is unfueled.
     /// </summary>
+    [ClassWithPatches("Facility Require Fuel Patch", "ApplyFacilityRequireFuel", "D9FSettingsApplyFRF")]
     static class FacilityRequireFuel
     {
         [HarmonyPatch(typeof(CompFacility), nameof(CompFacility.CanBeActive), MethodType.Getter)]
