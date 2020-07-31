@@ -27,15 +27,32 @@ namespace D9Framework
         public static bool applyCFS = true, applyOTH = true, applyDRF = true, applyCMF = true, applyNFP = true;
         public static bool printPatchedMethods = false;
 
+        public static Dictionary<string, bool> PatchApplicationSettings;
+        public static Dictionary<string, (string labelKey, string descKey)> SettingsUIKeys;
+
         public override void ExposeData()
         {
             base.ExposeData();
+            PatchApplicationSettings = new Dictionary<string, bool>();
+            // backwards compatibility
+            if(Scribe.mode != LoadSaveMode.Saving)
+            {
+                bool cur = false;
+                string[] keysToLook = { "ApplyCompFromStuff", "ApplyOrbitalTradeHook", "ApplyDeconstructReturnFix", "ApplyCarryMassFramework", "ApplyNegativeFertilityPatch" };
+                foreach(string key in keysToLook)
+                {
+                    Scribe_Values.Look(ref cur, key);
+                    PatchApplicationSettings.Add(key, cur);
+                }
+            }
             Scribe_Values.Look(ref DEBUG, "debug", false);
-            Scribe_Values.Look(ref applyCFS, "ApplyCompFromStuff", true);
-            Scribe_Values.Look(ref applyOTH, "ApplyOrbitalTradeHook", true);
-            Scribe_Values.Look(ref applyDRF, "ApplyDeconstructReturnFix", true);
-            Scribe_Values.Look(ref applyCMF, "ApplyCarryMassFramework", true);
-            Scribe_Values.Look(ref applyNFP, "ApplyNegativeFertilityPatch", true);
+            Scribe_Collections.Look(ref PatchApplicationSettings, "Patches");
+        }
+
+        public static bool ShouldPatch(string patchkey)
+        {
+            if (!DEBUG) return true;
+            return PatchApplicationSettings[patchkey];
         }
     }
     /// <summary>
@@ -60,11 +77,11 @@ namespace D9Framework
                 listing.Label("D9FSettingsApplyAtOwnRisk".Translate());
                 listing.Label("D9FSettingsRestartToApply".Translate());
                 listing.Label("D9FSettingsDebugModeRequired".Translate());
-                listing.CheckboxLabeled("D9FSettingsApplyCFS".Translate(), ref D9FModSettings.applyCFS, "D9FSettingsApplyCFSTooltip".Translate());
-                listing.CheckboxLabeled("D9FSettingsApplyOTH".Translate(), ref D9FModSettings.applyOTH, "D9FSettingsApplyOTHTooltip".Translate());
-                listing.CheckboxLabeled("D9FSettingsApplyDRF".Translate(), ref D9FModSettings.applyDRF, "D9FSettingsApplyDRFTooltip".Translate());
-                listing.CheckboxLabeled("D9FSettingsApplyCMF".Translate(), ref D9FModSettings.applyCMF, "D9FSettingsApplyCMFTooltip".Translate());
-                listing.CheckboxLabeled("D9FSettingsApplyNFP".Translate(), ref D9FModSettings.applyNFP, "D9FSettingsApplyNFPTooltip".Translate());
+                foreach(string key in D9FModSettings.PatchApplicationSettings.Keys)
+                {
+                    // TODO: figure out how to do this extendably. Guessing you can make a List of boolean references to pass. The cur workaround used above (probably) won't work here.
+                    listing.CheckBoxLabeled(D9FModSettings.SettingsUIKeys[key].labelKey.Translate(), ref D9FModSettings.PatchApplicationSettings[key], D9FModSettings.SettingsUIKeys[key].descKey.Translate());
+                }
             }
             listing.End();
             base.DoSettingsWindowContents(inRect);

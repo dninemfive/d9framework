@@ -9,7 +9,7 @@ using HarmonyLib;
 
 namespace D9Framework
 {
-    [ClassWithPatches("Calculate Bleed Rate", "ApplyCalculateBleedRate", "D9FSettingsApplyCBR")]
+    [ClassWithPatches("Calculate Bleed Rate Patch", "ApplyCalculateBleedRate", "D9FSettingsApplyCBR")]
     static class BleedRateAsStat
     {
         [HarmonyPatch(typeof(HediffSet), "CalculateBleedRate")]
