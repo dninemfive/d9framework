@@ -88,10 +88,12 @@
     <Compile Include="Harmony\HarmonyLoader.cs" />
     <Compile Include="Harmony\FacilityRequireFuel.cs" />
     <Compile Include="Harmony\NegativeFertilityPatch.cs" />
+    <Compile Include="Harmony\New Stats\BleedRateAsStat.cs" />
+    <Compile Include="Harmony\New Stats\HealingRateAsStat.cs" />
     <Compile Include="Harmony\Orbital Trade Hook\Building_OrbitalTradeBeacon.cs" />
     <Compile Include="Harmony\Orbital Trade Hook\OrbitalTradeHook.cs" />
     <Compile Include="Harmony\ResearchRequirements\ResearchRequirements.cs" />
-    <Compile Include="Misc\HediffComp_RemoveWhenApparelNotWorn.cs" />
+    <Compile Include="Misc\HediffComp_SeverityFromApparel.cs" />
     <Compile Include="Misc\IngredientValueGetter_Mass.cs" />
     <Compile Include="ModSettings.cs" />
     <Compile Include="PatchOperations\PatchOperationRoyaltyInstalled.cs" />
@@ -103,6 +105,8 @@
     <Compile Include="Misc\Ranged Shield Belt\Gizmo_RangedShieldStatus.cs" />
     <Compile Include="Misc\Ranged Shield Belt\RangedShieldBelt.cs" />
     <Compile Include="Ulog.cs" />
+    <Compile Include="Utilities\ClassWithPatchesAttribute.cs" />
+    <Compile Include="Utilities\D9FrameworkDefOf.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
