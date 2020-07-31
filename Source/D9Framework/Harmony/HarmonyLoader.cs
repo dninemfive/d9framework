@@ -34,6 +34,11 @@ namespace D9Framework
                     ULog.DebugMessage("\t" + attr.PlainName + " enabled.", false);
                 }
             }
+            if (D9FModSettings.ApplyCarryMassFramework)
+            {
+                CMFHarmonyPatch.DoPatch(harmony);
+                ULog.DebugMessage("\tCarry Mass Framework enabled.", false);
+            }
             if (D9FModSettings.PrintPatchedMethods)
             {
                 Log.Message("The following methods were successfully patched:", false);

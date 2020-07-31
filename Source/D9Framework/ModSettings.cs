@@ -19,6 +19,10 @@ namespace D9Framework
         public static bool PrintPatchedMethods => DEBUG && printPatchedMethods;
         public static bool printPatchedMethods = false;
 
+        // I don't want to touch CMF because it has custom patching, so retain old settings setup.
+        public static bool ApplyCarryMassFramework => !DEBUG || applyCMF;
+        public static bool applyCMF = true;
+
         // despite being public, please don't fuck with these. Access patch application settings with ShouldPatch, and don't touch SettingsUIKeys.
         // They're only public so I can use them in the mod settings screen.
         public static Dictionary<string, bool> PatchApplicationSettings;
@@ -32,13 +36,14 @@ namespace D9Framework
             if(Scribe.mode != LoadSaveMode.Saving)
             {
                 bool cur = false;
-                string[] keysToLook = { "ApplyCompFromStuff", "ApplyOrbitalTradeHook", "ApplyDeconstructReturnFix", "ApplyCarryMassFramework", "ApplyNegativeFertilityPatch" };
+                string[] keysToLook = { "ApplyCompFromStuff", "ApplyOrbitalTradeHook", "ApplyDeconstructReturnFix", "ApplyNegativeFertilityPatch" };
                 foreach(string key in keysToLook)
                 {
                     Scribe_Values.Look(ref cur, key);
                     PatchApplicationSettings.Add(key, cur);
                 }
             }
+            Scribe_Values.Look(ref applyCMF, "ApplyCarryMassFramework", true);
             Scribe_Values.Look(ref DEBUG, "debug", false);
             Scribe_Collections.Look(ref PatchApplicationSettings, "Patches");
         }
@@ -78,6 +83,7 @@ namespace D9Framework
                     listing.CheckboxLabeled(D9FModSettings.SettingsUIKeys[key].labelKey.Translate(), ref cur, D9FModSettings.SettingsUIKeys[key].descKey.Translate());
                     D9FModSettings.PatchApplicationSettings[key] = cur;
                 }
+                listing.CheckboxLabeled("D9FSettingsApplyCMF".Translate(), ref D9FModSettings.applyCMF, "D9FSettingsApplyCMFTooltip".Translate());
             }
             listing.End();
             base.DoSettingsWindowContents(inRect);
