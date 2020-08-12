@@ -39,7 +39,7 @@ namespace D9Framework
                 foreach(string key in keysToLook)
                 {
                     Scribe_Values.Look(ref cur, key);
-                    PatchApplicationSettings.Add(key, cur);
+                    PatchApplicationSettings[key] = cur;
                 }
             }
             Scribe_Values.Look(ref applyCMF, "ApplyCarryMassFramework", true);
