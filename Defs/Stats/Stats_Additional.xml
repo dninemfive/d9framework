@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<StatDef Name="D9Framework_AdditionalStatDefBase" Abstract="True">		
+		<category>BasicsPawn</category>
+		<defaultBaseValue>1</defaultBaseValue>
+		<minValue>0</minValue>
+		<showOnMechanoids>false</showOnMechanoids>
+		<toStringStyle>PercentZero</toStringStyle>
+		<hideAtValue>1</hideAtValue>
+	</StatDef>
+	<StatDef ParentName="D9Framework_AdditionalStatDefBase">
+		<defName>HealingRateFactor</defName>
+		<label>healing rate factor</label>
+		<description>The rate at which this pawn will heal from injuries. Higher values mean faster healing.</description>
+	</StatDef>
+	<StatDef ParentName="D9Framework_AdditionalStatDefBase">
+		<defName>BleedRateFactor</defName>
+		<label>bleed rate factor</label>
+		<description>The rate at which this pawn will suffer blood loss from bleeding injuries. Lower values mean slower blood loss.</description>
+	</StatDef>
+</Defs>
