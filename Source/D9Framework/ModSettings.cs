@@ -25,13 +25,12 @@ namespace D9Framework
 
         // despite being public, please don't fuck with these. Access patch application settings with ShouldPatch, and don't touch SettingsUIKeys.
         // They're only public so I can use them in the mod settings screen.
-        public static Dictionary<string, bool> PatchApplicationSettings;
-        public static Dictionary<string, (string labelKey, string descKey)> SettingsUIKeys;
+        public static Dictionary<string, bool> PatchApplicationSettings = new Dictionary<string, bool>();
+        public static Dictionary<string, (string labelKey, string descKey)> SettingsUIKeys = new Dictionary<string, (string labelKey, string descKey)>();
 
         public override void ExposeData()
         {
             base.ExposeData();
-            PatchApplicationSettings = new Dictionary<string, bool>();
             // backwards compatibility
             if(Scribe.mode != LoadSaveMode.Saving)
             {
