@@ -78,6 +78,7 @@ namespace D9Framework
                 foreach(string key in D9FModSettings.PatchApplicationSettings.Keys)
                 {
                     // This probably won't work, but it's worth a try.
+                    // Narrator: it didn't.
                     bool cur = D9FModSettings.PatchApplicationSettings[key];
                     listing.CheckboxLabeled(D9FModSettings.SettingsUIKeys[key].labelKey.Translate(), ref cur, D9FModSettings.SettingsUIKeys[key].descKey.Translate());
                     D9FModSettings.PatchApplicationSettings[key] = cur;
