@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Reflection;
 using UnityEngine;
 using Verse;
-using HarmonyLib;
 
 namespace D9Framework
 {
@@ -25,8 +21,7 @@ namespace D9Framework
 
         // despite being public, please don't fuck with these. Access patch application settings with ShouldPatch, and don't touch SettingsUIKeys.
         // They're only public so I can use them in the mod settings screen.
-        public static Dictionary<string, bool> PatchApplicationSettings = new Dictionary<string, bool>();
-        public static Dictionary<string, (string labelKey, string descKey)> SettingsUIKeys = new Dictionary<string, (string labelKey, string descKey)>();
+        public static Dictionary<string, (bool apply, string labelKey, string descKey)> Patches = new Dictionary<string, (bool apply, string labelKey, string descKey)>();
 
         public override void ExposeData()
         {
@@ -39,18 +34,18 @@ namespace D9Framework
                 foreach(string key in keysToLook)
                 {
                     Scribe_Values.Look(ref cur, key);
-                    PatchApplicationSettings[key] = cur;
+                    Patches[key] = (cur, Patches[key].labelKey, Patches[key].descKey);
                 }
             }
             Scribe_Values.Look(ref applyCMF, "ApplyCarryMassFramework", true);
             Scribe_Values.Look(ref DEBUG, "debug", false);
-            Scribe_Collections.Look(ref PatchApplicationSettings, "Patches");
+            Scribe_Collections.Look(ref Patches, "Patches");
         }
 
         public static bool ShouldPatch(string patchkey)
         {
             if (!DEBUG) return true;
-            return PatchApplicationSettings[patchkey];
+            return Patches[patchkey].apply;
         }
     }
     /// <summary>
@@ -80,14 +75,14 @@ namespace D9Framework
                 listing.Label("D9FSettingsDebugModeRequired".Translate());
                 Log.Message("3");
                 int ct = 1;
-                foreach(string key in D9FModSettings.PatchApplicationSettings.Keys.ToList())
+                foreach(string key in D9FModSettings.Patches.Keys.ToList())
                 {
                     Log.Message("\t3." + ct + ": " + key);
                     // This probably won't work, but it's worth a try.
                     // Narrator: it didn't.
-                    bool cur = D9FModSettings.PatchApplicationSettings[key];
-                    listing.CheckboxLabeled(D9FModSettings.SettingsUIKeys[key].labelKey.Translate(), ref cur, D9FModSettings.SettingsUIKeys[key].descKey.Translate());
-                    D9FModSettings.PatchApplicationSettings[key] = cur;
+                    bool cur = D9FModSettings.Patches[key].apply;
+                    listing.CheckboxLabeled(D9FModSettings.Patches[key].labelKey.Translate(), ref cur, D9FModSettings.Patches[key].descKey.Translate());
+                    D9FModSettings.Patches[key].apply = cur;
                 }
                 Log.Message("4");
                 listing.CheckboxLabeled("D9FSettingsApplyCMF".Translate(), ref D9FModSettings.applyCMF, "D9FSettingsApplyCMFTooltip".Translate());

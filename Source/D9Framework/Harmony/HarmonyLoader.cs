@@ -30,11 +30,16 @@ namespace D9Framework
                 ClassWithPatchesAttribute attr;
                 if ((attr = type.TryGetAttribute<ClassWithPatchesAttribute>()) != null)
                 {
-                    if (!D9FModSettings.PatchApplicationSettings.ContainsKey(attr.SaveKey))
+                    if (!D9FModSettings.Patches.ContainsKey(attr.SaveKey))
                     {
-                        D9FModSettings.PatchApplicationSettings[attr.SaveKey] = true;                        
+                        D9FModSettings.Patches[attr.SaveKey] = (apply: true, labelKey: attr.LabelKey, descKey: attr.DescKey);                        
                     }
-                    D9FModSettings.SettingsUIKeys[attr.SaveKey] = (labelKey: attr.LabelKey, descKey: attr.DescKey);
+                    else
+                    {
+                        D9FModSettings.Patches[attr.SaveKey] = (apply: D9FModSettings.Patches[attr.SaveKey].apply,
+                                                                labelKey: attr.LabelKey,
+                                                                descKey: attr.DescKey);
+                    }
                     PatchAll(harmony, type);
                     ULog.DebugMessage("\t" + attr.PlainName + " enabled.", false);
                 }
