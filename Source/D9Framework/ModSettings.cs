@@ -23,7 +23,7 @@ namespace D9Framework
         // They're only public so I can use them in the mod settings screen.
         public static Dictionary<string, PatchInfo> Patches = new Dictionary<string, PatchInfo>();
 
-        public class PatchInfo
+        public class PatchInfo : IExposable
         {
             public bool apply;
             public string saveKey, labelKey, descKey;
@@ -42,6 +42,14 @@ namespace D9Framework
             public override string ToString()
             {
                 return "<{" + saveKey + ": " + apply + "}>";
+            }
+
+            public void ExposeData()
+            {
+                Scribe_Values.Look(ref saveKey, "saveKey");
+                Scribe_Values.Look(ref apply, "apply");
+                Scribe_Values.Look(ref labelKey, "labelKey");
+                Scribe_Values.Look(ref descKey, "descKey");
             }
         } 
 
