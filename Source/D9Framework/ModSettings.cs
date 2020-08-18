@@ -65,17 +65,6 @@ namespace D9Framework
             if(Scribe.mode != LoadSaveMode.Saving)
             {
                 DeserializePatches(savePatches);
-                // backwards compatibility
-                bool cur = false;
-                (string sk, string lk, string dk)[] keysToLook = { ("ApplyCompFromStuff", "D9FSettingsApplyCFS", "D9FSettingsApplyCFSTooltip"),
-                                                                   ("ApplyOrbitalTradeHook", "D9FSettingsApplyOTH", "D9FSettingsApplyOTHTooltip"),
-                                                                   ("ApplyDeconstructReturnFix", "D9FSettingsApplyDRF", "D9FSettingsApplyDRFTooltip"),
-                                                                   ("ApplyNegativeFertilityPatch", "D9FSettingsApplyNFP", "D9FSettingsApplyNFPTooltip")};
-                foreach ((string sk, string lk, string dk) in keysToLook)
-                {
-                    Scribe_Values.Look(ref cur, sk);
-                    Patches[sk] = new PatchInfo(sk, cur, lk, dk);
-                }
             }
             Scribe_Values.Look(ref applyCMF, "ApplyCarryMassFramework", true);
             Scribe_Values.Look(ref DEBUG, "debug", false);
