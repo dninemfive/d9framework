@@ -34,7 +34,7 @@ namespace D9Framework
                 foreach(string key in keysToLook)
                 {
                     Scribe_Values.Look(ref cur, key);
-                    Patches[key] = (cur, Patches[key].labelKey, Patches[key].descKey);
+                    SetApply(key, cur);
                 }
             }
             Scribe_Values.Look(ref applyCMF, "ApplyCarryMassFramework", true);
@@ -46,6 +46,11 @@ namespace D9Framework
         {
             if (!DEBUG) return true;
             return Patches[patchkey].apply;
+        }
+
+        public static void SetApply(string patchkey, bool apply)
+        {
+            Patches[patchkey] = (apply, Patches[patchkey].labelKey, Patches[patchkey].descKey);
         }
     }
     /// <summary>
@@ -78,11 +83,9 @@ namespace D9Framework
                 foreach(string key in D9FModSettings.Patches.Keys.ToList())
                 {
                     Log.Message("\t3." + ct + ": " + key);
-                    // This probably won't work, but it's worth a try.
-                    // Narrator: it didn't.
                     bool cur = D9FModSettings.Patches[key].apply;
                     listing.CheckboxLabeled(D9FModSettings.Patches[key].labelKey.Translate(), ref cur, D9FModSettings.Patches[key].descKey.Translate());
-                    D9FModSettings.Patches[key].apply = cur;
+                    D9FModSettings.SetApply(key, cur);
                 }
                 Log.Message("4");
                 listing.CheckboxLabeled("D9FSettingsApplyCMF".Translate(), ref D9FModSettings.applyCMF, "D9FSettingsApplyCMFTooltip".Translate());
