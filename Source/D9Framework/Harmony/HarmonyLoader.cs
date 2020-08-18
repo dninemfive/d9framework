@@ -11,12 +11,6 @@ namespace D9Framework
     /// <summary>
     /// Loads included Harmony patches only if they're enabled in the mod settings.
     /// </summary>
-    /// <remarks>
-    /// I plan to heavily refactor this, probably using class annotations and a restructure of the mod settings page.
-    /// <para>
-    /// Currently, adding a new patch requires code additions in the original class, in this class, and in the mod settings screen, in addition to creation of new translation keys; hopefully, I can basically eliminate this.
-    /// </para>
-    /// </remarks>
     class HarmonyLoader
     {
         static HarmonyLoader()

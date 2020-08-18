@@ -55,15 +55,12 @@ namespace D9Framework
 
         public override void ExposeData()
         {
-            Log.Message("ExposeData()");
             base.ExposeData();
             List<PatchInfo> savePatches = new List<PatchInfo>();
-            Log.Message("Patches: " + Patches.ToStringFullContents());
             if (Scribe.mode == LoadSaveMode.Saving)
             {
                 savePatches = SerializePatches();     
             }
-            Log.Message("savePatches: " + string.Join(", ", savePatches));
             Scribe_Collections.Look(ref savePatches, "Patches", LookMode.Deep);
             if(Scribe.mode != LoadSaveMode.Saving)
             {
@@ -82,7 +79,6 @@ namespace D9Framework
                 ULog.Warning("ShouldPatch called for non-initialized patchkey.");
                 return true;
             }
-            Log.Message("ShouldPatch for " + patchkey + ": " + Patches[patchkey].apply);
             return Patches[patchkey].apply;
         }
 
