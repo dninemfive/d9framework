@@ -38,29 +38,27 @@ namespace D9Framework
                 labelKey = l;
                 descKey = d;
             }
+
+            public override string ToString()
+            {
+                return "<{" + saveKey + ": " + apply + "}>";
+            }
         } 
 
         public override void ExposeData()
         {
             base.ExposeData();
             List<PatchInfo> savePatches = new List<PatchInfo>();
+            Log.Message("Patches: " + Patches.ToStringFullContents());
             if (Scribe.mode == LoadSaveMode.Saving)
             {
-                foreach(string key in Patches.Keys.ToList())
-                {
-                    savePatches.Add(new PatchInfo(key,
-                        Patches[key].apply,
-                        Patches[key].labelKey,
-                        Patches[key].descKey));
-                }                
+                savePatches = SerializePatches();     
             }
-            Scribe_Collections.Look(ref savePatches, "Patches");
+            Log.Message("savePatches: " + string.Join(", ", savePatches));
+            Scribe_Collections.Look(ref savePatches, "Patches", LookMode.Deep);
             if(Scribe.mode != LoadSaveMode.Saving)
             {
-                foreach(PatchInfo pi in savePatches)
-                {
-                    Patches[pi.saveKey] = pi;
-                }
+                DeserializePatches(savePatches);
             }
             Scribe_Values.Look(ref applyCMF, "ApplyCarryMassFramework", true);
             Scribe_Values.Look(ref DEBUG, "debug", false);
@@ -76,6 +74,27 @@ namespace D9Framework
             }
             return Patches[patchkey].apply;
         }
+
+        public static List<PatchInfo> SerializePatches()
+        {
+            List<PatchInfo> ret = new List<PatchInfo>();
+            foreach (string key in Patches.Keys.ToList())
+            {
+                ret.Add(new PatchInfo(key,
+                    Patches[key].apply,
+                    Patches[key].labelKey,
+                    Patches[key].descKey));
+            }
+            return ret;
+        }
+
+        public static void DeserializePatches(List<PatchInfo> list)
+        {
+            foreach (PatchInfo pi in list)
+            {
+                Patches[pi.saveKey] = pi;
+            }
+        }
     }
     /// <summary>
     /// <c>Mod</c> class for D9 Framework. Mainly handles the settings screen.
@@ -90,28 +109,21 @@ namespace D9Framework
 
         public override void DoSettingsWindowContents(Rect inRect)
         {
-            Log.Message("0");
             Listing_Standard listing = new Listing_Standard();
             listing.Begin(inRect);
             listing.CheckboxLabeled("D9FSettingsDebug".Translate(), ref D9FModSettings.DEBUG, "D9FSettingsDebugTooltip".Translate());
-            Log.Message("1");
             if (D9FModSettings.DEBUG)
             {
-                Log.Message("2");
                 listing.CheckboxLabeled("D9FSettingsPPM".Translate(), ref D9FModSettings.printPatchedMethods, "D9FSettingsPPMTooltip".Translate());
                 listing.Label("D9FSettingsApplyAtOwnRisk".Translate());
                 listing.Label("D9FSettingsRestartToApply".Translate());
                 listing.Label("D9FSettingsDebugModeRequired".Translate());
-                Log.Message("3");
-                int ct = 1;
-                foreach(string key in D9FModSettings.Patches.Keys.ToList())
+                List<D9FModSettings.PatchInfo> patches = D9FModSettings.SerializePatches();
+                foreach(D9FModSettings.PatchInfo pi in patches)
                 {
-                    Log.Message("\t3." + ct + ": " + key);
-                    bool cur = D9FModSettings.Patches[key].apply;
-                    listing.CheckboxLabeled(D9FModSettings.Patches[key].labelKey.Translate(), ref cur, D9FModSettings.Patches[key].descKey.Translate());
-                    D9FModSettings.Patches[key].apply = cur;
+                    listing.CheckboxLabeled(pi.labelKey.Translate(), ref pi.apply, pi.descKey.Translate());
                 }
-                Log.Message("4");
+                D9FModSettings.DeserializePatches(patches);
                 listing.CheckboxLabeled("D9FSettingsApplyCMF".Translate(), ref D9FModSettings.applyCMF, "D9FSettingsApplyCMFTooltip".Translate());
             }
             listing.End();
