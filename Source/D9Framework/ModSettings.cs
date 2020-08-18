@@ -47,6 +47,7 @@ namespace D9Framework
 
         public override void ExposeData()
         {
+            Log.Message("ExposeData()");
             base.ExposeData();
             List<PatchInfo> savePatches = new List<PatchInfo>();
             Log.Message("Patches: " + Patches.ToStringFullContents());
@@ -105,6 +106,7 @@ namespace D9Framework
         public D9FrameworkMod(ModContentPack con) : base(con)
         {
             this.settings = GetSettings<D9FModSettings>();
+            new HarmonyLoader();
         }
 
         public override void DoSettingsWindowContents(Rect inRect)
