@@ -19,9 +19,22 @@ namespace D9Framework
         public static bool ApplyCarryMassFramework => !DEBUG || applyCMF;
         public static bool applyCMF = true;
 
-        // despite being public, please don't fuck with these. Access patch application settings with ShouldPatch, and don't touch SettingsUIKeys.
+        // despite being public, please don't fuck with these. Access patch application settings with ShouldPatch.
         // They're only public so I can use them in the mod settings screen.
-        public static Dictionary<string, (bool apply, string labelKey, string descKey)> Patches = new Dictionary<string, (bool apply, string labelKey, string descKey)>();
+        public static Dictionary<string, PatchInfo> Patches = new Dictionary<string, PatchInfo>();
+
+        public class PatchInfo
+        {
+            public bool apply;
+            public string labelKey, descKey;
+
+            public PatchInfo(bool a, string l, string d)
+            {
+                apply = a;
+                labelKey = l;
+                descKey = d;
+            }
+        } 
 
         public override void ExposeData()
         {
@@ -34,23 +47,24 @@ namespace D9Framework
                 foreach(string key in keysToLook)
                 {
                     Scribe_Values.Look(ref cur, key);
-                    SetApply(key, cur);
+                    // discarding the data because I don't have the info to initialize and idrc if a couple settings flip on the 1.1 -> 1.2 update
+                    // Just looking to avoid errors
                 }
             }
             Scribe_Values.Look(ref applyCMF, "ApplyCarryMassFramework", true);
             Scribe_Values.Look(ref DEBUG, "debug", false);
-            Scribe_Collections.Look(ref Patches, "Patches");
+            Scribe_Collections.Look(ref Patches, "Patches", keyLookMode: LookMode.Value, valueLookMode: LookMode.Deep);
         }
 
         public static bool ShouldPatch(string patchkey)
         {
             if (!DEBUG) return true;
+            if (!Patches.ContainsKey(patchkey))
+            {
+                ULog.Warning("ShouldPatch called for non-initialized patchkey.");
+                return true;
+            }
             return Patches[patchkey].apply;
-        }
-
-        public static void SetApply(string patchkey, bool apply)
-        {
-            Patches[patchkey] = (apply, Patches[patchkey].labelKey, Patches[patchkey].descKey);
         }
     }
     /// <summary>
@@ -85,7 +99,7 @@ namespace D9Framework
                     Log.Message("\t3." + ct + ": " + key);
                     bool cur = D9FModSettings.Patches[key].apply;
                     listing.CheckboxLabeled(D9FModSettings.Patches[key].labelKey.Translate(), ref cur, D9FModSettings.Patches[key].descKey.Translate());
-                    D9FModSettings.SetApply(key, cur);
+                    D9FModSettings.Patches[key].apply = cur;
                 }
                 Log.Message("4");
                 listing.CheckboxLabeled("D9FSettingsApplyCMF".Translate(), ref D9FModSettings.applyCMF, "D9FSettingsApplyCMFTooltip".Translate());
