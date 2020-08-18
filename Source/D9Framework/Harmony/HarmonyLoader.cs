@@ -32,7 +32,7 @@ namespace D9Framework
                 {
                     if (!D9FModSettings.Patches.ContainsKey(attr.SaveKey))
                     {
-                        D9FModSettings.Patches[attr.SaveKey] = new D9FModSettings.PatchInfo(true, attr.LabelKey, attr.DescKey);                        
+                        D9FModSettings.Patches[attr.SaveKey] = new D9FModSettings.PatchInfo(attr.SaveKey, true, attr.LabelKey, attr.DescKey);                        
                     }
                     else
                     {

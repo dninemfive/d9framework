@@ -26,10 +26,14 @@ namespace D9Framework
         public class PatchInfo
         {
             public bool apply;
-            public string labelKey, descKey;
+            public string saveKey, labelKey, descKey;
 
-            public PatchInfo(bool a, string l, string d)
+            // The game requires a no-arg constructor
+            public PatchInfo() { }
+
+            public PatchInfo(string s, bool a, string l, string d)
             {
+                saveKey = s;
                 apply = a;
                 labelKey = l;
                 descKey = d;
@@ -39,21 +43,27 @@ namespace D9Framework
         public override void ExposeData()
         {
             base.ExposeData();
-            // backwards compatibility
+            List<PatchInfo> savePatches = new List<PatchInfo>();
+            if (Scribe.mode == LoadSaveMode.Saving)
+            {
+                foreach(string key in Patches.Keys.ToList())
+                {
+                    savePatches.Add(new PatchInfo(key,
+                        Patches[key].apply,
+                        Patches[key].labelKey,
+                        Patches[key].descKey));
+                }                
+            }
+            Scribe_Collections.Look(ref savePatches, "Patches");
             if(Scribe.mode != LoadSaveMode.Saving)
             {
-                bool cur = false;
-                string[] keysToLook = { "ApplyCompFromStuff", "ApplyOrbitalTradeHook", "ApplyDeconstructReturnFix", "ApplyNegativeFertilityPatch" };
-                foreach(string key in keysToLook)
+                foreach(PatchInfo pi in savePatches)
                 {
-                    Scribe_Values.Look(ref cur, key);
-                    // discarding the data because I don't have the info to initialize and idrc if a couple settings flip on the 1.1 -> 1.2 update
-                    // Just looking to avoid errors
+                    Patches[pi.saveKey] = pi;
                 }
             }
             Scribe_Values.Look(ref applyCMF, "ApplyCarryMassFramework", true);
             Scribe_Values.Look(ref DEBUG, "debug", false);
-            Scribe_Collections.Look(ref Patches, "Patches", keyLookMode: LookMode.Value, valueLookMode: LookMode.Deep);
         }
 
         public static bool ShouldPatch(string patchkey)
