@@ -71,6 +71,7 @@ namespace D9Framework
             }
             Scribe_Values.Look(ref applyCMF, "ApplyCarryMassFramework", true);
             Scribe_Values.Look(ref DEBUG, "debug", false);
+            Scribe_Values.Look(ref printPatchedMethods, "printPatchedMethods");
         }
 
         public static bool ShouldPatch(string patchkey)
@@ -81,6 +82,7 @@ namespace D9Framework
                 ULog.Warning("ShouldPatch called for non-initialized patchkey.");
                 return true;
             }
+            Log.Message("ShouldPatch for " + patchkey + ": " + Patches[patchkey].apply);
             return Patches[patchkey].apply;
         }
 

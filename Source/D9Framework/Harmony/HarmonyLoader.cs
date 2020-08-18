@@ -37,8 +37,11 @@ namespace D9Framework
                     {
                         D9FModSettings.Patches[attr.SaveKey].apply = D9FModSettings.ShouldPatch(attr.SaveKey);
                     }
-                    PatchAll(harmony, type);
-                    ULog.DebugMessage("\t" + attr.PlainName + " enabled.", false);
+                    if (D9FModSettings.ShouldPatch(attr.SaveKey))
+                    {
+                        PatchAll(harmony, type);
+                        ULog.DebugMessage("\t" + attr.PlainName + " enabled.", false);
+                    }                    
                 }
             }
             if (D9FModSettings.ApplyCarryMassFramework)
