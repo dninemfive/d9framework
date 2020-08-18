@@ -66,23 +66,30 @@ namespace D9Framework
 
         public override void DoSettingsWindowContents(Rect inRect)
         {
+            Log.Message("0");
             Listing_Standard listing = new Listing_Standard();
             listing.Begin(inRect);
             listing.CheckboxLabeled("D9FSettingsDebug".Translate(), ref D9FModSettings.DEBUG, "D9FSettingsDebugTooltip".Translate());
+            Log.Message("1");
             if (D9FModSettings.DEBUG)
             {
+                Log.Message("2");
                 listing.CheckboxLabeled("D9FSettingsPPM".Translate(), ref D9FModSettings.printPatchedMethods, "D9FSettingsPPMTooltip".Translate());
                 listing.Label("D9FSettingsApplyAtOwnRisk".Translate());
                 listing.Label("D9FSettingsRestartToApply".Translate());
                 listing.Label("D9FSettingsDebugModeRequired".Translate());
-                foreach(string key in D9FModSettings.PatchApplicationSettings.Keys)
+                Log.Message("3");
+                int ct = 1;
+                foreach(string key in D9FModSettings.PatchApplicationSettings.Keys.ToList())
                 {
+                    Log.Message("\t3." + ct + ": " + key);
                     // This probably won't work, but it's worth a try.
                     // Narrator: it didn't.
                     bool cur = D9FModSettings.PatchApplicationSettings[key];
                     listing.CheckboxLabeled(D9FModSettings.SettingsUIKeys[key].labelKey.Translate(), ref cur, D9FModSettings.SettingsUIKeys[key].descKey.Translate());
                     D9FModSettings.PatchApplicationSettings[key] = cur;
                 }
+                Log.Message("4");
                 listing.CheckboxLabeled("D9FSettingsApplyCMF".Translate(), ref D9FModSettings.applyCMF, "D9FSettingsApplyCMFTooltip".Translate());
             }
             listing.End();
