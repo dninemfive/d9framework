@@ -84,7 +84,6 @@
     <Compile Include="Comps\CompSelfRepair.cs" />
     <Compile Include="Comps\CompWithCheapHashInterval.cs" />
     <Compile Include="Harmony\CompFromStuff\CompsToAddWhenStuff.cs" />
-    <Compile Include="Harmony\DeconstructReturnFix.cs" />
     <Compile Include="Harmony\CompFromStuff\CompFromStuff.cs" />
     <Compile Include="Harmony\HarmonyLoader.cs" />
     <Compile Include="Harmony\FacilityRequireFuel.cs" />
