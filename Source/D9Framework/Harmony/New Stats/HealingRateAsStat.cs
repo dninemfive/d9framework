@@ -19,14 +19,25 @@ namespace D9Framework
             [HarmonyTranspiler]
             public static IEnumerable<CodeInstruction> HealthTickTranspiler(IEnumerable<CodeInstruction> instructions)
             {
-                /*// multiply num3 by healing rate stat just before the hediff factors
                 List<CodeInstruction> instr = instructions.ToList();
+                bool hasInjected = false;
+                /* multiply num3 by healing rate stat just after the hediff factors*/                
                 for(int i = 3; i < instr.Count; i++)
                 {
-                    if (instr[i - 3].Branches(out Label? label);
-                }*/
+                    // thank Wiri
+                    if (!hasInjected
+                        && instr[i].opcode == OpCodes.Ldloca_S && (byte)instr[i].operand == 10
+                        && instr[i + 1].opcode == OpCodes.Call && instr[i + 1].operand == AccessTools.Method(typeof(List<Hediff>), nameof(MoveNext)))
+                        {
+                            yield return new CodeInstruction(OpCodes.Ldloc_0);
+                        // Ldfld shit
+                            yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field().)
+                            yield return new CodeInstruction(OpCodes.Mul);
+                            hasInjected = true;
+                        }
+                }
                 // just to get it to compile for now
-                return instructions;
+                // return instructions;
             }
         }
     }
