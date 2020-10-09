@@ -67,3 +67,5 @@ C:\Users\dninemfive\Documents\mods\Rimworld\F1.0\D9 Framework\Source\D9Framework
 C:\Users\dninemfive\Documents\mods\Rimworld\F1.0\D9 Framework\Source\D9Framework\bin\Debug\0Harmony.xml
 C:\Users\dninemfive\Documents\mods\Rimworld\F1.0\D9 Framework\Assemblies\D9Framework.dll
 C:\Users\dninemfive\Documents\mods\Rimworld\F1.0\D9 Framework\Assemblies\D9Framework.pdb
+C:\Users\dninemfive\Documents\mods\Rimworld\F1.0\D9 Framework\1.2\Assemblies\D9Framework.dll
+C:\Users\dninemfive\Documents\mods\Rimworld\F1.0\D9 Framework\1.2\Assemblies\D9Framework.pdb
