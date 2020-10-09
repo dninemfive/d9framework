@@ -19,6 +19,12 @@
 	<D9FSettingsApplyCMFTooltip>Whether to apply the patches for the Carry Mass Framework, which allows mod authors to modify the way carry mass works in game.</D9FSettingsApplyCMFTooltip>
 	<D9FSettingsApplyNFP>Apply Negative Fertility Patch</D9FSettingsApplyNFP>
 	<D9FSettingsApplyNFPTooltip>Whether to apply the Negative Fertility Patch, which allows specific plants to grow faster in less fertile soil.</D9FSettingsApplyNFPTooltip>
+	<D9FSettingsApplyFRF>Apply Facility Requires Fuel patch</D9FSettingsApplyFRF>
+	<D9FsettingsApplyFRFTooltip>Whether to apply the Facility Requires Fuel patch, which allows modders to create facilities which require fuel to operate.</D9FsettingsApplyFRFTooltip>
+	<D9FSettingsApplyCBR>Apply Calculate Bleed Rate patch</D9FSettingsApplyCBR>
+	<D9FSettingsApplyCBRTooltip>Whether to apply the Calculate Bleed Rate patch, which allows modders to apply bleed rate modifiers on pawns using a stat.</D9FSettingsApplyCBRTooltip>
+	<D9FSettingsApplyHRP>Apply Healing Rate Patch</D9FSettingsApplyHRP>
+	<D9FSettingsApplyHRPTooltip>Whether to apply the Healing Rate Patch, which allows modders to apply healing rate modifiers on pawns using a stat.</D9FSettingsApplyHRPTooltip>
 	<!-- AJO PlaceWorkers -->
 	<D9F_Roofed_NeedsRoof>{0} needs to be placed under a roof</D9F_Roofed_NeedsRoof>
 	<D9F_Chandelier_TooTall>{0} is too tall to place a {1} here</D9F_Chandelier_TooTall>
