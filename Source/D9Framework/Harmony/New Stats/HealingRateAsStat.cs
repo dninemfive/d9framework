@@ -1,4 +1,20 @@
-﻿using System;
+﻿/*
+ num3 *= __instance.Pawn.GetStatValue(D9CTMDefOf.HealingRateFactor);
+ 
+ mul num3, stat value
+ pop stack into num3
+
+ details:
+    ldarg.0                                 // push instance onto stack
+    ldfld Pawn                              // push instance's pawn onto the stack
+    ldsfld D9CTMDefOf.HealingRateFactor     // push HealingRateFactor DefOf onto stack
+    call StatExtension.GetStatValueForPawn  // push HealingRateFactor's value onto stack
+    ldarg.n                                 // push num3 onto stack
+    mul                                     // push num3 * HRF_val onto stack
+    stloc.n                                 // set num3 to the value on the stack
+    // pop everything off the stack?
+*/
+/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
@@ -21,7 +37,7 @@ namespace D9Framework
             {
                 List<CodeInstruction> instr = instructions.ToList();
                 bool hasInjected = false;
-                /* multiply num3 by healing rate stat just after the hediff factors*/                
+                // multiply num3 by healing rate stat just after the hediff factors           
                 for(int i = 3; i < instr.Count; i++)
                 {
                     // thank Wiri
@@ -42,3 +58,4 @@ namespace D9Framework
         }
     }
 }
+*/
