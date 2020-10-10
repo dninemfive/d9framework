@@ -72,13 +72,15 @@ namespace D9Framework {
         {
             compClass = typeof(CompValidator);
         }
+
         public override IEnumerable<string> ConfigErrors(ThingDef parentDef)
         {
             if (parentDef.placeWorkers == null || parentDef.placeWorkers.Count < 1)
             {
                 ShouldUse = false;
-                yield return "CompValidator used but no PlaceWorkers set!";
+                yield return "CompProperties_Validator: no PlaceWorkers set!";
             }
+            if (parentDef.tickerType != TickerType.Normal) yield return "CompProperties_Validator: TickerType is not Normal!";
         }
     }
 }

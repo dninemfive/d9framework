@@ -39,5 +39,11 @@ namespace D9Framework
         {
             base.compClass = typeof(CompSelfRepair);
         }
+
+        public override IEnumerable<string> ConfigErrors(ThingDef parentDef)
+        {
+            foreach (string s in base.ConfigErrors(parentDef)) yield return s;
+            if (parentDef.tickerType != TickerType.Normal) yield return "CompProperties_SelfRepair: TickerType is not Normal!";
+        }
     }
 }
