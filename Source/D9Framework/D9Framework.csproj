@@ -107,6 +107,7 @@
     <Compile Include="Ulog.cs" />
     <Compile Include="Utilities\ClassWithPatchesAttribute.cs" />
     <Compile Include="Utilities\D9FrameworkDefOf.cs" />
+    <Compile Include="Utilities\QualityUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
