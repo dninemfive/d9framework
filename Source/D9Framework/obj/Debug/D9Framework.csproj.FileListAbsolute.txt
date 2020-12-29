@@ -69,3 +69,9 @@ C:\Users\dninemfive\Documents\mods\Rimworld\F1.0\D9 Framework\Assemblies\D9Frame
 C:\Users\dninemfive\Documents\mods\Rimworld\F1.0\D9 Framework\Assemblies\D9Framework.pdb
 C:\Users\dninemfive\Documents\mods\Rimworld\F1.0\D9 Framework\1.2\Assemblies\D9Framework.dll
 C:\Users\dninemfive\Documents\mods\Rimworld\F1.0\D9 Framework\1.2\Assemblies\D9Framework.pdb
+C:\Users\dninemfive\Documents\workspaces\side projects\mods\Rimworld\d9framework\1.2\Assemblies\D9Framework.dll
+C:\Users\dninemfive\Documents\workspaces\side projects\mods\Rimworld\d9framework\1.2\Assemblies\D9Framework.pdb
+C:\Users\dninemfive\Documents\workspaces\side projects\mods\Rimworld\d9framework\Source\D9Framework\obj\Debug\D9Framework.csprojAssemblyReference.cache
+C:\Users\dninemfive\Documents\workspaces\side projects\mods\Rimworld\d9framework\Source\D9Framework\obj\Debug\D9Framework.csproj.CoreCompileInputs.cache
+C:\Users\dninemfive\Documents\workspaces\side projects\mods\Rimworld\d9framework\Source\D9Framework\obj\Debug\D9Framework.dll
+C:\Users\dninemfive\Documents\workspaces\side projects\mods\Rimworld\d9framework\Source\D9Framework\obj\Debug\D9Framework.pdb

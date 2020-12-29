@@ -15,9 +15,8 @@ namespace D9Framework
         CompProperties_SelfRepair Props => (CompProperties_SelfRepair)props;
         public override void CompTick()
         {
-            base.CompTick();
-            int hp = base.parent.HitPoints;
-            if (IsCheapIntervalTick(Props.tickInterval) && parent.def.useHitPoints && hp < parent.MaxHitPoints) hp++;
+            base.CompTick();            
+            if (IsCheapIntervalTick(Props.tickInterval) && parent.def.useHitPoints && parent.HitPoints < parent.MaxHitPoints) parent.HitPoints++;
         }
         public override string CompInspectStringExtra()
         {
