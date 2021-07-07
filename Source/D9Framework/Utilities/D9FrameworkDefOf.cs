@@ -16,7 +16,7 @@ namespace D9Framework
     {
 #pragma warning disable CS0649
         #region StatDefs
-        public static StatDef HealingRateFactor;
+        // public static StatDef HealingRateFactor;
         public static StatDef BleedRateFactor;
         #endregion StatDefs
 #pragma warning restore CS0649
