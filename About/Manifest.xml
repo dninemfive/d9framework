@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Manifest>
     <identifier>D9Framework</identifier>
-    <version>1.3.1</version>
+    <version>1.3.2</version>
     <dependencies>
 		<li>Harmony</li>
 	</dependencies>
     <loadAfter/>
     <suggests/> <!-- TODO: all my mods using D9 Framework -->
     <showCrossPromotions>true</showCrossPromotions>
-    <manifestUri>https://raw.githubusercontent.com/dninemfive/d9framework/master/About/Manifest.xml</manifestUri>
+    <manifestUri>https://raw.githubusercontent.com/dninemfive/d9framework/main/About/Manifest.xml</manifestUri>
     <downloadUri>https://github.com/dninemfive/d9framework/releases/latest</downloadUri>
 </Manifest>
