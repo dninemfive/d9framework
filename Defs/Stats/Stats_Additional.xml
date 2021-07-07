@@ -8,11 +8,11 @@
 		<toStringStyle>PercentZero</toStringStyle>
 		<hideAtValue>1</hideAtValue>
 	</StatDef>
-	<StatDef ParentName="D9Framework_AdditionalStatDefBase">
+	<!--StatDef ParentName="D9Framework_AdditionalStatDefBase">
 		<defName>HealingRateFactor</defName>
 		<label>healing rate factor</label>
 		<description>The rate at which this pawn will heal from injuries. Higher values mean faster healing.</description>
-	</StatDef>
+	</StatDef-->
 	<StatDef ParentName="D9Framework_AdditionalStatDefBase">
 		<defName>BleedRateFactor</defName>
 		<label>bleed rate factor</label>
