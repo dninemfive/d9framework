@@ -5,8 +5,19 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 
+/// <summary>
+/// <c>ThingClass</c> which acts like the vanilla <c>ShieldBelt</c> class but allows the user to fire ranged weapons while worn.
+/// </summary>
+/// <remarks>
+/// Used to be a pretty simple subclass of <c>ShieldBelt</c>, but that ran into compatibility problems:
+/// <list type="bullet">
+/// <item>Some mods check whether ranged shots were allowed by seeing if the thingClass <c>is</c> a ShieldBelt, which returned true in this case, 
+/// causing errors including them being automatically, erroneously, unequipped on ranged pawns.</item>
+/// <item>A growing number of patches were necessary to prevent the vanilla game treating ranged shield belts in the same way.</item>
+/// </list>
+/// </remarks>
 [StaticConstructorOnStartup]
-public class ShieldBelt : Apparel
+public class RangedShieldBelt : Apparel
 {
 	private float energy;
 
@@ -101,9 +112,9 @@ public class ShieldBelt : Apparel
 		}
 		if (Find.Selector.SingleSelectedThing == base.Wearer)
 		{
-			Gizmo_EnergyShieldStatus gizmo_EnergyShieldStatus = new Gizmo_EnergyShieldStatus();
-			gizmo_EnergyShieldStatus.shield = this;
-			yield return gizmo_EnergyShieldStatus;
+			Gizmo_RangedShieldStatus gizmo = new Gizmo_RangedShieldStatus();
+			gizmo.shield = this;
+			yield return gizmo;
 		}
 	}
 

@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\1.2\Assemblies\</OutputPath>
+    <OutputPath>..\..\1.3\Assemblies\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -116,6 +116,6 @@
   </PropertyGroup>
   <PropertyGroup>
     <PostBuildEvent>del *.pdb
-copy /y D9Framework.dll "C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\d9framework\1.2\Assemblies"</PostBuildEvent>
+copy /y D9Framework.dll "C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\d9framework\1.3\Assemblies"</PostBuildEvent>
   </PropertyGroup>
 </Project>
