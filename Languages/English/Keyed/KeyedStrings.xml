@@ -20,7 +20,7 @@
 	<D9FSettingsApplyNFP>Apply Negative Fertility Patch</D9FSettingsApplyNFP>
 	<D9FSettingsApplyNFPTooltip>Whether to apply the Negative Fertility Patch, which allows specific plants to grow faster in less fertile soil.</D9FSettingsApplyNFPTooltip>
 	<D9FSettingsApplyFRF>Apply Facility Requires Fuel patch</D9FSettingsApplyFRF>
-	<D9FsettingsApplyFRFTooltip>Whether to apply the Facility Requires Fuel patch, which allows modders to create facilities which require fuel to operate.</D9FsettingsApplyFRFTooltip>
+	<D9FSettingsApplyFRFTooltip>Whether to apply the Facility Requires Fuel patch, which allows modders to create facilities which require fuel to operate.</D9FSettingsApplyFRFTooltip>
 	<D9FSettingsApplyCBR>Apply Calculate Bleed Rate patch</D9FSettingsApplyCBR>
 	<D9FSettingsApplyCBRTooltip>Whether to apply the Calculate Bleed Rate patch, which allows modders to apply bleed rate modifiers on pawns using a stat.</D9FSettingsApplyCBRTooltip>
 	<D9FSettingsApplyHRP>Apply Healing Rate Patch</D9FSettingsApplyHRP>
