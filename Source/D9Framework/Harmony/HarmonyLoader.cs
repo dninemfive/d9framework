@@ -45,8 +45,8 @@ namespace D9Framework
             }
             if (D9FModSettings.PrintPatchedMethods)
             {
-                Log.Message("The following methods were successfully patched:", false);
-                foreach (MethodBase mb in harmony.GetPatchedMethods()) Log.Message("\t" + mb.DeclaringType.Name + "." + mb.Name, false);
+                ULog.Message("The following methods were successfully patched:");
+                foreach (MethodBase mb in harmony.GetPatchedMethods()) ULog.Message("\t" + mb.DeclaringType.Name + "." + mb.Name);
             }
         }
         // thanks to lbmaian
