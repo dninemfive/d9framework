@@ -161,11 +161,11 @@ namespace D9Framework
             impactAngleVect = Vector3Utility.HorizontalVectorFromAngle(dinfo.Angle);
             Vector3 loc = base.Wearer.TrueCenter() + impactAngleVect.RotatedBy(180f) * 0.5f;
             float num = Mathf.Min(10f, 2f + dinfo.Amount / 10f);
-            MoteMaker.MakeStaticMote(loc, base.Wearer.Map, ThingDefOf.Mote_ExplosionFlash, num);
+            MoteMaker.MakeStaticMote(loc, base.Wearer.Map, ThingDefOf.Explosion, num);
             int num2 = (int)num;
             for (int i = 0; i < num2; i++)
             {
-                MoteMaker.ThrowDustPuff(loc, base.Wearer.Map, Rand.Range(0.8f, 1.2f));
+                FleckMaker.ThrowDustPuff(loc, base.Wearer.Map, Rand.Range(0.8f, 1.2f));
             }
             lastAbsorbDamageTick = Find.TickManager.TicksGame;
             KeepDisplaying();
@@ -174,11 +174,11 @@ namespace D9Framework
         private void Break()
         {
             SoundDefOf.EnergyShield_Broken.PlayOneShot(new TargetInfo(base.Wearer.Position, base.Wearer.Map, false));
-            MoteMaker.MakeStaticMote(base.Wearer.TrueCenter(), base.Wearer.Map, ThingDefOf.Mote_ExplosionFlash, 12f);
+            MoteMaker.MakeStaticMote(base.Wearer.TrueCenter(), base.Wearer.Map, ThingDefOf.Explosion, 12f);
             for (int i = 0; i < 6; i++)
             {
                 Vector3 loc = base.Wearer.TrueCenter() + Vector3Utility.HorizontalVectorFromAngle((float)Rand.Range(0, 360)) * Rand.Range(0.3f, 0.6f);
-                MoteMaker.ThrowDustPuff(loc, base.Wearer.Map, Rand.Range(0.8f, 1.2f));
+                FleckMaker.ThrowDustPuff(loc, base.Wearer.Map, Rand.Range(0.8f, 1.2f));
             }
             energy = 0f;
             ticksToReset = StartingTicksToReset;
@@ -189,7 +189,7 @@ namespace D9Framework
             if (base.Wearer.Spawned)
             {
                 SoundDefOf.EnergyShield_Reset.PlayOneShot(new TargetInfo(base.Wearer.Position, base.Wearer.Map, false));
-                MoteMaker.ThrowLightningGlow(base.Wearer.TrueCenter(), base.Wearer.Map, 3f);
+                FleckMaker.ThrowLightningGlow(base.Wearer.TrueCenter(), base.Wearer.Map, 3f);
             }
             ticksToReset = -1;
             energy = EnergyOnReset;
@@ -217,7 +217,7 @@ namespace D9Framework
             }
         }
 
-        public override bool AllowVerbCast(IntVec3 root, Map map, LocalTargetInfo targ, Verb v)
+        public override bool AllowVerbCast(Verb v)
         {
             return true;
         }
