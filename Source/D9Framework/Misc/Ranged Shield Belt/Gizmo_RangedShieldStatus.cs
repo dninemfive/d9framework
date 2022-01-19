@@ -31,7 +31,7 @@ namespace D9Framework
         }
         #endregion misc properties
 
-        public override GizmoResult GizmoOnGUI(Vector2 topLeft, float maxWidth)
+        public override GizmoResult GizmoOnGUI(Vector2 topLeft, float maxWidth, GizmoRenderParms parms)
         {
             Rect overRect = new Rect(topLeft.x, topLeft.y, GetWidth(maxWidth), 75f);
             Find.WindowStack.ImmediateWindow(984688, overRect, WindowLayer.GameUI, delegate
